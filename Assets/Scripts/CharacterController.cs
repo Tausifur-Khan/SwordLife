@@ -8,24 +8,33 @@ namespace knight
 
     public class CharacterController : MonoBehaviour
     {
-        #region Movement Variables
+        #region Movement Variables X & Y
+        //float speed 
         public float mvSpeed = 2;
+        //float jumpForce
         public float jumpForce = 50;
-        public float jumpDir;
+        //Jump condition
+        public bool grounded;
+        //double jump bool condition
+        public bool doubleJump;
 
         #endregion
+
+        #region Variable Components
         //2d rigidbody component
         private Rigidbody2D rb2d;
         //animation
         private Animator anim;
         //sprite renderer
         private SpriteRenderer sprite;
-
+        #endregion
 
 
         // Start is called before the first frame update
         void Start()
         {
+            doubleJump = false;
+            grounded = true;
             //Refer to rigid component
             rb2d = GetComponent<Rigidbody2D>();
             //refer to animation component
@@ -35,15 +44,21 @@ namespace knight
         }
 
 
-        private void Update()
+        void Update()
+        {
+            Jump();
+            //Check condition for grounded
+            Debug.Log("Grounded: " + grounded);
+            Debug.Log("Double: " + doubleJump);
+
+        }
+
+        void FixedUpdate()
         {
             Move();
         }
-        private void FixedUpdate()
-        {
 
-        }
-
+        //Method: Movement in X direction with velocity
         void Move()
         {
             // access to input axis within horizontal section
@@ -52,15 +67,6 @@ namespace knight
             //rigidbody velocity is equal to new vector2 space
             //new vector space with x value , y normal0
             rb2d.velocity = new Vector2(inputx * mvSpeed, rb2d.velocity.y);
-            
-
-            //if this key is pressed then
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
-                //add force going up within a 2d vector 
-               // rb2d.AddForce(Vector2.up * jumpForce, ForceMode2D.Force);
-            }
 
 
             #region Sprite Flip Condition
@@ -87,6 +93,56 @@ namespace knight
                 anim.SetBool("isMoving", false);
             }
             #endregion
+        }
+
+        //Method: Movement in Y direction with velocity & Animation
+        void Jump()
+        {
+            //if this key is pressed & player is grounded then...
+            if (Input.GetKeyDown(KeyCode.W) && grounded && !doubleJump)
+            {
+                // add a velocity force going up
+                /* rigidbody velocity is equal to the 
+                new set vectors in pre-set x direction, and add jumpForce Variable
+                */
+                rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
+
+
+                grounded = false;
+
+                //Set animation
+                #region Animation Condition
+                anim.SetBool("isJumping", true);
+                #endregion
+
+
+            }
+
+
+            if (!grounded && !doubleJump)
+            {
+                doubleJump = true;
+                if (Input.GetKeyDown(KeyCode.W) && doubleJump && !grounded)
+                {
+                    rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
+                }
+
+            }
+
+        }
+
+        private void OnCollisionEnter2D(Collision2D col)
+        {
+            //if the collision object is tagged "Ground", then....
+            if (col.gameObject.CompareTag("Ground"))
+            {
+                //set grounded bool true 
+                grounded = true;
+                //set doubleJump bool false
+                doubleJump = false;
+                //set jump animtion to false upon contact
+                anim.SetBool("isJumping", false);
+            }
         }
     }
 }
