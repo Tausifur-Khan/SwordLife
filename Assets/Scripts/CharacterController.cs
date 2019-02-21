@@ -99,7 +99,7 @@ namespace knight
         void Jump()
         {
             //if this key is pressed & player is grounded then...
-            if (Input.GetKeyDown(KeyCode.W) && grounded && !doubleJump)
+            if (Input.GetKeyDown(KeyCode.W) && grounded)
             {
                 // add a velocity force going up
                 /* rigidbody velocity is equal to the 
@@ -109,7 +109,7 @@ namespace knight
 
 
                 grounded = false;
-
+                doubleJump = true;
                 //Set animation
                 #region Animation Condition
                 anim.SetBool("isJumping", true);
@@ -117,17 +117,13 @@ namespace knight
 
 
             }
-
-
-            if (!grounded && !doubleJump)
+            else if(Input.GetKeyDown(KeyCode.W) && !grounded && doubleJump)
             {
-                doubleJump = true;
-                if (Input.GetKeyDown(KeyCode.W) && doubleJump && !grounded)
-                {
-                    rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
-                }
-
+                rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
+                doubleJump = false;
             }
+
+
 
         }
 
