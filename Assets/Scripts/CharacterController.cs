@@ -11,6 +11,8 @@ namespace knight
         #region Movement Variables X & Y
         //float speed 
         public float mvSpeed = 2;
+        //Dash speed
+        public float dashSpeed = 5;
         //float jumpForce
         public float jumpForce = 50;
         //Jump condition
@@ -43,16 +45,17 @@ namespace knight
             sprite = GetComponent<SpriteRenderer>();
         }
 
-
+        //Method for Jump()
         void Update()
         {
             Jump();
             //Check condition for grounded
             Debug.Log("Grounded: " + grounded);
             Debug.Log("Double: " + doubleJump);
-
+          
         }
 
+        //Method for Move()
         void FixedUpdate()
         {
             Move();
@@ -66,9 +69,9 @@ namespace knight
 
             //rigidbody velocity is equal to new vector2 space
             //new vector space with x value , y normal0
+            //rb2d.velocity.y will set pos to 0 but wont effect movement
             rb2d.velocity = new Vector2(inputx * mvSpeed, rb2d.velocity.y);
-
-
+            
             #region Sprite Flip Condition
             // sprite flip
             if (inputx <= -0.1)
@@ -93,6 +96,21 @@ namespace knight
                 anim.SetBool("isMoving", false);
             }
             #endregion
+        }
+        
+        void Dash()
+        {
+            //rb2d.velocity.y will set pos to 0 but wont effect movement
+            //if key is space then...
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                //allow character to dash. No condition required
+                Debug.Log("Dash: " + Input.GetKeyDown(KeyCode.Space));
+
+                
+                //set cooldown
+
+            }
         }
 
         //Method: Movement in Y direction with velocity & Animation
@@ -122,11 +140,10 @@ namespace knight
                 rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
                 doubleJump = false;
             }
-
-
-
         }
-
+        
+        //Collision Between Player and ground
+        //Set conditions for jump dependent on collision enter
         private void OnCollisionEnter2D(Collision2D col)
         {
             //if the collision object is tagged "Ground", then....
