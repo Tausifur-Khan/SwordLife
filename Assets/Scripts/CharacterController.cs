@@ -3,26 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor.Animations;
 
-namespace knight
+namespace Knight
 {
-
     public class CharacterController : MonoBehaviour
     {
         #region Movement Variables X & Y
+        [Header("Movement Variable x & y")]
         //float speed 
         public float mvSpeed = 2;
-        //Dash speed
-        public float dashSpeed = 5;
         //float jumpForce
         public float jumpForce = 50;
         //Jump condition
         public bool grounded;
         //double jump bool condition
         public bool doubleJump;
+        [Space(2)]
+
+        #region Dash Variables
+        [Header("Dash Variables")]
+        //dashforce
+        public float dashForce = 100f;
+        //bool condition for dash
+        public bool isDash = true;
+        //Dash timers min & max
+        public float dashTime = 1;
+        private float timer = 0;
+        #endregion
 
         #endregion
 
-        #region Variable Components
+        #region Private Variable Components
         //2d rigidbody component
         private Rigidbody2D rb2d;
         //animation
@@ -35,8 +45,15 @@ namespace knight
         // Start is called before the first frame update
         void Start()
         {
+            #region Movement Conditions
+            //double jump condition false
             doubleJump = false;
+            //grounded condition true
             grounded = true;
+            //dash condition true
+            isDash = true;
+            #endregion
+
             //Refer to rigid component
             rb2d = GetComponent<Rigidbody2D>();
             //refer to animation component
@@ -45,17 +62,13 @@ namespace knight
             sprite = GetComponent<SpriteRenderer>();
         }
 
-        //Method for Jump()
+
         void Update()
         {
             Jump();
-            //Check condition for grounded
-            Debug.Log("Grounded: " + grounded);
-            Debug.Log("Double: " + doubleJump);
-          
+
         }
 
-        //Method for Move()
         void FixedUpdate()
         {
             Move();
@@ -69,15 +82,41 @@ namespace knight
 
             //rigidbody velocity is equal to new vector2 space
             //new vector space with x value , y normal0
-            //rb2d.velocity.y will set pos to 0 but wont effect movement
             rb2d.velocity = new Vector2(inputx * mvSpeed, rb2d.velocity.y);
+
+            //if dash bool condition true then...
+            if (isDash)
+            {
+                //Dash Movement
+                //if input key 'space' then...
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    isDash = false;
+                    
+                    // if horizontal direction is right then...
+                    if (Input.GetAxis("Horizontal") >= 0.1)
+                    {
+                        // allow force for dash in right dir
+                        rb2d.AddForce(Vector2.right * dashForce, ForceMode2D.Impulse);
+                    }
+                    //if horizontal direction is left then...
+                    if (Input.GetAxis("Horizontal") <= -0.1)
+                    {
+                        // allow force for dash in left dir
+                        rb2d.AddForce(Vector2.left * dashForce, ForceMode2D.Impulse);
+                    }
+                }
+            }
+
             
             #region Sprite Flip Condition
-            // sprite flip
+            // sprite flip left
             if (inputx <= -0.1)
             {
                 sprite.flipX = true;
             }
+
+            //sprite flip right
             if (inputx >= 0.1)
             {
                 sprite.flipX = false;
@@ -96,21 +135,6 @@ namespace knight
                 anim.SetBool("isMoving", false);
             }
             #endregion
-        }
-        
-        void Dash()
-        {
-            //rb2d.velocity.y will set pos to 0 but wont effect movement
-            //if key is space then...
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                //allow character to dash. No condition required
-                Debug.Log("Dash: " + Input.GetKeyDown(KeyCode.Space));
-
-                
-                //set cooldown
-
-            }
         }
 
         //Method: Movement in Y direction with velocity & Animation
@@ -135,15 +159,14 @@ namespace knight
 
 
             }
-            else if(Input.GetKeyDown(KeyCode.W) && !grounded && doubleJump)
+            else if (Input.GetKeyDown(KeyCode.W) && !grounded && doubleJump)
             {
                 rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
                 doubleJump = false;
             }
+
         }
-        
-        //Collision Between Player and ground
-        //Set conditions for jump dependent on collision enter
+
         private void OnCollisionEnter2D(Collision2D col)
         {
             //if the collision object is tagged "Ground", then....
