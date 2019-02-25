@@ -62,7 +62,6 @@ namespace Knight
             sprite = GetComponent<SpriteRenderer>();
         }
 
-
         void Update()
         {
             Jump();
@@ -83,6 +82,13 @@ namespace Knight
             //rigidbody velocity is equal to new vector2 space
             //new vector space with x value , y normal0
             rb2d.velocity = new Vector2(inputx * mvSpeed, rb2d.velocity.y);
+
+            //if not movement in left or right then...
+            if(inputx == 0)
+            {
+                //set velocity movement in x to 0
+                rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+            }
 
             //if dash bool condition true then...
             if (isDash)
