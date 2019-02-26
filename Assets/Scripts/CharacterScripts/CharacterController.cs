@@ -72,92 +72,72 @@ namespace Knight
             sprite = GetComponent<SpriteRenderer>();
             #endregion
 
+
             dashtimer = dashMaxTime;
 
         }
 
         void Update()
         {
+            //Jump Method
             Jump();
-            Dash();
+            //Dash time Method
+            Timer();
 
         }
 
         void FixedUpdate()
         {
+            //Movement Method
             Move();
+            //Dash Move Method
+            Dash();
         }
 
         //Method: Movement in X direction with velocity
         void Move()
         {
-            //Get Axis
-            #region Move with getaxis horizontal
-            // access to input axis within horizontal section
-            //float inputx = Input.GetAxis("Horizontal");
-
-            //rigidbody velocity is equal to new vector2 space
-            //new vector space with x value , y normal0
-            //rb2d.velocity = new Vector2(inputx * mvSpeed, rb2d.velocity.y);
-            #endregion
-
-            //Get Key
+            //Get Key input
             #region Alternate movement
+            //if input left
             if (Input.GetKey(left))
             {
+                //add movement left
                 rb2d.velocity = new Vector2(-mvSpeed, rb2d.velocity.y);
+                //flip sprite
                 sprite.flipX = true;
+                //set animation true
                 anim.SetBool("isMoving", true);
             }
+            //else if input right
             else if (Input.GetKey(right))
             {
+                //add movement right
                 rb2d.velocity = new Vector2(mvSpeed, rb2d.velocity.y);
+                //flip spirte
                 sprite.flipX = false;
+                ///set animation
                 anim.SetBool("isMoving", true);
             }
+            //otherwise
             else
             {
+                //stop velocity movement x
                 rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+                //set animation false
                 anim.SetBool("isMoving", false);
             }
             #endregion
 
-            #region Sprite Flip Condition
-            //// sprite flip left
-            //if (inputx <= -0.1)
-            //{
-            //    sprite.flipX = true;
-            //}
-
-            ////sprite flip right
-            //if (inputx >= 0.1)
-            //{
-            //    sprite.flipX = false;
-            //}
-            #endregion
-
-            #region Animation Condition
-            //animation set
-            //if (inputx >= 0.1 || inputx <= -0.1)
-            //{
-            //    anim.SetBool("isMoving", true);
-
-            //}
-            //else
-            //{
-            //    anim.SetBool("isMoving", false);
-            //}
-            #endregion
         }
 
-
+        //Method: Dash movement in x direction
         void Dash()
         {
             #region Dash Movement
             //if dash bool condition true & timer is not 0 then...
-            if (isDash && dashtimer > 0)
+            if (isDash)
             {
-
                 //if input key 'space' then...
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
@@ -166,8 +146,8 @@ namespace Knight
                     {
                         // allow force for dash in right dir
                         rb2d.AddForce(Vector2.left * dashForce, ForceMode2D.Impulse);
-                        //start timer
-                        Timer();
+
+                        isDash = false;
 
                     }
                     //if horizontal direction is left then...
@@ -175,17 +155,11 @@ namespace Knight
                     {
                         // allow force for dash in left dir
                         rb2d.AddForce(Vector2.right * dashForce, ForceMode2D.Impulse);
-                        //start timer
-                        Timer();
+                        isDash = false;
+
                     }
                 }
-                //otherwise
-                else
-                {
-                    
-                }
             }
-
 
             #endregion
         }
@@ -194,7 +168,7 @@ namespace Knight
         //Jump Movement
         void Jump()
         {
-            //if this key is pressed & player is grounded then...
+            //if this key is pressed & player is grounded then...K
             if (Input.GetKeyDown(KeyCode.W) && grounded)
             {
                 // add a velocity force going up
@@ -221,6 +195,28 @@ namespace Knight
 
         }
 
+        //Dash cooldown method
+        void Timer()
+        {
+            //if bool condition for isDash false then...
+            if (!isDash)
+            {
+                anim.SetBool("isDashing", true);
+                //start timer
+                dashtimer -= Time.deltaTime;
+                //if timer is less than eqaul to 0 then...
+                if (dashtimer <= 0)
+                {
+                    anim.SetBool("isDashing", false);
+                
+                    //dash time is back to original start time
+                    dashtimer = dashMaxTime;
+                    //isDash conditon true
+                    isDash = true;
+                }
+            }
+        }
+
         private void OnCollisionEnter2D(Collision2D col)
         {
             //if the collision object is tagged "Ground", then....
@@ -235,11 +231,7 @@ namespace Knight
             }
         }
 
-        void Timer()
-        {
-            //Start timer 
-            dashtimer -= Time.deltaTime;
-        }
+
     }
 
 }
