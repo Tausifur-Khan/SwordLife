@@ -94,6 +94,14 @@ namespace Knight
             Dash();
         }
 
+        void LateUpdate()
+        {
+            if (!grounded)
+            {
+                
+            }
+        }
+
         //Method: Movement in X direction with velocity
         void Move()
         {
@@ -180,6 +188,7 @@ namespace Knight
 
                 grounded = false;
                 doubleJump = true;
+
                 //Set animation
                 #region Animation Condition
                 anim.SetBool("isJumping", true);
