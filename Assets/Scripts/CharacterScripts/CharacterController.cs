@@ -47,6 +47,8 @@ namespace Knight
         private Animator anim;
         //sprite renderer
         private SpriteRenderer sprite;
+        //Access Death Script
+        private Death_1 playerDeath;
         #endregion
 
         #endregion
@@ -70,6 +72,8 @@ namespace Knight
             anim = GetComponent<Animator>();
             //refer to sprite renderer component
             sprite = GetComponent<SpriteRenderer>();
+            //refer to Death() script componenet
+            playerDeath = GetComponent<Death_1>();
             #endregion
 
 
@@ -84,6 +88,8 @@ namespace Knight
             //Dash time Method
             Timer();
 
+
+
         }
 
         void FixedUpdate()
@@ -96,9 +102,17 @@ namespace Knight
 
         void LateUpdate()
         {
-            if (!grounded)
+            //if bool condition true of death then...
+            if (playerDeath.death)
             {
-                
+                //set velocity y to 0
+                rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
+
+                //set death bool conditon to false
+                playerDeath.death = false;
+
+                //Reset Sprite change
+                sprite.flipX = false;
             }
         }
 
@@ -153,7 +167,7 @@ namespace Knight
                     if (Input.GetKey(left))
                     {
                         // allow force for dash in right dir
-                        rb2d.AddForce(Vector2.left * dashForce, ForceMode2D.Impulse);
+                        rb2d.AddForce(Vector2.left * dashForce, ForceMode2D.Force);
 
                         isDash = false;
 
@@ -162,7 +176,7 @@ namespace Knight
                     if (Input.GetKey(right))
                     {
                         // allow force for dash in left dir
-                        rb2d.AddForce(Vector2.right * dashForce, ForceMode2D.Impulse);
+                        rb2d.AddForce(Vector2.right * dashForce, ForceMode2D.Force);
                         isDash = false;
 
                     }
@@ -201,7 +215,6 @@ namespace Knight
                 rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
                 doubleJump = false;
             }
-
         }
 
         //Dash cooldown method
