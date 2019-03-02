@@ -46,9 +46,11 @@ namespace Knight
         //animation
         private Animator anim;
         //sprite renderer
-        private SpriteRenderer sprite;
+        public SpriteRenderer sprite;
         //Access Death Script
         private Death_1 playerDeath;
+        //Access to Attack Script
+        private Attack attack;
         #endregion
 
         #endregion
@@ -74,22 +76,20 @@ namespace Knight
             sprite = GetComponent<SpriteRenderer>();
             //refer to Death() script componenet
             playerDeath = GetComponent<Death_1>();
+            //refer to Attack() script component
+            attack = GetComponent<Attack>();
             #endregion
 
 
             dashtimer = dashMaxTime;
-
+          
         }
 
         void Update()
         {
             //Jump Method
             Jump();
-            //Dash time Method
-            Timer();
-
-
-
+          
         }
 
         void FixedUpdate()
@@ -114,6 +114,8 @@ namespace Knight
                 //Reset Sprite change
                 sprite.flipX = false;
             }
+            //Dash time Method
+            Timer();
         }
 
         //Method: Movement in X direction with velocity
@@ -130,6 +132,7 @@ namespace Knight
                 sprite.flipX = true;
                 //set animation true
                 anim.SetBool("isMoving", true);
+                attack.enabled = false;
             }
             //else if input right
             else if (Input.GetKey(right))
@@ -140,6 +143,7 @@ namespace Knight
                 sprite.flipX = false;
                 ///set animation
                 anim.SetBool("isMoving", true);
+                attack.enabled = false;
             }
             //otherwise
             else
@@ -148,6 +152,7 @@ namespace Knight
                 rb2d.velocity = new Vector2(0, rb2d.velocity.y);
                 //set animation false
                 anim.SetBool("isMoving", false);
+                attack.enabled = true;
             }
             #endregion
 
@@ -217,9 +222,10 @@ namespace Knight
             }
         }
 
-        //Dash cooldown method
+        // cooldown method
         void Timer()
         {
+            #region Dash Timer
             //if bool condition for isDash false then...
             if (!isDash)
             {
@@ -230,13 +236,31 @@ namespace Knight
                 if (dashtimer <= 0)
                 {
                     anim.SetBool("isDashing", false);
-                
+
                     //dash time is back to original start time
                     dashtimer = dashMaxTime;
                     //isDash conditon true
                     isDash = true;
                 }
             }
+            #endregion
+
+            #region Attack Time
+            //if attack bool condition is false then...
+            if (!attack.canAttack)
+            {
+                attack.timer -= Time.deltaTime;
+                if (attack.timer <= 0)
+                {
+                    attack.canAttack = true;
+                    attack.timer = attack.attackMaxTime;
+                    attack.colliders[0].enabled = false;
+                    attack.colliders[1].enabled = false;
+                    attack.colliders[2].enabled = false;
+                    attack.colliders[3].enabled = false;
+                }
+            }
+            #endregion 
         }
 
         private void OnCollisionEnter2D(Collision2D col)

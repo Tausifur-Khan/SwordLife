@@ -10,34 +10,82 @@ namespace Knight
         //public bool condition for attack
         //set bool conditon false for default
         public bool canAttack = false;
-        public float attackMaxTime = 1;
+        public float attackMaxTime = 0.5f;
         public float timer = 0;
 
+        [Header("Box Collider Array")]
+        public BoxCollider2D[] colliders = new BoxCollider2D[4];
         //public Keycode
         public KeyCode attack = KeyCode.I;
 
-        //private variable for animations
+        //private variable components
         private Animator anim;
+        //private variable for CharControl script
+        private CharacterController charC;
 
         // Start is called before the first frame update
         void Start()
         {
-            //start timer = attackMaxTime
+            //box colliders enabled false
+            colliders[0].enabled = false;
+            colliders[1].enabled = false;
+            colliders[2].enabled = false;
+            colliders[3].enabled = false;
+          
+
+            //timer is equal to total attack cooldown
             timer = attackMaxTime;
+
+            //refer to Animator component
+            anim = GetComponent<Animator>();
+            //refer to CharControl component
+            charC = GetComponent<CharacterController>();
+
+            //set attack bool condition true
+            canAttack = true;
         }
 
         // Update is called once per frame
         void Update()
         {
             AttackInput();
+
         }
 
+        private void LateUpdate()
+        {
+
+        }
+
+        //Attack Method
         void AttackInput()
         {
-            if (Input.GetKeyDown(attack))
+            //if attack bool condition is true
+            if (canAttack)
             {
-                Debug.Log(Input.GetKeyDown(attack));
-                anim.SetTrigger("isAttacking");
+                //if input key then...
+                if (Input.GetKeyDown(attack))
+                {
+                    Debug.Log(Input.GetKeyDown(attack));
+                    //trigger animation
+                    anim.SetTrigger("isAttacking");
+
+                    //box colliders are enabled
+                    //Set if statements dependent on sprite direction
+                    if (charC.sprite.flipX == false)
+                    {
+                        colliders[0].enabled = true;
+                        colliders[1].enabled = true;
+                    }
+                    else if (charC.sprite.flipX == true)
+                    {
+                        colliders[2].enabled = true;
+                        colliders[3].enabled = true;
+                    }
+
+                    //bool condition is false
+                    canAttack = false;
+                }
             }
         }
     }

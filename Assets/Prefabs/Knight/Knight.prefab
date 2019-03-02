@@ -14,8 +14,12 @@ GameObject:
   - component: {fileID: 1744176065511315174}
   - component: {fileID: 1744176065511315169}
   - component: {fileID: 1744176065511315171}
+  - component: {fileID: 1174552099}
   - component: {fileID: 1744176065511315194}
-  - component: {fileID: 1744176065511315168}
+  - component: {fileID: 1174552100}
+  - component: {fileID: 1174552101}
+  - component: {fileID: 73374902}
+  - component: {fileID: 73374903}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Ground
@@ -147,6 +151,7 @@ MonoBehaviour:
   dashtimer: 0
   left: 97
   right: 100
+  sprite: {fileID: 0}
 --- !u!114 &1744176065511315171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,6 +165,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   death: 0
+--- !u!114 &1174552099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744176065511315195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1a2d5323ab6c384fbef221de2a5253c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canAttack: 0
+  attackMaxTime: 0.5
+  timer: 0
+  colliders:
+  - {fileID: 1174552100}
+  - {fileID: 1174552101}
+  - {fileID: 73374902}
+  - {fileID: 73374903}
+  attack: 105
 --- !u!70 &1744176065511315194
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -176,7 +202,7 @@ CapsuleCollider2D:
   m_Offset: {x: -0.06, y: 0.04}
   m_Size: {x: 0.78, y: 1.49}
   m_Direction: 0
---- !u!61 &1744176065511315168
+--- !u!61 &1174552100
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -185,11 +211,11 @@ BoxCollider2D:
   m_GameObject: {fileID: 1744176065511315195}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: e3e87f8922c97bb4596b6362ad1471ea, type: 2}
-  m_IsTrigger: 0
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.023648381, y: -0.59341717}
+  m_Offset: {x: 0.23795652, y: 0.59123325}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.515, y: 0.3}
@@ -200,5 +226,83 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.49874234, y: 0.23163319}
+  m_Size: {x: 1.3356256, y: 0.355505}
+  m_EdgeRadius: 0
+--- !u!61 &1174552101
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744176065511315195}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.81714916, y: -0.068933964}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.515, y: 0.3}
+    oldSize: {x: 5.12, y: 2.56}
+    newSize: {x: 5.12, y: 2.56}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.3659401, y: 1.2823362}
+  m_EdgeRadius: 0
+--- !u!61 &73374902
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744176065511315195}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.64723253, y: -0.068933964}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.515, y: 0.3}
+    oldSize: {x: 5.12, y: 2.56}
+    newSize: {x: 5.12, y: 2.56}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.0808382, y: 1.2823362}
+  m_EdgeRadius: 0
+--- !u!61 &73374903
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744176065511315195}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.58494854, y: 0.59123325}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.515, y: 0.3}
+    oldSize: {x: 5.12, y: 2.56}
+    newSize: {x: 5.12, y: 2.56}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.2449112, y: 0.355505}
   m_EdgeRadius: 0
