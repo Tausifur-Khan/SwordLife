@@ -51,12 +51,7 @@ namespace Knight
             AttackInput();
 
         }
-
-        private void LateUpdate()
-        {
-
-        }
-
+        
         //Attack Method
         void AttackInput()
         {
@@ -66,7 +61,7 @@ namespace Knight
                 //if input key then...
                 if (Input.GetKeyDown(attack))
                 {
-                    Debug.Log(Input.GetKeyDown(attack));
+                   
                     //trigger animation
                     anim.SetTrigger("isAttacking");
 
@@ -86,6 +81,10 @@ namespace Knight
                     //bool condition is false
                     canAttack = false;
                 }
+            }
+            else
+            {
+
             }
         }
     }
