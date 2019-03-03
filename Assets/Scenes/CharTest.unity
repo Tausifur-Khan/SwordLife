@@ -222,6 +222,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1744176065511315169, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
+        type: 3}
+      propertyPath: raycastPos
+      value: 
+      objectReference: {fileID: 1210995258}
+    - target: {fileID: 1744176065511315169, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
+        type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 1744176065511315169, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
+        type: 3}
+      propertyPath: rayDist
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85b6e62558fd9cc42b0dc26bf460b90f, type: 3}
 --- !u!1 &170076733
@@ -369,8 +384,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mvSpeed: 4
   jumpForce: 8
-  grounded: 0
   doubleJump: 0
+  grounded: 0
+  rayDist: 0.5
+  raycastPos: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
   dashForce: 100
   isDash: 1
   dashMaxTime: 1
@@ -576,7 +596,7 @@ GameObject:
   - component: {fileID: 681236057}
   - component: {fileID: 681236056}
   - component: {fileID: 681236055}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ground (2)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -680,7 +700,7 @@ GameObject:
   - component: {fileID: 784971238}
   - component: {fileID: 784971237}
   - component: {fileID: 784971236}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ground (3)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -803,6 +823,36 @@ Transform:
   m_Father: {fileID: 1833756595}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1210995257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1210995258}
+  m_Layer: 0
+  m_Name: RaycastPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1210995258
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210995257}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.741, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 371602121}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1341310738
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,7 +865,7 @@ GameObject:
   - component: {fileID: 1341310741}
   - component: {fileID: 1341310740}
   - component: {fileID: 1341310739}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ground (1)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -919,7 +969,7 @@ GameObject:
   - component: {fileID: 1406470054}
   - component: {fileID: 1406470053}
   - component: {fileID: 1406470052}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ground (4)
   m_TagString: Ground
   m_Icon: {fileID: 0}

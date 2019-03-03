@@ -14,12 +14,18 @@ namespace Knight
         //float speed 
         public float mvSpeed = 2;
         //float jumpForce
-        public float jumpForce = 50;
-        //Jump condition
-        public bool grounded;
+        public float jumpForce = 50;      
         //double jump bool condition
         public bool doubleJump;
         [Space(2)]
+        #endregion
+
+        #region Grounded Variables
+        //Jump bool condition
+        public bool grounded;
+        public float rayDist = 0.5f;
+        public Transform raycastPos;
+        public LayerMask groundLayer;
         #endregion
 
         #region Dash Variables
@@ -40,7 +46,7 @@ namespace Knight
         public KeyCode right = KeyCode.D;
         #endregion
 
-        #region Private Variable Components
+        #region Private/Public Variable Components
         //2d rigidbody component
         private Rigidbody2D rb2d;
         //animation
@@ -52,6 +58,7 @@ namespace Knight
         //Access to Attack Script
         private Attack attack;
         #endregion
+
 
         #endregion
 
@@ -80,7 +87,7 @@ namespace Knight
             attack = GetComponent<Attack>();
             #endregion
 
-
+            //dash time
             dashtimer = dashMaxTime;
           
         }
@@ -89,7 +96,8 @@ namespace Knight
         {
             //Jump Method
             Jump();
-          
+            //Ground Method
+            Grounded();
         }
 
         void FixedUpdate()
@@ -98,6 +106,7 @@ namespace Knight
             Move();
             //Dash Move Method
             Dash();
+           
         }
 
         void LateUpdate()
@@ -195,31 +204,73 @@ namespace Knight
         //Jump Movement
         void Jump()
         {
-            //if this key is pressed & player is grounded then...K
-            if (Input.GetKeyDown(KeyCode.W) && grounded)
-            {
-                // add a velocity force going up
-                /* rigidbody velocity is equal to the 
-                new set vectors in pre-set x direction, and add jumpForce Variable
-                */
-                rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
-
-
-                grounded = false;
-                doubleJump = true;
-
-                //Set animation
-                #region Animation Condition
-                anim.SetBool("isJumping", true);
-                #endregion
-
-
-            }
-            else if (Input.GetKeyDown(KeyCode.W) && !grounded && doubleJump)
+            if (Input.GetKeyDown(KeyCode.W) && !grounded && doubleJump)
             {
                 rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
                 doubleJump = false;
             }
+            else if(Input.GetKeyDown(KeyCode.W) && grounded)
+            {
+                rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
+                doubleJump = true;
+            }
+            ////if this key is pressed & player is grounded then...K
+            //if (Input.GetKeyDown(KeyCode.W) && grounded)
+            //{
+
+                //    // add a velocity force going up
+                //    /* rigidbody velocity is equal to the 
+                //    new set vectors in pre-set x direction, and add jumpForce Variable
+                //    */
+                //    rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
+
+                //    doubleJump = true;
+
+                //}
+                //else if (Input.GetKeyDown(KeyCode.W) && !grounded && doubleJump)
+                //{
+                //    rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
+                //    doubleJump = false;
+                //}
+        }
+
+        void Grounded()
+        {
+            // set new ray pos and direction
+            Ray ray = new Ray(raycastPos.position, Vector2.down);
+
+            //set raycast hit 2d objects
+            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, rayDist, groundLayer);
+            //check if it hits something
+            if (hit.collider != null)
+            {
+                if (hit.collider.CompareTag("Ground"))
+                {
+                    //set grounded bool true 
+                    grounded = true;
+                    //set doubleJump bool false
+                    doubleJump = false;
+                    //set jump animtion to false upon contact
+                    anim.SetBool("isJumping", false);
+                }
+
+            }
+            //otherwise if hit nothing then..
+            else
+            {
+                //set jump animtion to false upon contact
+                anim.SetBool("isJumping", true);
+                grounded = false;
+               
+            }
+        }
+
+        private void OnDrawGizmos()
+        {
+            // set new ray pos and direction
+            Ray ray = new Ray(raycastPos.position, Vector2.down);
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(ray.origin, ray.origin + ray.direction * rayDist);
         }
 
         // cooldown method
@@ -262,22 +313,7 @@ namespace Knight
             }
             #endregion 
         }
-
-        private void OnCollisionEnter2D(Collision2D col)
-        {
-            //if the collision object is tagged "Ground", then....
-            if (col.gameObject.CompareTag("Ground"))
-            {
-                //set grounded bool true 
-                grounded = true;
-                //set doubleJump bool false
-                doubleJump = false;
-                //set jump animtion to false upon contact
-                anim.SetBool("isJumping", false);
-            }
-        }
-
-
+        
     }
 
 }
