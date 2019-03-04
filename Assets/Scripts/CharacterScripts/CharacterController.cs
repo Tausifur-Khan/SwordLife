@@ -204,34 +204,34 @@ namespace Knight
         //Jump Movement
         void Jump()
         {
-            if (Input.GetKeyDown(KeyCode.W) && !grounded && doubleJump)
+            //if (Input.GetKeyDown(KeyCode.W) && !grounded && doubleJump)
+            //{
+            //    rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
+            //    doubleJump = false;
+            //}
+            //else if(Input.GetKeyDown(KeyCode.W) && grounded)
+            //{
+            //    rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
+            //    doubleJump = true;
+            //}
+            //if this key is pressed & player is grounded then...K
+            if (Input.GetKeyDown(KeyCode.W) && grounded)
+            {
+
+                // add a velocity force going up
+                /* rigidbody velocity is equal to the 
+                new set vectors in pre-set x direction, and add jumpForce Variable
+                */
+                rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
+
+                doubleJump = true;
+
+            }
+            else if (Input.GetKeyDown(KeyCode.W) && !grounded && doubleJump)
             {
                 rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
                 doubleJump = false;
             }
-            else if(Input.GetKeyDown(KeyCode.W) && grounded)
-            {
-                rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
-                doubleJump = true;
-            }
-            ////if this key is pressed & player is grounded then...K
-            //if (Input.GetKeyDown(KeyCode.W) && grounded)
-            //{
-
-                //    // add a velocity force going up
-                //    /* rigidbody velocity is equal to the 
-                //    new set vectors in pre-set x direction, and add jumpForce Variable
-                //    */
-                //    rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
-
-                //    doubleJump = true;
-
-                //}
-                //else if (Input.GetKeyDown(KeyCode.W) && !grounded && doubleJump)
-                //{
-                //    rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
-                //    doubleJump = false;
-                //}
         }
 
         void Grounded()
