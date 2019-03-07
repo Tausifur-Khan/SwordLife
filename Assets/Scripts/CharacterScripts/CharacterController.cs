@@ -14,7 +14,7 @@ namespace Knight
         //float speed 
         public float mvSpeed = 2;
         //float jumpForce
-        public float jumpForce = 50;      
+        public float jumpForce = 50;
         //double jump bool condition
         public bool doubleJump;
         [Space(2)]
@@ -37,6 +37,8 @@ namespace Knight
         //Dash timers min & max
         public float dashMaxTime;
         public float dashtimer;
+        public float dashMaxMoveTime;
+        public float dashMoveTimer;
         [Space(2)]
         #endregion
 
@@ -89,7 +91,9 @@ namespace Knight
 
             //dash time
             dashtimer = dashMaxTime;
-          
+            //dash move time
+            dashMoveTimer = dashMaxMoveTime;
+
         }
 
         void Update()
@@ -106,7 +110,7 @@ namespace Knight
             Move();
             //Dash Move Method
             Dash();
-           
+
         }
 
         void LateUpdate()
@@ -131,7 +135,7 @@ namespace Knight
         void Move()
         {
             //Get Key input
-            #region Alternate movement
+            #region Movement
             //if input left
             if (Input.GetKey(left))
             {
@@ -172,7 +176,7 @@ namespace Knight
         {
             #region Dash Movement
             //if dash bool condition true & timer is not 0 then...
-            if (isDash)
+            if (isDash & grounded)
             {
                 //if input key 'space' then...
                 if (Input.GetKeyDown(KeyCode.Space))
@@ -180,17 +184,21 @@ namespace Knight
                     // if horizontal direction is right then...
                     if (Input.GetKey(left))
                     {
-                        // allow force for dash in right dir
-                        rb2d.AddForce(Vector2.left * dashForce, ForceMode2D.Force);
+                        //allow force for dash in right dir
+                        //Change player speed temp
+                        mvSpeed = dashForce;
+                        //rb2d.AddForce(Vector2.left * dashForce, ForceMode2D.Force);
 
                         isDash = false;
 
                     }
                     //if horizontal direction is left then...
-                    if (Input.GetKey(right))
+                    else if (Input.GetKey(right))
                     {
-                        // allow force for dash in left dir
-                        rb2d.AddForce(Vector2.right * dashForce, ForceMode2D.Force);
+                        //allow force for dash in left dir
+                        //Change player speed temp
+                        mvSpeed = dashForce;
+                        //rb2d.AddForce(Vector2.right * dashForce, ForceMode2D.Force);
                         isDash = false;
 
                     }
@@ -204,16 +212,6 @@ namespace Knight
         //Jump Movement
         void Jump()
         {
-            //if (Input.GetKeyDown(KeyCode.W) && !grounded && doubleJump)
-            //{
-            //    rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
-            //    doubleJump = false;
-            //}
-            //else if(Input.GetKeyDown(KeyCode.W) && grounded)
-            //{
-            //    rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
-            //    doubleJump = true;
-            //}
             //if this key is pressed & player is grounded then...K
             if (Input.GetKeyDown(KeyCode.W) && grounded)
             {
@@ -249,7 +247,7 @@ namespace Knight
                     //set grounded bool true 
                     grounded = true;
                     //set doubleJump bool false
-                    doubleJump = false;
+
                     //set jump animtion to false upon contact
                     anim.SetBool("isJumping", false);
                 }
@@ -261,7 +259,7 @@ namespace Knight
                 //set jump animtion to false upon contact
                 anim.SetBool("isJumping", true);
                 grounded = false;
-               
+
             }
         }
 
@@ -283,15 +281,25 @@ namespace Knight
                 anim.SetBool("isDashing", true);
                 //start timer
                 dashtimer -= Time.deltaTime;
+                
                 //if timer is less than eqaul to 0 then...
-                if (dashtimer <= 0)
+                if (dashtimer <= 0.0f)
                 {
+                    mvSpeed = 4f;
                     anim.SetBool("isDashing", false);
 
                     //dash time is back to original start time
                     dashtimer = dashMaxTime;
-                    //isDash conditon true
-                    isDash = true;
+                    //start next timer
+                    dashMoveTimer -= Time.deltaTime;
+
+                    if(dashMoveTimer <= 0.0f)
+                    {
+                        //isDash conditon true
+                        isDash = true;
+                        dashMoveTimer = dashMaxMoveTime;
+                    }
+
                 }
             }
             #endregion
@@ -313,7 +321,7 @@ namespace Knight
             }
             #endregion 
         }
-        
+
     }
 
 }
