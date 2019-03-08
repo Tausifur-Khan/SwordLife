@@ -187,7 +187,6 @@ namespace Knight
                         //allow force for dash in right dir
                         //Change player speed temp
                         mvSpeed = dashForce;
-                        //rb2d.AddForce(Vector2.left * dashForce, ForceMode2D.Force);
 
                         isDash = false;
 
@@ -198,9 +197,8 @@ namespace Knight
                         //allow force for dash in left dir
                         //Change player speed temp
                         mvSpeed = dashForce;
-                        //rb2d.AddForce(Vector2.right * dashForce, ForceMode2D.Force);
-                        isDash = false;
 
+                        isDash = false;
                     }
                 }
             }
@@ -281,25 +279,16 @@ namespace Knight
                 anim.SetBool("isDashing", true);
                 //start timer
                 dashtimer -= Time.deltaTime;
-                
+
                 //if timer is less than eqaul to 0 then...
-                if (dashtimer <= 0.0f)
+                if (dashtimer <= 0f)
                 {
                     mvSpeed = 4f;
                     anim.SetBool("isDashing", false);
 
                     //dash time is back to original start time
                     dashtimer = dashMaxTime;
-                    //start next timer
-                    dashMoveTimer -= Time.deltaTime;
-
-                    if(dashMoveTimer <= 0.0f)
-                    {
-                        //isDash conditon true
-                        isDash = true;
-                        dashMoveTimer = dashMaxMoveTime;
-                    }
-
+                    isDash = true;
                 }
             }
             #endregion
@@ -313,10 +302,10 @@ namespace Knight
                 {
                     attack.canAttack = true;
                     attack.timer = attack.attackMaxTime;
-                    attack.colliders[0].enabled = false;
-                    attack.colliders[1].enabled = false;
-                    attack.colliders[2].enabled = false;
-                    attack.colliders[3].enabled = false;
+                    attack.attackCol[0].SetActive(false);
+                    attack.attackCol[1].SetActive(false);
+                    attack.attackCol[2].SetActive(false);
+                    attack.attackCol[3].SetActive(false);
                 }
             }
             #endregion 

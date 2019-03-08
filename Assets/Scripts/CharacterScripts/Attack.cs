@@ -14,7 +14,7 @@ namespace Knight
         public float timer = 0;
 
         [Header("Box Collider Array")]
-        public BoxCollider2D[] colliders = new BoxCollider2D[4];
+        public GameObject[] attackCol = new GameObject[4];
         //public Keycode
         public KeyCode attack = KeyCode.I;
 
@@ -27,12 +27,12 @@ namespace Knight
         void Start()
         {
             //box colliders enabled false
-            colliders[0].enabled = false;
-            colliders[1].enabled = false;
-            colliders[2].enabled = false;
-            colliders[3].enabled = false;
+            attackCol[0].SetActive(false);
+            attackCol[1].SetActive(false);
+            attackCol[2].SetActive(false);
+            attackCol[3].SetActive(false);
+            
           
-
             //timer is equal to total attack cooldown
             timer = attackMaxTime;
 
@@ -69,23 +69,21 @@ namespace Knight
                     //Set if statements dependent on sprite direction
                     if (charC.sprite.flipX == false)
                     {
-                        colliders[0].enabled = true;
-                        colliders[1].enabled = true;
+                        attackCol[0].SetActive(true);
+                        attackCol[1].SetActive(true);
+                        
                     }
                     else if (charC.sprite.flipX == true)
                     {
-                        colliders[2].enabled = true;
-                        colliders[3].enabled = true;
+                        attackCol[2].SetActive(true);
+                        attackCol[3].SetActive(true);
                     }
 
                     //bool condition is false
                     canAttack = false;
                 }
             }
-            else
-            {
-
-            }
+           
         }
     }
 }

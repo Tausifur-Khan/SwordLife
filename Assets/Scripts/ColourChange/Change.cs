@@ -14,9 +14,9 @@ public class Change : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.gameObject.name == "Knight")
+        if (col.gameObject.CompareTag("AttackZone"))
         {
-            Debug.Log(col.gameObject.name == "Knight");
+            Debug.Log(col.gameObject.CompareTag("AttackZone"));
             mRender.material.color = Random.ColorHSV();
         }
     }
