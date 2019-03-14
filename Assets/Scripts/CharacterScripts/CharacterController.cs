@@ -232,41 +232,52 @@ namespace Knight
 
         void Grounded()
         {
-            // set new ray pos and direction
-            Ray ray = new Ray(raycastPos.position, Vector2.down);
-
-            //set raycast hit 2d objects
-            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, rayDist, groundLayer);
-            //check if it hits something
-            if (hit.collider != null)
+            //for each raycast within parent transform
+            foreach (Transform raycast in raycastPos)
             {
-                if (hit.collider.CompareTag("Ground"))
+                // set new ray pos and direction
+                Ray ray = new Ray(raycast.position, Vector2.down);
+
+                //set raycast hit 2d objects
+                RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, rayDist, groundLayer);
+
+                //check if it hits something
+                if (hit.collider != null)
                 {
-                    //set grounded bool true 
-                    grounded = true;
-                    //set doubleJump bool false
+                    if (hit.collider.CompareTag("Ground"))
+                    {
+                        Debug.Log("Is Grounded");
+                        ////set grounded bool true 
+                        //grounded = true;
+                        ////set doubleJump bool false
 
-                    //set jump animtion to false upon contact
-                    anim.SetBool("isJumping", false);
+                        ////set jump animtion to false upon contact
+                        //anim.SetBool("isJumping", false);
+                    }
                 }
+                //otherwise if hit nothing then..
+                else
+                {
+                    Debug.Log("Is NOT Grounded");
+                    ////set jump animtion to false upon contact
+                    //anim.SetBool("isJumping", true);
+                    //grounded = false;
 
+                }
             }
-            //otherwise if hit nothing then..
-            else
-            {
-                //set jump animtion to false upon contact
-                anim.SetBool("isJumping", true);
-                grounded = false;
-
-            }
+           
         }
 
         private void OnDrawGizmos()
         {
-            // set new ray pos and direction
-            Ray ray = new Ray(raycastPos.position, Vector2.down);
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(ray.origin, ray.origin + ray.direction * rayDist);
+            foreach (Transform raycast in raycastPos)
+            {
+                // set new ray pos and direction
+                Ray ray = new Ray(raycast.position, Vector2.down);
+                Gizmos.color = Color.red;
+                Gizmos.DrawLine(ray.origin, ray.origin + ray.direction * rayDist);
+            }
+            
         }
 
         // cooldown method
@@ -304,8 +315,7 @@ namespace Knight
                     attack.timer = attack.attackMaxTime;
                     attack.attackCol[0].SetActive(false);
                     attack.attackCol[1].SetActive(false);
-                    attack.attackCol[2].SetActive(false);
-                    attack.attackCol[3].SetActive(false);
+                   
                 }
             }
             #endregion 

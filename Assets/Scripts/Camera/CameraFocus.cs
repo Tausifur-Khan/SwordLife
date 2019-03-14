@@ -7,6 +7,7 @@ public class CameraFocus : MonoBehaviour
     private Camera camLocal;
     public Transform target;
     public Vector2 boxSize;
+    private Vector2 halfSize = new Vector2();
     public Vector2Rect levelSize;
     public float lerp = 1;
     public bool moveX = true, moveY = true;
@@ -14,6 +15,12 @@ public class CameraFocus : MonoBehaviour
     void Start()
     {
         camLocal = GetComponent<Camera>();
+        halfSize = camLocal.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height));
+    }
+
+    private void Awake()
+    {
+
     }
 
     void Update()
@@ -29,7 +36,6 @@ public class CameraFocus : MonoBehaviour
             camPos.y = target.position.y - (boxSize.y * Sign(offset.y));
         }
         transform.position = Vector3.Lerp(transform.position, (Vector3)camPos + 10 * Vector3.back, lerp);
-        Vector2 halfSize = camLocal.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height)) / 2;
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, levelSize.topLeft.x + halfSize.x, levelSize.bottomRight.x - halfSize.x), Mathf.Clamp(transform.position.y, levelSize.topLeft.y + halfSize.y, levelSize.bottomRight.y - halfSize.y), -10);
     }
 

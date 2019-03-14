@@ -14,7 +14,7 @@ namespace Knight
         public float timer = 0;
 
         [Header("Box Collider Array")]
-        public GameObject[] attackCol = new GameObject[4];
+        public GameObject[] attackCol = new GameObject[2];
         //public Keycode
         public KeyCode attack = KeyCode.I;
 
@@ -26,13 +26,12 @@ namespace Knight
         // Start is called before the first frame update
         void Start()
         {
+
             //box colliders enabled false
             attackCol[0].SetActive(false);
             attackCol[1].SetActive(false);
-            attackCol[2].SetActive(false);
-            attackCol[3].SetActive(false);
-            
-          
+
+
             //timer is equal to total attack cooldown
             timer = attackMaxTime;
 
@@ -51,7 +50,7 @@ namespace Knight
             AttackInput();
 
         }
-        
+
         //Attack Method
         void AttackInput()
         {
@@ -61,7 +60,7 @@ namespace Knight
                 //if input key then...
                 if (Input.GetKeyDown(attack))
                 {
-                   
+
                     //trigger animation
                     anim.SetTrigger("isAttacking");
 
@@ -70,20 +69,19 @@ namespace Knight
                     if (charC.sprite.flipX == false)
                     {
                         attackCol[0].SetActive(true);
-                        attackCol[1].SetActive(true);
-                        
+
+
                     }
                     else if (charC.sprite.flipX == true)
                     {
-                        attackCol[2].SetActive(true);
-                        attackCol[3].SetActive(true);
+                        attackCol[1].SetActive(true);
                     }
 
                     //bool condition is false
                     canAttack = false;
                 }
             }
-           
+
         }
     }
 }
