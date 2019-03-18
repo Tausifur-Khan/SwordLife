@@ -1,50 +1,51 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
 
-public class RayCastTest : MonoBehaviour
-{
-    public LayerMask layer;
-    public Transform raycasts;
-    public float rayRange;
+//public class RayCastTest : MonoBehaviour
+//{
+//    void Grounded()
+//    {
+//        #region For Each in Raycasting
+//        //for each raycast within parent transform
+//        foreach (Transform raycast in raycasts)
+//        {
+//            int i = 0;
+//            // set new ray pos and direction
+//            Ray ray = new Ray(raycast.position, Vector2.down);
 
-    // Start is called before the first frame update
-   
+//            //set raycast hit 2d objects
+//            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, rayDist, groundLayer);
 
-    // Update is called once per frame
-    void Update()
-    {
-        //for each transform in raycast parent
-        foreach (Transform raycast in raycasts)
-        {
-            //if child has tag "Raycast" then...
-            if (raycast.gameObject.CompareTag("Raycast"))
-            {
-                //create Ray
-                Ray ray = new Ray(raycast.position, Vector2.down);
+//            //check if it hits something
+//            if (hit.collider != null)
+//            {
+//                if (hit.collider.CompareTag("Ground"))
+//                {
+//                    Debug.Log("Is Grounded");
+//                    //set grounded bool true 
+//                    groundedChecks[i] = true;
+//                    //set doubleJump bool false
 
-                RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, rayRange, layer);
+//                    //set jump animtion to false upon contact
+//                    // anim.SetBool("isJumping", false);
+//                }
+//            }
+//            //otherwise if hit nothing then..
+//            else
+//            {
+//                Debug.Log("Is NOT Grounded");
+//                //set jump animtion to false upon contact
+//                // anim.SetBool("isJumping", true);
+//                groundedChecks[i] = false;
 
-                if (hit.collider.CompareTag("Ground"))
-                {
-                    Debug.Log("Ground Found");
-                }
-                else
-                {
-                    Debug.Log("No Ground");
-                }
-            }
-        }
-    }
+//            }
+//            i++;
 
-    private void OnDrawGizmos()
-    {
-        foreach (Transform raycast in raycasts)
-        {
-            Ray ray = new Ray(raycast.position, Vector2.down);
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(ray.origin, ray.origin + ray.direction * rayRange);
-        }
-           
-    }
-}
+//        }
+//        #endregion
+//        //if 1 or 2
+
+//        // else if ! 1&& 2
+//    }
+//}

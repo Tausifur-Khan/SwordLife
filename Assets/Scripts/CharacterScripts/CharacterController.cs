@@ -22,9 +22,11 @@ namespace Knight
 
         #region Grounded Variables
         //Jump bool condition
-        public bool grounded;
+        public bool [] groundChecks = new bool [2];
+
         public float rayDist = 0.5f;
-        public Transform raycastPos;
+        public Transform raycasts;
+
         public LayerMask groundLayer;
         #endregion
 
@@ -71,7 +73,9 @@ namespace Knight
             //double jump condition false
             doubleJump = false;
             //grounded condition true
-            grounded = true;
+            groundChecks[0] = true;
+            groundChecks[1] = true;
+           
             //dash condition true
             isDash = true;
             #endregion
@@ -176,7 +180,7 @@ namespace Knight
         {
             #region Dash Movement
             //if dash bool condition true & timer is not 0 then...
-            if (isDash & grounded)
+            if (isDash & groundChecks[0] && groundChecks[0] && groundChecks[1])
             {
                 //if input key 'space' then...
                 if (Input.GetKeyDown(KeyCode.Space))
@@ -211,7 +215,7 @@ namespace Knight
         void Jump()
         {
             //if this key is pressed & player is grounded then...K
-            if (Input.GetKeyDown(KeyCode.W) && grounded)
+            if (Input.GetKeyDown(KeyCode.W) && groundChecks[0] && groundChecks[1])
             {
 
                 // add a velocity force going up
@@ -223,7 +227,7 @@ namespace Knight
                 doubleJump = true;
 
             }
-            else if (Input.GetKeyDown(KeyCode.W) && !grounded && doubleJump)
+            else if (Input.GetKeyDown(KeyCode.W) && !groundChecks[0] && !groundChecks[1] && doubleJump)
             {
                 rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
                 doubleJump = false;
@@ -232,9 +236,60 @@ namespace Knight
 
         void Grounded()
         {
-            //for each raycast within parent transform
-            foreach (Transform raycast in raycastPos)
             {
+                #region For Each in Raycasting
+                //for each raycast within parent transform
+                foreach (Transform raycast in raycasts)
+                {
+                  
+                    // set new ray pos and direction
+                    Ray ray = new Ray(raycast.position, Vector2.down);
+
+                    //set raycast hit 2d objects
+                    RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, rayDist, groundLayer);
+
+                    //check if it hits something
+                    if (hit.collider != null)
+                    {
+                        if (hit.collider.CompareTag("Ground"))
+                        {
+                            Debug.Log("Is Grounded");
+                            //set grounded bool true 
+                            groundChecks[0] = true;
+                            groundChecks[1] = true;
+                            //set doubleJump bool false
+
+                            //set jump animtion to false upon contact
+                            anim.SetBool("isJumping", false);
+                          
+                        }
+                    }
+                    //otherwise if hit nothing then..
+                    else
+                    {
+                        Debug.Log("Is NOT Grounded");
+                        //set jump animtion to false upon contact
+                        anim.SetBool("isJumping", true);
+
+                        groundChecks[0] = false;
+                        groundChecks[1] = false;
+
+                    }
+                    
+
+                }
+                #endregion
+                //if 1 or 2
+
+                // else if ! 1&& 2
+            }
+
+            /*
+            #region For Each in Raycasting
+            //for each raycast within parent transform
+            foreach (Transform raycast in raycasts)
+            {
+                int i = 0;
                 // set new ray pos and direction
                 Ray ray = new Ray(raycast.position, Vector2.down);
 
@@ -247,37 +302,39 @@ namespace Knight
                     if (hit.collider.CompareTag("Ground"))
                     {
                         Debug.Log("Is Grounded");
-                        ////set grounded bool true 
-                        //grounded = true;
-                        ////set doubleJump bool false
+                        //set grounded bool true 
+                        grounded = true;
 
-                        ////set jump animtion to false upon contact
-                        //anim.SetBool("isJumping", false);
+                        //set jump animtion to false upon contact
+                        anim.SetBool("isJumping", false);
+
                     }
                 }
                 //otherwise if hit nothing then..
                 else
                 {
                     Debug.Log("Is NOT Grounded");
-                    ////set jump animtion to false upon contact
-                    //anim.SetBool("isJumping", true);
-                    //grounded = false;
+                    //set jump animtion to false upon contact
+                    anim.SetBool("isJumping", true);
 
+                    grounded = false;
                 }
+                
             }
-           
+            #endregion
+           */
         }
 
         private void OnDrawGizmos()
         {
-            foreach (Transform raycast in raycastPos)
+            foreach (Transform raycast in raycasts)
             {
                 // set new ray pos and direction
                 Ray ray = new Ray(raycast.position, Vector2.down);
+
                 Gizmos.color = Color.red;
                 Gizmos.DrawLine(ray.origin, ray.origin + ray.direction * rayDist);
             }
-            
         }
 
         // cooldown method
@@ -315,7 +372,7 @@ namespace Knight
                     attack.timer = attack.attackMaxTime;
                     attack.attackCol[0].SetActive(false);
                     attack.attackCol[1].SetActive(false);
-                   
+
                 }
             }
             #endregion 

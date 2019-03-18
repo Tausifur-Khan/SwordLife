@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &482308660
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 482308661}
+  m_Layer: 0
+  m_Name: RaycastPos (2)
+  m_TagString: Raycast
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &482308661
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482308660}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.2, y: 0.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1210995258}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &543672757
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1210995258}
   m_Layer: 0
-  m_Name: RaycastPos
+  m_Name: Raycast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,9 +143,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1210995257}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.741, z: 0}
+  m_LocalPosition: {x: 0.006, y: -0.747, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1562331638}
+  - {fileID: 482308661}
   m_Father: {fileID: 1744176065511315172}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -176,6 +208,66 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.068039, y: 1.2268004}
   m_EdgeRadius: 0
+--- !u!1 &1484057371
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1484057372}
+  m_Layer: 0
+  m_Name: RaycastPos (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1484057372
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484057371}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.741, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1744176065511315172}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1562331637
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1562331638}
+  m_Layer: 0
+  m_Name: RaycastPos (1)
+  m_TagString: Raycast
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1562331638
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562331637}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.2, y: 0.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1210995258}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1909689602
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,11 +425,11 @@ GameObject:
   - component: {fileID: 1744176065511315172}
   - component: {fileID: 1744176065511315173}
   - component: {fileID: 1744176065511315175}
+  - component: {fileID: 903550203}
   - component: {fileID: 1744176065511315174}
   - component: {fileID: 1744176065511315169}
   - component: {fileID: 1744176065511315171}
   - component: {fileID: 1174552099}
-  - component: {fileID: 1744176065511315194}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Ground
@@ -359,6 +451,7 @@ Transform:
   - {fileID: 1210995258}
   - {fileID: 1909689603}
   - {fileID: 989612441}
+  - {fileID: 1484057372}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -431,6 +524,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!61 &903550203
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744176065511315195}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: e3e87f8922c97bb4596b6362ad1471ea, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.033561707, y: -0.015519261}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.515, y: 0.3}
+    oldSize: {x: 5.12, y: 2.56}
+    newSize: {x: 5.12, y: 2.56}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5020504, y: 1.1417518}
+  m_EdgeRadius: 0.12
 --- !u!95 &1744176065511315174
 Animator:
   serializedVersion: 3
@@ -462,12 +581,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0382f57a8f529764a89d9a76e9056106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mvSpeed: 4
+  mvSpeed: 3
   jumpForce: 8
   doubleJump: 0
   grounded: 0
   rayDist: 0.2
-  raycastPos: {fileID: 1210995258}
+  raycasts: {fileID: 1210995258}
   groundLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -508,25 +627,7 @@ MonoBehaviour:
   canAttack: 0
   attackMaxTime: 0.5
   timer: 0
-  colliders:
-  - {fileID: 1963556664}
-  - {fileID: 8751303188708150605}
-  - {fileID: 543672759}
-  - {fileID: 2610536086495787378}
+  attackCol:
+  - {fileID: 1909689602}
+  - {fileID: 989612440}
   attack: 105
---- !u!70 &1744176065511315194
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1744176065511315195}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: e3e87f8922c97bb4596b6362ad1471ea, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.06, y: 0.04}
-  m_Size: {x: 0.78, y: 1.49}
-  m_Direction: 0
