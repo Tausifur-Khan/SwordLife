@@ -171,12 +171,12 @@ PrefabInstance:
     - target: {fileID: 1744176065511315172, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.54
+      value: 9.33
       objectReference: {fileID: 0}
     - target: {fileID: 1744176065511315172, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.015
+      value: 1.26
       objectReference: {fileID: 0}
     - target: {fileID: 1744176065511315172, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
         type: 3}
@@ -227,6 +227,41 @@ PrefabInstance:
         type: 3}
       propertyPath: groundChecks.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1744176065511315169, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
+        type: 3}
+      propertyPath: mvSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1744176065511315169, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
+        type: 3}
+      propertyPath: jumpForce
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1744176065511315169, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
+        type: 3}
+      propertyPath: rayDist
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1744176065511315169, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
+        type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 1744176065511315169, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
+        type: 3}
+      propertyPath: dashForce
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 1744176065511315169, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
+        type: 3}
+      propertyPath: dashMaxTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1744176065511315169, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
+        type: 3}
+      propertyPath: InitalTime
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 482308660, guid: 85b6e62558fd9cc42b0dc26bf460b90f, type: 3}
       propertyPath: m_Name
@@ -384,7 +419,7 @@ MonoBehaviour:
   mvSpeed: 4
   jumpForce: 8
   doubleJump: 0
-  groundChecks: 
+  groundCheck: 0
   rayDist: 0.5
   raycasts: {fileID: 0}
   groundLayer:
@@ -394,8 +429,7 @@ MonoBehaviour:
   isDash: 1
   dashMaxTime: 1
   dashtimer: 0
-  dashMaxMoveTime: 0
-  dashMoveTimer: 0
+  curTime: 0
   left: 97
   right: 100
   sprite: {fileID: 0}

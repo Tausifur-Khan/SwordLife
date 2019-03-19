@@ -22,7 +22,7 @@ namespace Knight
 
         #region Grounded Variables
         //Jump bool condition
-        public bool [] groundChecks = new bool [2];
+        public bool groundCheck;
 
         public float rayDist = 0.5f;
         public Transform raycasts;
@@ -39,8 +39,7 @@ namespace Knight
         //Dash timers min & max
         public float dashMaxTime;
         public float dashtimer;
-        public float dashMaxMoveTime;
-        public float dashMoveTimer;
+        public float curTime;
         [Space(2)]
         #endregion
 
@@ -73,9 +72,9 @@ namespace Knight
             //double jump condition false
             doubleJump = false;
             //grounded condition true
-            groundChecks[0] = true;
-            groundChecks[1] = true;
-           
+            groundCheck = true;
+
+
             //dash condition true
             isDash = true;
             #endregion
@@ -95,8 +94,7 @@ namespace Knight
 
             //dash time
             dashtimer = dashMaxTime;
-            //dash move time
-            dashMoveTimer = dashMaxMoveTime;
+
 
         }
 
@@ -115,6 +113,7 @@ namespace Knight
             //Dash Move Method
             Dash();
 
+
         }
 
         void LateUpdate()
@@ -132,7 +131,8 @@ namespace Knight
                 sprite.flipX = false;
             }
             //Dash time Method
-            Timer();
+            DashTimer();
+            AttackTimer();
         }
 
         //Method: Movement in X direction with velocity
@@ -180,30 +180,20 @@ namespace Knight
         {
             #region Dash Movement
             //if dash bool condition true & timer is not 0 then...
-            if (isDash & groundChecks[0] && groundChecks[0] && groundChecks[1])
+            if (isDash & groundCheck)
             {
                 //if input key 'space' then...
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(left) ||
+                    Input.GetKeyDown(KeyCode.Space) && Input.GetKey(right))
                 {
                     // if horizontal direction is right then...
-                    if (Input.GetKey(left))
-                    {
-                        //allow force for dash in right dir
-                        //Change player speed temp
-                        mvSpeed = dashForce;
 
-                        isDash = false;
 
-                    }
-                    //if horizontal direction is left then...
-                    else if (Input.GetKey(right))
-                    {
-                        //allow force for dash in left dir
-                        //Change player speed temp
-                        mvSpeed = dashForce;
+                    //allow force for dash in right dir
+                    //Change player speed temp
+                    mvSpeed = dashForce;
 
-                        isDash = false;
-                    }
+                    isDash = false;
                 }
             }
 
@@ -215,7 +205,7 @@ namespace Knight
         void Jump()
         {
             //if this key is pressed & player is grounded then...K
-            if (Input.GetKeyDown(KeyCode.W) && groundChecks[0] && groundChecks[1])
+            if (Input.GetKeyDown(KeyCode.W) && groundCheck)
             {
 
                 // add a velocity force going up
@@ -227,7 +217,7 @@ namespace Knight
                 doubleJump = true;
 
             }
-            else if (Input.GetKeyDown(KeyCode.W) && !groundChecks[0] && !groundChecks[1] && doubleJump)
+            else if (Input.GetKeyDown(KeyCode.W) && !groundCheck && doubleJump)
             {
                 rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
                 doubleJump = false;
@@ -241,7 +231,7 @@ namespace Knight
                 //for each raycast within parent transform
                 foreach (Transform raycast in raycasts)
                 {
-                  
+
                     // set new ray pos and direction
                     Ray ray = new Ray(raycast.position, Vector2.down);
 
@@ -255,33 +245,32 @@ namespace Knight
                         {
                             Debug.Log("Is Grounded");
                             //set grounded bool true 
-                            groundChecks[0] = true;
-                            groundChecks[1] = true;
+                            groundCheck = true;
+
                             //set doubleJump bool false
 
                             //set jump animtion to false upon contact
                             anim.SetBool("isJumping", false);
-                          
+
                         }
+                        //else if one ray is out but other is not then...
+
                     }
-                    //otherwise if hit nothing then..
+                    //otherwise if both rays hit nothing then..
                     else
                     {
                         Debug.Log("Is NOT Grounded");
                         //set jump animtion to false upon contact
                         anim.SetBool("isJumping", true);
 
-                        groundChecks[0] = false;
-                        groundChecks[1] = false;
+                        groundCheck = false;
 
                     }
-                    
+
 
                 }
                 #endregion
-                //if 1 or 2
 
-                // else if ! 1&& 2
             }
 
             /*
@@ -337,8 +326,19 @@ namespace Knight
             }
         }
 
+        IEnumerator DelayTime()
+        {
+            //activate function
+            DashTimer();
+            
+            //Initial delay starts
+            yield return new WaitForSeconds(curTime);
+           
+
+        }
+
         // cooldown method
-        void Timer()
+        void DashTimer()
         {
             #region Dash Timer
             //if bool condition for isDash false then...
@@ -347,20 +347,31 @@ namespace Knight
                 anim.SetBool("isDashing", true);
                 //start timer
                 dashtimer -= Time.deltaTime;
-
+                //StartCoroutine(DashDelay());
                 //if timer is less than eqaul to 0 then...
-                if (dashtimer <= 0f)
-                {
-                    mvSpeed = 4f;
-                    anim.SetBool("isDashing", false);
 
-                    //dash time is back to original start time
-                    dashtimer = dashMaxTime;
-                    isDash = true;
-                }
+            }
+
+            else if (dashtimer <= 0f)
+            {
+
+                mvSpeed = 4f;
+                anim.SetBool("isDashing", false);
+
+                //dash time is back to original start time
+                dashtimer = dashMaxTime;
+                
+                //isdash bool condition is true
+                isDash = true;
+
             }
             #endregion
+            StartCoroutine(DelayTime());
 
+        }
+
+        void AttackTimer()
+        {
             #region Attack Time
             //if attack bool condition is false then...
             if (!attack.canAttack)
@@ -377,6 +388,7 @@ namespace Knight
             }
             #endregion 
         }
+
 
     }
 
