@@ -22,7 +22,7 @@ namespace Knight
 
         #region Grounded Variables
         //Jump bool condition
-        public bool groundCheck;
+        public bool[] groundCheck = new bool[2];
 
         public float rayDist = 0.5f;
         public Transform raycasts;
@@ -71,8 +71,9 @@ namespace Knight
             #region Movement Conditions
             //double jump condition false
             doubleJump = false;
-            //grounded condition true
-            groundCheck = true;
+            //groundCheck condition true
+            groundCheck[0] = true;
+            groundCheck[1] = true;
 
 
             //dash condition true
@@ -180,7 +181,7 @@ namespace Knight
         {
             #region Dash Movement
             //if dash bool condition true & timer is not 0 then...
-            if (isDash & groundCheck)
+            if (isDash)
             {
                 //if input key 'space' then...
                 if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(left) ||
@@ -205,7 +206,7 @@ namespace Knight
         void Jump()
         {
             //if this key is pressed & player is grounded then...K
-            if (Input.GetKeyDown(KeyCode.W) && groundCheck)
+            if (Input.GetKeyDown(KeyCode.W) && groundCheck[0] || groundCheck[1])
             {
 
                 // add a velocity force going up
@@ -217,20 +218,37 @@ namespace Knight
                 doubleJump = true;
 
             }
-            else if (Input.GetKeyDown(KeyCode.W) && !groundCheck && doubleJump)
+            //else if not grounded and bool condition true & input pressed then...
+            else if (Input.GetKeyDown(KeyCode.W) && !(groundCheck[0] && groundCheck[1]) && doubleJump)
             {
+                //Apply velocity up
                 rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
+                //set double jump bool condition false
                 doubleJump = false;
+            }
+
+            //if groundCheck[0] & groundCheck[1] are false then...
+            if (groundCheck[0] == false && groundCheck[1] == false)
+            {
+                //set jump anim true
+                anim.SetBool("isJumping", true);
+            }
+            else //otherwise
+            {
+                //set jump anim false
+                anim.SetBool("isJumping", false);
             }
         }
 
         void Grounded()
         {
             {
-                #region For Each in Raycasting
                 //for each raycast within parent transform
                 foreach (Transform raycast in raycasts)
                 {
+                    #region For Each in Raycasting
+                    // i index 
+                    int i = 0;
 
                     // set new ray pos and direction
                     Ray ray = new Ray(raycast.position, Vector2.down);
@@ -244,98 +262,41 @@ namespace Knight
                         if (hit.collider.CompareTag("Ground"))
                         {
                             Debug.Log("Is Grounded");
-                            //set grounded bool true 
-                            groundCheck = true;
-
-                            //set doubleJump bool false
-
-                            //set jump animtion to false upon contact
-                            anim.SetBool("isJumping", false);
+                            //set groundCheck bool true 
+                            groundCheck[i] = true;
 
                         }
-                        //else if one ray is out but other is not then...
-
                     }
-                    //otherwise if both rays hit nothing then..
+                    //otherwise if rays hit nothing then..
                     else
                     {
                         Debug.Log("Is NOT Grounded");
-                        //set jump animtion to false upon contact
-                        anim.SetBool("isJumping", true);
-
-                        groundCheck = false;
+                        //set bool condition false
+                        //groundCheck[i] = false;
 
                     }
-
-
+                    //increase index by 1 per loop to check both raycast
+                    i++;
+                    #endregion
                 }
-                #endregion
-
             }
-
-            /*
-            #region For Each in Raycasting
-            //for each raycast within parent transform
-            foreach (Transform raycast in raycasts)
-            {
-                int i = 0;
-                // set new ray pos and direction
-                Ray ray = new Ray(raycast.position, Vector2.down);
-
-                //set raycast hit 2d objects
-                RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, rayDist, groundLayer);
-
-                //check if it hits something
-                if (hit.collider != null)
-                {
-                    if (hit.collider.CompareTag("Ground"))
-                    {
-                        Debug.Log("Is Grounded");
-                        //set grounded bool true 
-                        grounded = true;
-
-                        //set jump animtion to false upon contact
-                        anim.SetBool("isJumping", false);
-
-                    }
-                }
-                //otherwise if hit nothing then..
-                else
-                {
-                    Debug.Log("Is NOT Grounded");
-                    //set jump animtion to false upon contact
-                    anim.SetBool("isJumping", true);
-
-                    grounded = false;
-                }
-                
-            }
-            #endregion
-           */
         }
 
         private void OnDrawGizmos()
         {
+            //for each raycast within raycast parent...
             foreach (Transform raycast in raycasts)
             {
                 // set new ray pos and direction
                 Ray ray = new Ray(raycast.position, Vector2.down);
-
+                //Set colour of ray red
                 Gizmos.color = Color.red;
+                //Draw ray
                 Gizmos.DrawLine(ray.origin, ray.origin + ray.direction * rayDist);
             }
         }
 
-        IEnumerator DelayTime()
-        {
-            //activate function
-            DashTimer();
-            
-            //Initial delay starts
-            yield return new WaitForSeconds(curTime);
-           
-
-        }
+       
 
         // cooldown method
         void DashTimer()
@@ -360,13 +321,13 @@ namespace Knight
 
                 //dash time is back to original start time
                 dashtimer = dashMaxTime;
-                
+
                 //isdash bool condition is true
                 isDash = true;
 
             }
             #endregion
-            StartCoroutine(DelayTime());
+           
 
         }
 
