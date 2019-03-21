@@ -206,7 +206,7 @@ namespace Knight
         void Jump()
         {
             //if this key is pressed & player is grounded then...K
-            if (Input.GetKeyDown(KeyCode.W) && groundCheck[0] || groundCheck[1])
+            if (Input.GetKeyDown(KeyCode.W) && (groundCheck[0] || groundCheck[1]))
             {
 
                 // add a velocity force going up
@@ -217,9 +217,11 @@ namespace Knight
 
                 doubleJump = true;
 
+
+
             }
             //else if not grounded and bool condition true & input pressed then...
-            else if (Input.GetKeyDown(KeyCode.W) && !(groundCheck[0] && groundCheck[1]) && doubleJump)
+            else if (Input.GetKeyDown(KeyCode.W) && (groundCheck[0] == false && groundCheck[1] == false) && doubleJump)
             {
                 //Apply velocity up
                 rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
@@ -242,44 +244,45 @@ namespace Knight
 
         void Grounded()
         {
+            // i index outside foreach
+            //NOTE TO SELF, DONT DO IT AGAIN..............
+            int i = 0;
+            //for each raycast within parent transform
+            foreach (Transform raycast in raycasts)
             {
-                //for each raycast within parent transform
-                foreach (Transform raycast in raycasts)
+                #region For Each in Raycasting
+               
+
+                // set new ray pos and direction
+                Ray ray = new Ray(raycast.position, Vector2.down);
+
+                //set raycast hit 2d objects
+                RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, rayDist, groundLayer);
+
+                //check if it hits something
+                if (hit.collider != null)
                 {
-                    #region For Each in Raycasting
-                    // i index 
-                    int i = 0;
-
-                    // set new ray pos and direction
-                    Ray ray = new Ray(raycast.position, Vector2.down);
-
-                    //set raycast hit 2d objects
-                    RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, rayDist, groundLayer);
-
-                    //check if it hits something
-                    if (hit.collider != null)
+                    if (hit.collider.CompareTag("Ground"))
                     {
-                        if (hit.collider.CompareTag("Ground"))
-                        {
-                            Debug.Log("Is Grounded");
-                            //set groundCheck bool true 
-                            groundCheck[i] = true;
-
-                        }
-                    }
-                    //otherwise if rays hit nothing then..
-                    else
-                    {
-                        Debug.Log("Is NOT Grounded");
-                        //set bool condition false
-                        //groundCheck[i] = false;
+                        Debug.Log("Is Grounded");
+                        //set groundCheck bool true 
+                        groundCheck[i] = true;
 
                     }
-                    //increase index by 1 per loop to check both raycast
-                    i++;
-                    #endregion
                 }
+                //otherwise if rays hit nothing then..
+                else
+                {
+                    Debug.Log("Is NOT Grounded");
+                    //set bool condition false
+                    groundCheck[i] = false;
+
+                }
+                //increase index by 1 per loop to check both raycast
+                i++;
+                #endregion
             }
+
         }
 
         private void OnDrawGizmos()
@@ -296,7 +299,7 @@ namespace Knight
             }
         }
 
-       
+
 
         // cooldown method
         void DashTimer()
@@ -308,12 +311,12 @@ namespace Knight
                 anim.SetBool("isDashing", true);
                 //start timer
                 dashtimer -= Time.deltaTime;
-                //StartCoroutine(DashDelay());
+               
                 //if timer is less than eqaul to 0 then...
 
             }
 
-            else if (dashtimer <= 0f)
+            if (dashtimer <= 0f)
             {
 
                 mvSpeed = 4f;
@@ -327,7 +330,7 @@ namespace Knight
 
             }
             #endregion
-           
+
 
         }
 
