@@ -62,6 +62,7 @@ namespace Knight
         private Attack attack;
         #endregion
 
+        public float knockback;
 
         #endregion
 
@@ -95,7 +96,7 @@ namespace Knight
 
             //dash time
             dashtimer = dashMaxTime;
-
+            
 
         }
 
@@ -298,9 +299,7 @@ namespace Knight
                 Gizmos.DrawLine(ray.origin, ray.origin + ray.direction * rayDist);
             }
         }
-
-
-
+        
         // cooldown method
         void DashTimer()
         {
@@ -353,7 +352,14 @@ namespace Knight
             #endregion 
         }
 
-
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.collider.CompareTag("Enemy"))
+            {
+                float knock = -Mathf.Sign(collision.transform.position.x - transform.position.x) * knockback;
+                rb2d.AddForce(new Vector3(knock, knockback), ForceMode2D.Impulse);
+            }
+        }
     }
 
 }

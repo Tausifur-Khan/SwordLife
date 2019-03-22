@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
+using UnityEngine.Events;
 
 namespace Knight
 {
@@ -20,6 +21,7 @@ namespace Knight
 
         //private variable components
         private Animator anim;
+        private Animation mation;
         //private variable for CharControl script
         private CharacterController charC;
 
@@ -60,6 +62,7 @@ namespace Knight
                 //if input key then...
                 if (Input.GetKeyDown(attack))
                 {
+                    
 
                     //trigger animation
                     anim.SetTrigger("isAttacking");
