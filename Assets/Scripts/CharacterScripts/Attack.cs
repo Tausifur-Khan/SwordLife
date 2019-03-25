@@ -15,13 +15,13 @@ namespace Knight
         public float timer = 0;
 
         [Header("Box Collider Array")]
-        public GameObject[] attackCol = new GameObject[2];
+        public GameObject attackCol ;
         //public Keycode
         public KeyCode attack = KeyCode.I;
 
         //private variable components
         private Animator anim;
-        private Animation mation;
+      
         //private variable for CharControl script
         private CharacterController charC;
 
@@ -30,10 +30,8 @@ namespace Knight
         {
 
             //box colliders enabled false
-            attackCol[0].SetActive(false);
-            attackCol[1].SetActive(false);
-
-
+            attackCol.SetActive(false);
+            
             //timer is equal to total attack cooldown
             timer = attackMaxTime;
 
@@ -59,11 +57,9 @@ namespace Knight
             //if attack bool condition is true
             if (canAttack)
             {
-                //if input key then...
-                if (Input.GetKeyDown(attack))
+                //if input key && grounded then...
+                if (Input.GetKeyDown(attack) && (charC.groundCheck[0] || charC.groundCheck[0]))
                 {
-                    
-
                     //trigger animation
                     anim.SetTrigger("isAttacking");
 
@@ -71,13 +67,20 @@ namespace Knight
                     //Set if statements dependent on sprite direction
                     if (charC.sprite.flipX == false)
                     {
-                        attackCol[0].SetActive(true);
-
+                        //change gameobject localscale to new localscale in x by +1
+                        //Mathf.Sign to ensure value is set to 1 in x
+                        attackCol.transform.localScale = new Vector2(Mathf.Sign(transform.localScale.x * 1), transform.localScale.y);
+                        //set col true
+                        attackCol.SetActive(true);
 
                     }
                     else if (charC.sprite.flipX == true)
                     {
-                        attackCol[1].SetActive(true);
+                        //set gameobjects localscale to new localscale in x by -1
+                        //Mathf.Sign to ensure value is -1 in x
+                        attackCol.transform.localScale = new Vector2(Mathf.Sign(transform.localScale.x * -1), transform.localScale.y);
+                        //set col true
+                        attackCol.SetActive(true);
                     }
 
                     //bool condition is false

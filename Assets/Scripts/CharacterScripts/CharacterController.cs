@@ -13,6 +13,7 @@ namespace Knight
         [Header("Movement Variable x & y")]
         //float speed 
         public float mvSpeed = 2;
+        public float reMvSpeed;
         //float jumpForce
         public float jumpForce = 50;
         //double jump bool condition
@@ -317,8 +318,8 @@ namespace Knight
 
             if (dashtimer <= 0f)
             {
-
-                mvSpeed = 4f;
+                mvSpeed = reMvSpeed;
+               
                 anim.SetBool("isDashing", false);
 
                 //dash time is back to original start time
@@ -344,9 +345,7 @@ namespace Knight
                 {
                     attack.canAttack = true;
                     attack.timer = attack.attackMaxTime;
-                    attack.attackCol[0].SetActive(false);
-                    attack.attackCol[1].SetActive(false);
-
+                    attack.attackCol.SetActive(false);
                 }
             }
             #endregion 
