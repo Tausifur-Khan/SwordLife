@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 482308661}
   m_Layer: 0
-  m_Name: RaycastPos (2)
+  m_Name: RaycastPos_2
   m_TagString: Raycast
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,7 +102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1562331638}
   m_Layer: 0
-  m_Name: RaycastPos (1)
+  m_Name: RaycastPos_1
   m_TagString: Raycast
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -169,7 +169,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1941364731
 Transform:
   m_ObjectHideFlags: 0
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 1174552099}
   m_Layer: 0
   m_Name: Knight
-  m_TagString: Ground
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -376,24 +376,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0382f57a8f529764a89d9a76e9056106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mvSpeed: 3
-  jumpForce: 8
+  mvSpeed: 2.5
+  maxSpeed: 2.5
+  jumpForce: 7
   doubleJump: 0
   groundCheck: 0000
-  rayDist: 0.2
+  rayDist: 0.1
   raycasts: {fileID: 1210995258}
   groundLayer:
     serializedVersion: 2
     m_Bits: 512
-  dashForce: 30
+  dashForce: 50
   isDash: 1
-  dashMaxTime: 0.1
+  canDash: 1
   dashtimer: 0
-  curTime: 0
+  dashMaxTime: 0.1
+  dashDelay: 0
+  dashMaxDelay: 2
   left: 97
   right: 100
   sprite: {fileID: 0}
-  knockback: 0
+  knockback: 5
 --- !u!114 &1744176065511315171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,5 +423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canAttack: 0
-  attackCol: {fileID: 0}
+  attackMaxTime: 0.2
+  timer: 0
+  attackCol: {fileID: 1941364730}
   attack: 105

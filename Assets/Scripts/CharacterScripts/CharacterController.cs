@@ -11,9 +11,10 @@ namespace Knight
 
         #region Movement Variables X & Y
         [Header("Movement Variable x & y")]
-        //float speed 
-        public float mvSpeed = 2;
-        public float reMvSpeed;
+        //float speed
+        [SerializeField]
+        private float mvSpeed;
+        public float maxSpeed = 2.5f;
         //float jumpForce
         public float jumpForce = 50;
         //double jump bool condition
@@ -37,10 +38,19 @@ namespace Knight
         public float dashForce = 100f;
         //bool condition for dash
         public bool isDash = true;
+        public bool canDash = true;
+
         //Dash timers min & max
+        [SerializeField]
+        private float dashtimer;
         public float dashMaxTime;
-        public float dashtimer;
-        public float curTime;
+
+        [SerializeField]
+        private float dashDelay;
+        public float dashMaxDelay;
+
+
+
         [Space(2)]
         #endregion
 
@@ -97,8 +107,8 @@ namespace Knight
 
             //dash time
             dashtimer = dashMaxTime;
-            
 
+            dashDelay = dashMaxDelay;
         }
 
         void Update()
@@ -183,7 +193,7 @@ namespace Knight
         {
             #region Dash Movement
             //if dash bool condition true & timer is not 0 then...
-            if (isDash)
+            if (isDash && canDash)
             {
                 //if input key 'space' then...
                 if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(left) ||
@@ -197,7 +207,9 @@ namespace Knight
                     mvSpeed = dashForce;
 
                     isDash = false;
+
                 }
+
             }
 
             #endregion
@@ -253,8 +265,6 @@ namespace Knight
             foreach (Transform raycast in raycasts)
             {
                 #region For Each in Raycasting
-               
-
                 // set new ray pos and direction
                 Ray ray = new Ray(raycast.position, Vector2.down);
 
@@ -300,7 +310,7 @@ namespace Knight
                 Gizmos.DrawLine(ray.origin, ray.origin + ray.direction * rayDist);
             }
         }
-        
+
         // cooldown method
         void DashTimer()
         {
@@ -311,29 +321,38 @@ namespace Knight
                 anim.SetBool("isDashing", true);
                 //start timer
                 dashtimer -= Time.deltaTime;
-               
-                //if timer is less than eqaul to 0 then...
 
+                if (dashtimer <= 0f)
+                {
+                    //isdash bool condition is true
+                    isDash = true;
+
+                    anim.SetBool("isDashing", false);
+
+                    mvSpeed = maxSpeed;
+
+                    //dash time is back to original start time
+                    dashtimer = dashMaxTime;
+
+                    canDash = false;
+                }
             }
 
-            if (dashtimer <= 0f)
+            if (!canDash)
             {
-                mvSpeed = reMvSpeed;
-               
-                anim.SetBool("isDashing", false);
+                dashDelay -= Time.deltaTime;
+                if (dashDelay <= 0)
+                {
+                    canDash = true;
+                    dashDelay = dashMaxDelay;
 
-                //dash time is back to original start time
-                dashtimer = dashMaxTime;
-
-                //isdash bool condition is true
-                isDash = true;
-
+                }
             }
+
+
+
             #endregion
-
-
         }
-
         void AttackTimer()
         {
             #region Attack Time
@@ -351,14 +370,17 @@ namespace Knight
             #endregion 
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-            if (collision.collider.CompareTag("Enemy"))
-            {
-                float knock = -Mathf.Sign(collision.transform.position.x - transform.position.x) * knockback;
-                rb2d.AddForce(new Vector3(knock, knockback), ForceMode2D.Impulse);
-            }
-        }
+        #region Player KnockBack
+
+        //private void OnCollisionEnter2D(Collision2D collision)
+        //{
+        //    if (collision.collider.CompareTag("Enemy"))
+        //    {
+        //       float knock = -Mathf.Sign(collision.transform.position.x - transform.position.x) * knockback;
+        //        rb2d.AddForce(new Vector2(-1, knockback), ForceMode2D.Impulse);
+        //    }
+        //}
+        #endregion 
     }
 
 }
