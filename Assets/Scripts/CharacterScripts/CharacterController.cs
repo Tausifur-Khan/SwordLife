@@ -193,7 +193,7 @@ namespace Knight
         {
             #region Dash Movement
             //if dash bool condition true & timer is not 0 then...
-            if (isDash && canDash)
+            if (isDash && canDash && (groundCheck[0] && groundCheck[1]))
             {
                 //if input key 'space' then...
                 if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(left) ||
