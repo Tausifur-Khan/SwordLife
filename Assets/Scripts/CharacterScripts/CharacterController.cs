@@ -48,9 +48,7 @@ namespace Knight
         [SerializeField]
         private float dashDelay;
         public float dashMaxDelay;
-
-
-
+        
         [Space(2)]
         #endregion
 
@@ -71,6 +69,7 @@ namespace Knight
         private Death_1 playerDeath;
         //Access to Attack Script
         private Attack attack;
+        
         #endregion
 
         public float knockback;
@@ -162,7 +161,7 @@ namespace Knight
                 sprite.flipX = true;
                 //set animation true
                 anim.SetBool("isMoving", true);
-                attack.enabled = false;
+                //attack.enabled = true;
             }
             //else if input right
             else if (Input.GetKey(right))
@@ -173,7 +172,7 @@ namespace Knight
                 sprite.flipX = false;
                 ///set animation
                 anim.SetBool("isMoving", true);
-                attack.enabled = false;
+               // attack.enabled = true;
             }
             //otherwise
             else
@@ -182,7 +181,7 @@ namespace Knight
                 rb2d.velocity = new Vector2(0, rb2d.velocity.y);
                 //set animation false
                 anim.SetBool("isMoving", false);
-                attack.enabled = true;
+                //attack.enabled = true;
             }
             #endregion
 
@@ -231,7 +230,7 @@ namespace Knight
 
                 doubleJump = true;
 
-
+               
 
             }
             //else if not grounded and bool condition true & input pressed then...
@@ -241,6 +240,7 @@ namespace Knight
                 rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
                 //set double jump bool condition false
                 doubleJump = false;
+                
             }
 
             //if groundCheck[0] & groundCheck[1] are false then...
@@ -355,7 +355,7 @@ namespace Knight
         }
         void AttackTimer()
         {
-            #region Attack Time
+            #region Ground Attack Time
             //if attack bool condition is false then...
             if (!attack.canAttack)
             {
@@ -367,7 +367,21 @@ namespace Knight
                     attack.attackCol.SetActive(false);
                 }
             }
-            #endregion 
+            #endregion
+
+            #region Jump Attack Time
+            //if attack bool condition is false then...
+            if (!attack.isJumpAttack)
+            {
+                attack.timer -= Time.deltaTime;
+                if (attack.timer <= 0)
+                {
+                    attack.isJumpAttack = true;
+                    attack.timer = attack.attackMaxTime;
+                    attack.attackCol.SetActive(false);
+                }
+            }
+            #endregion
         }
 
         #region Player KnockBack

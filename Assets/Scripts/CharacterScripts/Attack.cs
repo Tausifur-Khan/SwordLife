@@ -10,14 +10,21 @@ namespace Knight
     {
         //public bool condition for attack
         //set bool conditon false for default
-        public bool canAttack = false;
+        [Header("Ground Attack")]
+        public bool canAttack = true;
         public float attackMaxTime = 0.5f;
         public float timer = 0;
+        [Space(3)]
+
+        [Header("Jump Attack")]
+        public bool isJumpAttack = false;
+        [Space(3)]
 
         [Header("Box Collider Array")]
         public GameObject attackCol;
         //public Keycode
         public KeyCode attack = KeyCode.I;
+        public KeyCode jumpAttack = KeyCode.I;
 
         //private variable components
         private Animator anim;
@@ -54,6 +61,7 @@ namespace Knight
         //Attack Input Method
         void AttackInput()
         {
+            #region GroundAttack
             //if attack bool condition is true
             if (canAttack)
             {
@@ -64,11 +72,21 @@ namespace Knight
                     anim.SetTrigger("isAttacking");
                 }
             }
+            #endregion
 
+            #region JumpAttack
+            if (isJumpAttack)
+            {
+                if(Input.GetKeyDown(jumpAttack) &&(!(charC.groundCheck[0] && charC.groundCheck[1])))
+                {
+                    anim.SetTrigger("isJumpAttack");
+                }
+            }
+            #endregion
         }
 
         //Attack Animation Event
-        void AttackEvent()
+        void GroundEvent()
         {
             //box colliders are enabled
             //Set if statements dependent on sprite direction
@@ -91,6 +109,31 @@ namespace Knight
             }
             //attack bool condition false
             canAttack = false;
+        }
+
+        void JumpEvent()
+        {
+            //box colliders are enabled
+            //Set if statements dependent on sprite direction
+            if (charC.sprite.flipX == false)
+            {
+                //change gameobject localscale to new localscale in x by +1
+                //Mathf.Sign to ensure value is set to 1 in x
+                attackCol.transform.localScale = new Vector2(Mathf.Sign(transform.localScale.x * 1), transform.localScale.y);
+                //set col true
+                attackCol.SetActive(true);
+
+            }
+            else if (charC.sprite.flipX == true)
+            {
+                //set gameobjects localscale to new localscale in x by -1
+                //Mathf.Sign to ensure value is -1 in x
+                attackCol.transform.localScale = new Vector2(Mathf.Sign(transform.localScale.x * -1), transform.localScale.y);
+                //set col true
+                attackCol.SetActive(true);
+            }
+            //attack bool condition false
+            isJumpAttack = false;
         }
     }
 }
