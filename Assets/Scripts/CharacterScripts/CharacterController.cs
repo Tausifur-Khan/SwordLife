@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.Animations;
+using UnityEngine.Animations;
 
 namespace Knight
 {
@@ -14,7 +14,7 @@ namespace Knight
         //float speed
         [SerializeField]
         private float mvSpeed;
-        public float maxSpeed = 2.5f;
+        public float maxSpeed = 3;
         //float jumpForce
         public float jumpForce = 50;
         //double jump bool condition
@@ -79,6 +79,8 @@ namespace Knight
         // Start is called before the first frame update
         void Start()
         {
+            mvSpeed = maxSpeed;
+
             #region Movement Conditions
             //double jump condition false
             doubleJump = false;

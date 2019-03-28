@@ -227,6 +227,21 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1744176065511315169, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
+        type: 3}
+      propertyPath: dashForce
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1744176065511315169, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
+        type: 3}
+      propertyPath: jumpForce
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1744176065511315169, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
+        type: 3}
+      propertyPath: maxSpeed
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85b6e62558fd9cc42b0dc26bf460b90f, type: 3}
 --- !u!1 &170076733
@@ -1185,7 +1200,7 @@ PrefabInstance:
     - target: {fileID: 4320241550019280909, guid: be10455932b438d489322e7339743ccf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.49
+      value: 9.56
       objectReference: {fileID: 0}
     - target: {fileID: 4320241550019280909, guid: be10455932b438d489322e7339743ccf,
         type: 3}
@@ -1240,7 +1255,7 @@ PrefabInstance:
     - target: {fileID: 4320241550019280909, guid: be10455932b438d489322e7339743ccf,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 22.640625
+      value: 56.01432
       objectReference: {fileID: 0}
     - target: {fileID: 1129106811181696377, guid: be10455932b438d489322e7339743ccf,
         type: 3}
