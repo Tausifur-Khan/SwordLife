@@ -12,7 +12,7 @@ namespace Knight
         //set bool conditon false for default
         [Header("Ground Attack")]
         public bool canAttack = true;
-        public float attackMaxTime = 0.5f;
+        public float attackMaxTime;
         public float timer = 0;
         [Space(3)]
 

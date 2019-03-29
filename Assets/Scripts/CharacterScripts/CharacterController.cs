@@ -48,7 +48,7 @@ namespace Knight
         [SerializeField]
         private float dashDelay;
         public float dashMaxDelay;
-        
+
         [Space(2)]
         #endregion
 
@@ -69,7 +69,7 @@ namespace Knight
         private Death_1 playerDeath;
         //Access to Attack Script
         private Attack attack;
-        
+
         #endregion
 
         public float knockback;
@@ -163,7 +163,7 @@ namespace Knight
                 sprite.flipX = true;
                 //set animation true
                 anim.SetBool("isMoving", true);
-                //attack.enabled = true;
+
             }
             //else if input right
             else if (Input.GetKey(right))
@@ -174,7 +174,7 @@ namespace Knight
                 sprite.flipX = false;
                 ///set animation
                 anim.SetBool("isMoving", true);
-               // attack.enabled = true;
+
             }
             //otherwise
             else
@@ -183,7 +183,7 @@ namespace Knight
                 rb2d.velocity = new Vector2(0, rb2d.velocity.y);
                 //set animation false
                 anim.SetBool("isMoving", false);
-                //attack.enabled = true;
+
             }
             #endregion
 
@@ -200,9 +200,6 @@ namespace Knight
                 if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(left) ||
                     Input.GetKeyDown(KeyCode.Space) && Input.GetKey(right))
                 {
-                    // if horizontal direction is right then...
-
-
                     //allow force for dash in right dir
                     //Change player speed temp
                     mvSpeed = dashForce;
@@ -232,7 +229,7 @@ namespace Knight
 
                 doubleJump = true;
 
-               
+
 
             }
             //else if not grounded and bool condition true & input pressed then...
@@ -242,7 +239,7 @@ namespace Knight
                 rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
                 //set double jump bool condition false
                 doubleJump = false;
-                
+
             }
 
             //if groundCheck[0] & groundCheck[1] are false then...
