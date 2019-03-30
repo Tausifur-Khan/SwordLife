@@ -118,6 +118,8 @@ namespace Knight
             Jump();
             //Ground Method
             Grounded();
+
+            AnimationSetup();
         }
 
         void FixedUpdate()
@@ -149,6 +151,37 @@ namespace Knight
             AttackTimer();
         }
 
+        void AnimationSetup()
+        {
+            #region Ground Movement
+            //if movement is left or right then...
+            if (rb2d.velocity.x >= 0.1 || rb2d.velocity.x <= -0.1)
+                //move animation true
+                anim.SetBool("isMoving", true);
+
+            else if (rb2d.velocity.x == 0)
+                //move animation false
+                anim.SetBool("isMoving", false);
+            #endregion
+
+            #region Jump
+            // if jumping and ground check is false then.....
+            if (rb2d.velocity.y > 0 || rb2d.velocity.y < 0 && ((groundCheck[0] == false && groundCheck[1] == false)))
+            {
+                //jump animation true
+                anim.SetBool("isJumping", true);
+                //move animation false while in air
+                anim.SetBool("isMoving", false);
+            }
+            else 
+            {
+                //otherwise set jump animation false
+                anim.SetBool("isJumping", false);
+            }
+            #endregion
+
+        }
+
         //Method: Movement in X direction with velocity
         void Move()
         {
@@ -161,9 +194,6 @@ namespace Knight
                 rb2d.velocity = new Vector2(-mvSpeed, rb2d.velocity.y);
                 //flip sprite
                 sprite.flipX = true;
-                //set animation true
-                anim.SetBool("isMoving", true);
-
             }
             //else if input right
             else if (Input.GetKey(right))
@@ -172,19 +202,12 @@ namespace Knight
                 rb2d.velocity = new Vector2(mvSpeed, rb2d.velocity.y);
                 //flip spirte
                 sprite.flipX = false;
-                ///set animation
-                anim.SetBool("isMoving", true);
-
             }
             //otherwise
             else
-            {
                 //stop velocity movement x
                 rb2d.velocity = new Vector2(0, rb2d.velocity.y);
-                //set animation false
-                anim.SetBool("isMoving", false);
 
-            }
             #endregion
 
         }
@@ -205,7 +228,6 @@ namespace Knight
                     mvSpeed = dashForce;
 
                     isDash = false;
-
                 }
 
             }
@@ -229,8 +251,6 @@ namespace Knight
 
                 doubleJump = true;
 
-
-
             }
             //else if not grounded and bool condition true & input pressed then...
             else if (Input.GetKeyDown(KeyCode.W) && (groundCheck[0] == false && groundCheck[1] == false) && doubleJump)
@@ -242,17 +262,19 @@ namespace Knight
 
             }
 
-            //if groundCheck[0] & groundCheck[1] are false then...
-            if (groundCheck[0] == false && groundCheck[1] == false)
-            {
-                //set jump anim true
-                anim.SetBool("isJumping", true);
-            }
-            else //otherwise
-            {
-                //set jump anim false
-                anim.SetBool("isJumping", false);
-            }
+            #region Ground Check
+
+            ////if groundCheck[0] & groundCheck[1] are false then...
+            //if ((groundCheck[0] == false && groundCheck[1] == false) && rb2d.velocity.y > 0)
+            //    //set jump anim true
+            //    anim.SetBool("isJumping", true);
+
+            ////otherwise
+            //else
+            //    //set jump anim false
+            //    anim.SetBool("isJumping", false);
+
+            #endregion
         }
 
         void Grounded()
@@ -368,8 +390,9 @@ namespace Knight
             }
             #endregion
 
+
             #region Jump Attack Time
-            //if attack bool condition is false then...
+            // if attack bool condition is false then...
             if (!attack.isJumpAttack)
             {
                 attack.timer -= Time.deltaTime;

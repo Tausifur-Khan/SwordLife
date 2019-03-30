@@ -66,7 +66,7 @@ namespace Knight
             if (canAttack)
             {
                 //if input key && grounded then...
-                if (Input.GetKeyDown(attack) && (charC.groundCheck[0] || charC.groundCheck[0]))
+                if (Input.GetKeyDown(attack) && (charC.groundCheck[0] || charC.groundCheck[1]))
                 {
                     //trigger attack animation
                     anim.SetTrigger("isAttacking");
