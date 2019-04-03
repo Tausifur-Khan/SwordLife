@@ -377,8 +377,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mvSpeed: 2.5
-  maxSpeed: 2.5
-  jumpForce: 7
+  maxSpeed: 3.5
+  jumpForce: 8
   doubleJump: 0
   groundCheck: 0000
   rayDist: 0.1
@@ -386,7 +386,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 512
-  dashForce: 50
+  dashForce: 30
   isDash: 1
   canDash: 1
   dashtimer: 0
@@ -417,13 +417,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1744176065511315195}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1a2d5323ab6c384fbef221de2a5253c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canAttack: 0
-  attackMaxTime: 0.2
+  attackMaxTime: 0.1
   timer: 0
+  isJumpAttack: 0
   attackCol: {fileID: 1941364730}
   attack: 105
+  jumpAttack: 105
