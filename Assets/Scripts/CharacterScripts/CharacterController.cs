@@ -72,6 +72,7 @@ namespace Knight
 
         #endregion
 
+      
         public float knockback;
 
         #endregion
@@ -148,7 +149,7 @@ namespace Knight
             }
             //Dash time Method
             DashTimer();
-            AttackTimer();
+
         }
 
         void AnimationSetup()
@@ -205,11 +206,12 @@ namespace Knight
             }
             //otherwise
             else
+            {
                 //stop velocity movement x
                 rb2d.velocity = new Vector2(0, rb2d.velocity.y);
-
+                
+            }
             #endregion
-
         }
 
         //Method: Dash movement in x direction
@@ -374,37 +376,8 @@ namespace Knight
 
             #endregion
         }
-        void AttackTimer()
-        {
-            #region Ground Attack Time
-            //if attack bool condition is false then...
-            if (!attack.canAttack)
-            {
-                attack.timer -= Time.deltaTime;
-                if (attack.timer <= 0)
-                {
-                    attack.canAttack = true;
-                    attack.timer = attack.attackMaxTime;
-                    attack.attackCol.SetActive(false);
-                }
-            }
-            #endregion
 
-
-            #region Jump Attack Time
-            // if attack bool condition is false then...
-            if (!attack.isJumpAttack)
-            {
-                attack.timer -= Time.deltaTime;
-                if (attack.timer <= 0)
-                {
-                    attack.isJumpAttack = true;
-                    attack.timer = attack.attackMaxTime;
-                    attack.attackCol.SetActive(false);
-                }
-            }
-            #endregion
-        }
+        
 
         #region Player KnockBack
 

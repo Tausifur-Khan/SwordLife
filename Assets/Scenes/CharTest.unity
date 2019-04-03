@@ -373,6 +373,19 @@ PrefabInstance:
       propertyPath: dashForce
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 1909689602, guid: 85b6e62558fd9cc42b0dc26bf460b90f, type: 3}
+      propertyPath: m_Name
+      value: SwordAttack
+      objectReference: {fileID: 0}
+    - target: {fileID: 1174552099, guid: 85b6e62558fd9cc42b0dc26bf460b90f, type: 3}
+      propertyPath: canAttack
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1174552099, guid: 85b6e62558fd9cc42b0dc26bf460b90f, type: 3}
+      propertyPath: rangeSprite
+      value: 
+      objectReference: {fileID: 1321570175603155863, guid: cd6d5b6ad8eaf53478af6562c5f5b2e4,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85b6e62558fd9cc42b0dc26bf460b90f, type: 3}
 --- !u!1 &170076733
@@ -1296,6 +1309,26 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8889591135819894403}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &964126346 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1744176065511315195, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
+    type: 3}
+  m_PrefabInstance: {fileID: 114702917}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &964126347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 964126346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f3544010275cb84f946c8364e698124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 0
+  maxTimer: 10
 --- !u!1 &1102825865
 GameObject:
   m_ObjectHideFlags: 0
@@ -1326,6 +1359,36 @@ Transform:
   - {fileID: 4320241550019280909}
   m_Father: {fileID: 1833756595}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1186415033
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1186415034}
+  m_Layer: 0
+  m_Name: RangedAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1186415034
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186415033}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.573, y: -0.228, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 371602121}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1231882738
 GameObject:

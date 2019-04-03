@@ -10,14 +10,9 @@ namespace Knight
     {
         //public bool condition for attack
         //set bool conditon false for default
-        [Header("Ground Attack")]
-        public bool canAttack = true;
-        public float attackMaxTime;
-        public float timer = 0;
-        [Space(3)]
 
-        [Header("Jump Attack")]
-        public bool isJumpAttack = false;
+        [Header("Ranged Attack")]
+        public bool canRange;
         [Space(3)]
 
         [Header("Box Collider Array")]
@@ -31,56 +26,71 @@ namespace Knight
 
         //private variable for CharControl script
         private CharacterController charC;
-
+        //private variable for sprite
+        public SpriteRenderer rangeSprite;
+        //private variable rigidbody
+        private Rigidbody2D rigid;
         // Start is called before the first frame update
         void Start()
         {
+            rigid = GetComponent<Rigidbody2D>();
 
             //box colliders enabled false
             attackCol.SetActive(false);
 
-            //timer is equal to total attack cooldown
-            timer = attackMaxTime;
+            canRange = true;
 
             //refer to Animator component
             anim = GetComponent<Animator>();
             //refer to CharControl component
             charC = GetComponent<CharacterController>();
 
-            //set attack bool condition true
-            canAttack = true;
+
         }
 
         // Update is called once per frame
         void Update()
         {
             AttackInput();
-
+            RangedEvent();
         }
 
         //Attack Input Method
         void AttackInput()
         {
+            //Ground Attack
             #region GroundAttack
             //if attack bool condition is true
-            if (canAttack)
+
+            //if input key && grounded then...
+            if (Input.GetKeyDown(attack) && (charC.groundCheck[0] || charC.groundCheck[1]))
             {
-                //if input key && grounded then...
-                if (Input.GetKeyDown(attack) && (charC.groundCheck[0] || charC.groundCheck[1]))
-                {
-                    //trigger attack animation
-                    anim.SetTrigger("isAttacking");
-                }
+                //trigger attack animation
+                anim.SetTrigger("isAttacking");
             }
+
             #endregion
 
+            //Jump Attack
             #region JumpAttack
-            if (isJumpAttack)
+
+            //if input key and not grounded then...
+            if (Input.GetKeyDown(jumpAttack) && (!(charC.groundCheck[0] && charC.groundCheck[1])))
             {
-                if(Input.GetKeyDown(jumpAttack) &&(!(charC.groundCheck[0] && charC.groundCheck[1])))
-                {
-                    anim.SetTrigger("isJumpAttack");
-                }
+                //set jump attack animation
+                anim.SetTrigger("isJumpAttack");
+            }
+
+            #endregion
+
+            //Ranged Attack
+            #region Ranged Attack
+            if (canRange && (charC.groundCheck[0] || charC.groundCheck[1])
+                && Input.GetKeyDown(KeyCode.O) && rigid.velocity.x == 0)
+            {
+                canRange = false;
+                anim.SetTrigger("isRangedAttack");
+
             }
             #endregion
         }
@@ -107,8 +117,7 @@ namespace Knight
                 //set col true
                 attackCol.SetActive(true);
             }
-            //attack bool condition false
-            canAttack = false;
+
         }
 
         void JumpEvent()
@@ -132,8 +141,21 @@ namespace Knight
                 //set col true
                 attackCol.SetActive(true);
             }
-            //attack bool condition false
-            isJumpAttack = false;
+
         }
+
+        void RangedEvent()
+        {
+            Instantiate(rangeSprite);
+        }
+
+        //Disable attack collider in animation event
+        void DisableCollder()
+        {
+            //set collider false
+            attackCol.SetActive(false);
+        }
+
+       
     }
 }
