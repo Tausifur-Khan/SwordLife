@@ -13,10 +13,15 @@ namespace Knight
 
         [Header("Ranged Attack")]
         public bool canRange;
+        //transform of ranged
+        public GameObject rangeWaypoint;
+        //ranged attack speed
+        public float rangeSpeed;
         [Space(3)]
 
         [Header("Box Collider Array")]
         public GameObject attackCol;
+      
         //public Keycode
         public KeyCode attack = KeyCode.I;
         public KeyCode jumpAttack = KeyCode.I;
@@ -30,6 +35,7 @@ namespace Knight
         public SpriteRenderer rangeSprite;
         //private variable rigidbody
         private Rigidbody2D rigid;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -52,7 +58,7 @@ namespace Knight
         void Update()
         {
             AttackInput();
-            RangedEvent();
+            
         }
 
         //Attack Input Method
@@ -146,7 +152,7 @@ namespace Knight
 
         void RangedEvent()
         {
-            Instantiate(rangeSprite);
+            Instantiate(rangeSprite, rangeWaypoint.transform.position, Quaternion.identity);
         }
 
         //Disable attack collider in animation event
