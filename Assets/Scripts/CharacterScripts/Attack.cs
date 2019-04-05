@@ -91,8 +91,7 @@ namespace Knight
 
             //Ranged Attack
             #region Ranged Attack
-            if (canRange && (charC.groundCheck[0] || charC.groundCheck[1])
-                && Input.GetKeyDown(KeyCode.O) && rigid.velocity.x == 0)
+            if (canRange && Input.GetKeyDown(KeyCode.O))
             {
                 canRange = false;
                 anim.SetTrigger("isRangedAttack");
