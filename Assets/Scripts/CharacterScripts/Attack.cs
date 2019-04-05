@@ -21,7 +21,7 @@ namespace Knight
 
         [Header("Box Collider Array")]
         public GameObject attackCol;
-      
+
         //public Keycode
         public KeyCode attack = KeyCode.I;
         public KeyCode jumpAttack = KeyCode.I;
@@ -58,7 +58,7 @@ namespace Knight
         void Update()
         {
             AttackInput();
-            
+            RangedPosition();
         }
 
         //Attack Input Method
@@ -114,6 +114,7 @@ namespace Knight
                 //set col true
                 attackCol.SetActive(true);
 
+
             }
             else if (charC.sprite.flipX == true)
             {
@@ -152,8 +153,29 @@ namespace Knight
 
         void RangedEvent()
         {
-            Instantiate(rangeSprite, rangeWaypoint.transform.position, Quaternion.identity);
+            SpriteRenderer clone =  Instantiate(rangeSprite, rangeWaypoint.transform.position, Quaternion.identity);
+            clone.flipX = GetComponent<SpriteRenderer>().flipX;
+
+            if (clone.flipX)
+            {
+                clone.GetComponent<RanAttackMove>().rSpeed *= -1f;
+            }
+       
+            
         }
+
+        void RangedPosition()
+        {
+            if (charC.sprite.flipX == false)
+            {
+                rangeWaypoint.transform.localPosition = new Vector2(1.2f, 0);
+            }
+            else if (charC.sprite.flipX == true)
+            {
+                rangeWaypoint.transform.localPosition = new Vector2(-1.2f, 0);
+            }
+        }
+        
 
         //Disable attack collider in animation event
         void DisableCollder()
@@ -162,6 +184,6 @@ namespace Knight
             attackCol.SetActive(false);
         }
 
-       
+
     }
 }
