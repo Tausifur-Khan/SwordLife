@@ -10,33 +10,47 @@ public class CameraFocus : MonoBehaviour
     private Vector2 halfSize = new Vector2();
     public Vector2Rect levelSize;
     public float lerp = 1;
+    private float tempLerp = 1;
+    //public float level3lerp = .1f;
+    //private Vector2 focusSwitch;
     public bool moveX = true, moveY = true;
     private Vector2 offset;
     void Start()
     {
-        camLocal = GetComponent<Camera>();
+        camLocal = transform.GetComponentInChildren<Camera>();
         halfSize = camLocal.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height));
     }
 
-    private void Awake()
+    public void cameraFocus(Vector2 focus, float lerpMagnitude = 1)
     {
-
-    }
-
-    void Update()
-    {
+        tempLerp = Mathf.Lerp(tempLerp, lerpMagnitude, .1f);
         Vector2 camPos = transform.position;
-        offset = target.position - (Vector3)camPos;
+        offset = focus - camPos;
         if (offset.x != Mathf.Clamp(offset.x, -boxSize.x, boxSize.x) && moveX)
         {
-            camPos.x = target.position.x - (boxSize.x * Sign(offset.x));
+            camPos.x = focus.x - (boxSize.x * Sign(offset.x));
         }
         if (offset.y != Mathf.Clamp(offset.y, -boxSize.y, boxSize.y) && moveY)
         {
-            camPos.y = target.position.y - (boxSize.y * Sign(offset.y));
+            camPos.y = focus.y - (boxSize.y * Sign(offset.y));
         }
-        transform.position = Vector3.Lerp(transform.position, (Vector3)camPos + 10 * Vector3.back, lerp);
+        transform.position = Vector3.Lerp(transform.position, (Vector3)camPos + 10 * Vector3.back, tempLerp);
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, levelSize.topLeft.x + halfSize.x, levelSize.bottomRight.x - halfSize.x), Mathf.Clamp(transform.position.y, levelSize.topLeft.y + halfSize.y, levelSize.bottomRight.y - halfSize.y), -10);
+    }
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.Y))
+        {
+            cameraFocus(camLocal.ScreenToWorldPoint(Input.mousePosition), .1f);            
+        }
+        else if (Input.GetKey(KeyCode.U))
+        {
+            cameraFocus(new Vector2(4, 4), .1f);
+        }
+        else
+        {
+            cameraFocus(target.position, lerp);
+        }
     }
 
     void OnDrawGizmos()
