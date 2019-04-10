@@ -21,8 +21,8 @@ public class Change : MonoBehaviour
 
     void Update()
     {
-       
-       
+
+
     }
 
     void LateUpdate()
@@ -35,11 +35,21 @@ public class Change : MonoBehaviour
     {
         if (col.gameObject.CompareTag("AttackZone"))
         {
-            
-            mRender.material.color = Random.ColorHSV();
-
+            ChangeColor();
             curHp -= 20f;
         }
+
+        else if (col.gameObject.CompareTag("RangeZone"))
+        {
+            ChangeColor();
+            curHp -= 100f;
+        }
+    }
+
+    void ChangeColor()
+    {
+        //change material color of gameobject
+        mRender.material.color = Random.ColorHSV();
     }
 
     void EnemyDeath()

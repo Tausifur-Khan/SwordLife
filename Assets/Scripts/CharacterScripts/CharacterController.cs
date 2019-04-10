@@ -74,8 +74,16 @@ namespace Knight
 
         #endregion
 
-      
+        //player knockback
+        [Header("KnockBack")]
+        //knock back force
         public float knockback;
+        //set knockback time
+        public float knockMaxTime;
+        public float knockTime;
+        //has the player been knocked
+        public bool knocked;
+
 
         #endregion
 
@@ -113,6 +121,8 @@ namespace Knight
             dashtimer = dashMaxTime;
 
             dashDelay = dashMaxDelay;
+
+            knockTime = knockMaxTime;
         }
 
         void Update()
@@ -123,8 +133,6 @@ namespace Knight
             Grounded();
 
             AnimationSetup();
-
-            Debug.Log(rb2d.velocity.x);
         }
 
         void FixedUpdate()
@@ -134,7 +142,7 @@ namespace Knight
             //Dash Move Method
             Dash();
 
-
+            PlayerKnockBack();
         }
 
         void LateUpdate()
@@ -171,7 +179,7 @@ namespace Knight
 
             #region Jump
             // if jumping and ground check is false then.....
-            if (rb2d.velocity.y > 0 || rb2d.velocity.y < 0 && 
+            if (rb2d.velocity.y > 0 || rb2d.velocity.y < 0 &&
                 ((groundCheck[0] == false && groundCheck[1] == false)))
             {
                 //jump animation true
@@ -179,22 +187,22 @@ namespace Knight
                 //move animation false while in air
                 anim.SetBool("isMoving", false);
             }
-            else 
-            {
+            else
                 //otherwise set jump animation false
                 anim.SetBool("isJumping", false);
-            }
+
             #endregion
 
         }
 
-       
+
 
         //Method: Movement in X direction with velocity
         void Move()
         {
             //Get Key input
             #region Movement
+
             //if input left
             if (Input.GetKey(left))
             {
@@ -212,12 +220,9 @@ namespace Knight
                 sprite.flipX = false;
             }
             //otherwise
-            else
-            {
-                //stop velocity movement x
+            else //stop velocity movement x
                 rb2d.velocity = new Vector2(0, rb2d.velocity.y);
-                
-            }
+
             #endregion
         }
 
@@ -238,7 +243,6 @@ namespace Knight
 
                     isDash = false;
                 }
-
             }
 
             #endregion
@@ -292,7 +296,7 @@ namespace Knight
                 {
                     if (hit.collider.CompareTag("Ground"))
                     {
-                        Debug.Log("Is Grounded");
+
                         //set groundCheck bool true 
                         groundCheck[i] = true;
 
@@ -309,6 +313,30 @@ namespace Knight
                 //increase index by 1 per loop to check both raycast
                 i++;
                 #endregion
+            }
+
+        }
+
+        void PlayerKnockBack()
+        {
+            if (knocked)
+            {
+                if (sprite.flipX)
+                    rb2d.AddForce(new Vector2(-knockback, knockback), ForceMode2D.Impulse);
+                //rb2d.velocity = new Vector2(knockback, knockback);
+
+                else if (!sprite.flipX)
+                    rb2d.AddForce(new Vector2(-knockback * 1, knockback), ForceMode2D.Impulse);
+                //rb2d.velocity = new Vector2(-knockback, knockback);
+
+                knockTime -= Time.deltaTime;
+            }
+           
+            if (knockTime <= 0)
+            {
+                knocked = false;
+                knockTime = knockMaxTime;
+               
             }
 
         }
@@ -374,12 +402,13 @@ namespace Knight
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
+            //if tag is enemy then...
             if (collision.collider.CompareTag("Enemy"))
             {
-                rb2d.AddForce(new Vector2(-100, -200));
+                knocked = true;
             }
         }
-        #endregion 
+        #endregion
     }
 
 }

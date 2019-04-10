@@ -9,6 +9,7 @@ TagManager:
   - AttackZone
   - Raycast
   - Enemy
+  - RangeZone
   layers:
   - Default
   - TransparentFX

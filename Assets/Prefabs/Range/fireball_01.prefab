@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 2379280161968954925}
   - component: {fileID: 1321570175603155863}
   - component: {fileID: 1753360437}
-  - component: {fileID: 7875965401891316043}
   - component: {fileID: 3286311419879482557}
+  - component: {fileID: 7875965401891316043}
   - component: {fileID: 1400199233840560106}
   m_Layer: 0
   m_Name: fireball_01
-  m_TagString: AttackZone
+  m_TagString: RangeZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,19 +109,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8983116, y: 0.39742064}
   m_EdgeRadius: 0.13
---- !u!114 &7875965401891316043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5321579059967735823}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15e1509f8d7a8164f917599b7844d84b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rSpeed: 12
 --- !u!95 &3286311419879482557
 Animator:
   serializedVersion: 3
@@ -141,6 +128,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7875965401891316043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5321579059967735823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15e1509f8d7a8164f917599b7844d84b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rSpeed: 12
 --- !u!114 &1400199233840560106
 MonoBehaviour:
   m_ObjectHideFlags: 0
