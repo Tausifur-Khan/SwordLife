@@ -1908,7 +1908,7 @@ MonoBehaviour:
   boxSize: {x: 1, y: 0.5}
   levelSize:
     topLeft: {x: -50, y: -50}
-    bottomRight: {x: 50, y: 50}
+    bottomRight: {x: 200, y: 50}
   lerp: 1
   moveX: 1
   moveY: 1
