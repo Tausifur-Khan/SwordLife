@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
+using UnityEngine.Events;
 
 namespace Knight
 {
@@ -56,6 +57,7 @@ namespace Knight
         [Header("Keycodes")]
         public KeyCode left = KeyCode.A;
         public KeyCode right = KeyCode.D;
+        public KeyCode jump = KeyCode.W;
         #endregion
 
         #region Private/Public Variable Components
@@ -121,6 +123,8 @@ namespace Knight
             Grounded();
 
             AnimationSetup();
+
+            Debug.Log(rb2d.velocity.x);
         }
 
         void FixedUpdate()
@@ -167,7 +171,8 @@ namespace Knight
 
             #region Jump
             // if jumping and ground check is false then.....
-            if (rb2d.velocity.y > 0 || rb2d.velocity.y < 0 && ((groundCheck[0] == false && groundCheck[1] == false)))
+            if (rb2d.velocity.y > 0 || rb2d.velocity.y < 0 && 
+                ((groundCheck[0] == false && groundCheck[1] == false)))
             {
                 //jump animation true
                 anim.SetBool("isJumping", true);
@@ -182,6 +187,8 @@ namespace Knight
             #endregion
 
         }
+
+       
 
         //Method: Movement in X direction with velocity
         void Move()
@@ -242,7 +249,7 @@ namespace Knight
         void Jump()
         {
             //if this key is pressed & player is grounded then...K
-            if (Input.GetKeyDown(KeyCode.W) && (groundCheck[0] || groundCheck[1]))
+            if (Input.GetKeyDown(jump) && (groundCheck[0] || groundCheck[1]))
             {
 
                 // add a velocity force going up
@@ -255,7 +262,7 @@ namespace Knight
 
             }
             //else if not grounded and bool condition true & input pressed then...
-            else if (Input.GetKeyDown(KeyCode.W) && (groundCheck[0] == false && groundCheck[1] == false) && doubleJump)
+            else if (Input.GetKeyDown(jump) && (groundCheck[0] == false && groundCheck[1] == false) && doubleJump)
             {
                 //Apply velocity up
                 rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
@@ -263,20 +270,6 @@ namespace Knight
                 doubleJump = false;
 
             }
-
-            #region Ground Check
-
-            ////if groundCheck[0] & groundCheck[1] are false then...
-            //if ((groundCheck[0] == false && groundCheck[1] == false) && rb2d.velocity.y > 0)
-            //    //set jump anim true
-            //    anim.SetBool("isJumping", true);
-
-            ////otherwise
-            //else
-            //    //set jump anim false
-            //    anim.SetBool("isJumping", false);
-
-            #endregion
         }
 
         void Grounded()
@@ -377,18 +370,15 @@ namespace Knight
             #endregion
         }
 
-        
-
         #region Player KnockBack
 
-        //private void OnCollisionEnter2D(Collision2D collision)
-        //{
-        //    if (collision.collider.CompareTag("Enemy"))
-        //    {
-        //       float knock = -Mathf.Sign(collision.transform.position.x - transform.position.x) * knockback;
-        //        rb2d.AddForce(new Vector2(-1, knockback), ForceMode2D.Impulse);
-        //    }
-        //}
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.collider.CompareTag("Enemy"))
+            {
+                rb2d.AddForce(new Vector2(-100, -200));
+            }
+        }
         #endregion 
     }
 
