@@ -26,19 +26,15 @@ public class Health : MonoBehaviour
     private void Start()
     {
         //set current player hp to the maximum
-        curHp = maxHp;
+        curHp = Mathf.Abs(maxHp);
         liveTxt = "1";
-    }
-
-    private void Update()
-    {
-        hpSlider.value = curHp;
-        liveTxtUI.text = liveTxt;
     }
 
     private void LateUpdate()
     {
         PlayerDmg();
+        hpSlider.value = curHp;
+        liveTxtUI.text = liveTxt;
     }
 
     void PlayerDmg()
