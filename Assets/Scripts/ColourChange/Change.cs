@@ -17,6 +17,7 @@ public class Change : MonoBehaviour
     {
         mRender = GetComponent<MeshRenderer>();
         curHp = Mathf.Abs(maxHp);
+        enemySlider.SetActive(false);
     }
 
     void Update()
@@ -35,12 +36,14 @@ public class Change : MonoBehaviour
     {
         if (col.gameObject.CompareTag("AttackZone"))
         {
+            enemySlider.SetActive(true);
             ChangeColor();
             curHp -= 20f;
         }
 
         else if (col.gameObject.CompareTag("RangeZone"))
         {
+            enemySlider.SetActive(true);
             ChangeColor();
             curHp -= 100f;
         }
@@ -56,7 +59,7 @@ public class Change : MonoBehaviour
     {
         if (curHp <= 0)
         {
-            Destroy(gameObject);
+           // Destroy(gameObject);
             enemySlider.SetActive(false);
         }
     }

@@ -77,7 +77,8 @@ namespace Knight
         //player knockback
         [Header("KnockBack")]
         //knock back force
-        public float knockback;
+        public float knockbackX;
+        public float knockbackY;
         //set knockback time
         public float knockMaxTime;
         public float knockTime;
@@ -202,28 +203,30 @@ namespace Knight
         {
             //Get Key input
             #region Movement
-
-            //if input left
-            if (Input.GetKey(left))
+            if (!knocked)
             {
-                //add movement left
-                rb2d.velocity = new Vector2(-mvSpeed, rb2d.velocity.y);
-                //flip sprite
-                sprite.flipX = true;
-            }
-            //else if input right
-            else if (Input.GetKey(right))
-            {
-                //add movement right
-                rb2d.velocity = new Vector2(mvSpeed, rb2d.velocity.y);
-                //flip spirte
-                sprite.flipX = false;
-            }
-            //otherwise
-            else //stop velocity movement x
-                rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+                //if input left
+                if (Input.GetKey(left))
+                {
+                    //add movement left
+                    rb2d.velocity = new Vector2(-mvSpeed, rb2d.velocity.y);
+                    //flip sprite
+                    sprite.flipX = true;
+                }
+                //else if input right
+                else if (Input.GetKey(right))
+                {
+                    //add movement right
+                    rb2d.velocity = new Vector2(mvSpeed, rb2d.velocity.y);
+                    //flip spirte
+                    sprite.flipX = false;
+                }
+                //otherwise
+                else //stop velocity movement x
+                    rb2d.velocity = new Vector2(0, rb2d.velocity.y);
 
-            #endregion
+                #endregion
+            }
         }
 
         //Method: Dash movement in x direction
@@ -255,7 +258,6 @@ namespace Knight
             //if this key is pressed & player is grounded then...K
             if (Input.GetKeyDown(jump) && (groundCheck[0] || groundCheck[1]))
             {
-
                 // add a velocity force going up
                 /* rigidbody velocity is equal to the 
                 new set vectors in pre-set x direction, and add jumpForce Variable
@@ -265,6 +267,7 @@ namespace Knight
                 doubleJump = true;
 
             }
+
             //else if not grounded and bool condition true & input pressed then...
             else if (Input.GetKeyDown(jump) && (groundCheck[0] == false && groundCheck[1] == false) && doubleJump)
             {
@@ -316,27 +319,32 @@ namespace Knight
             }
 
         }
+        
 
         void PlayerKnockBack()
         {
+            //if player is knocked then...
             if (knocked)
             {
+                //if sprite direction is right then...
                 if (sprite.flipX)
-                    rb2d.AddForce(new Vector2(-knockback, knockback), ForceMode2D.Impulse);
-                //rb2d.velocity = new Vector2(knockback, knockback);
-
+                    //add knockback effect
+                    rb2d.velocity = new Vector2(knockbackX, knockbackY);
+                //else if opposite direction
                 else if (!sprite.flipX)
-                    rb2d.AddForce(new Vector2(-knockback * 1, knockback), ForceMode2D.Impulse);
-                //rb2d.velocity = new Vector2(-knockback, knockback);
-
+                    //add knockback effect 
+                    rb2d.velocity = new Vector2(-knockbackX, knockbackY);
+                //start knockback timer
                 knockTime -= Time.deltaTime;
             }
-           
+
+            //if knock back time has reached 0 then...
             if (knockTime <= 0)
             {
+                //player isnt in knockback faze
                 knocked = false;
+                //reset timer
                 knockTime = knockMaxTime;
-               
             }
 
         }

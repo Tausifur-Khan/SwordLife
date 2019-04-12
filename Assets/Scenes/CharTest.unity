@@ -802,7 +802,17 @@ PrefabInstance:
     - target: {fileID: 1744176065511315169, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
         type: 3}
       propertyPath: knockMaxTime
-      value: 0.2
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1744176065511315169, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
+        type: 3}
+      propertyPath: knockbackX
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1744176065511315169, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
+        type: 3}
+      propertyPath: knockbackY
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1909689602, guid: 85b6e62558fd9cc42b0dc26bf460b90f, type: 3}
       propertyPath: m_Name
@@ -1136,7 +1146,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4990,7 +5000,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1402656000
 MonoBehaviour:
   m_ObjectHideFlags: 0
