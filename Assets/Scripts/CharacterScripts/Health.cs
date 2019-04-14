@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Animations;
 
 public class Health : MonoBehaviour
 {
@@ -20,7 +21,8 @@ public class Health : MonoBehaviour
 
     public GameObject fill;
 
-
+    //take damage
+    public float dmg;
     #endregion
 
     private void Start()
@@ -39,11 +41,24 @@ public class Health : MonoBehaviour
 
     void PlayerDmg()
     {
-        if (Input.GetKeyDown(KeyCode.L))
+        if (curHp <= 0)
         {
             curHp = 0;
             fill.SetActive(false);
             liveTxt = "0";
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            curHp -= dmg;
+        }
+    }
+
+    void AnimationSetup()
+    {
+        
     }
 }
