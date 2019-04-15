@@ -5,13 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    public GameObject[] vortex = new GameObject[1];
+   
+    public int sceneNo;
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.gameObject == vortex[0])
+        if (col.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene(1);
-        }
+            SceneManager.LoadScene(sceneNo);
+        } 
+        
     }
 }

@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class Change : MonoBehaviour
 {
-    public MeshRenderer mRender;
+   
+    public SpriteRenderer sRender;
     public float curHp;
     public float maxHp;
 
@@ -15,16 +16,12 @@ public class Change : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mRender = GetComponent<MeshRenderer>();
+        sRender = GetComponent<SpriteRenderer>();
         curHp = Mathf.Abs(maxHp);
         enemySlider.SetActive(false);
     }
 
-    void Update()
-    {
-
-
-    }
+    
 
     void LateUpdate()
     {
@@ -34,8 +31,9 @@ public class Change : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("AttackZone"))
+        if (col.gameObject.name == "AttackZone")
         {
+            Debug.Log("Getting Attack: ");
             enemySlider.SetActive(true);
             ChangeColor();
             curHp -= 20f;
@@ -52,7 +50,7 @@ public class Change : MonoBehaviour
     void ChangeColor()
     {
         //change material color of gameobject
-        mRender.material.color = Random.ColorHSV();
+        sRender.material.color = Random.ColorHSV();
     }
 
     void EnemyDeath()
@@ -60,7 +58,8 @@ public class Change : MonoBehaviour
         if (curHp <= 0)
         {
            // Destroy(gameObject);
-            enemySlider.SetActive(false);
+            //enemySlider.SetActive(false);
+            curHp = maxHp;
         }
     }
 

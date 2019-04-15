@@ -308,7 +308,6 @@ namespace Knight
                 //otherwise if rays hit nothing then..
                 else
                 {
-                    Debug.Log("Is NOT Grounded");
                     //set bool condition false
                     groundCheck[i] = false;
 

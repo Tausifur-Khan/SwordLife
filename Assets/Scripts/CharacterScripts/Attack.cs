@@ -42,7 +42,8 @@ namespace Knight
             rigid = GetComponent<Rigidbody2D>();
 
             //box colliders enabled false
-            attackCol.SetActive(false);
+            attackCol.GetComponent<BoxCollider2D>().enabled = false;
+            //attackCol.SetActive(false);
 
             canRange = true;
 
@@ -111,7 +112,9 @@ namespace Knight
                 //Mathf.Sign to ensure value is set to 1 in x
                 attackCol.transform.localScale = new Vector2(Mathf.Sign(transform.localScale.x * 1), transform.localScale.y);
                 //set col true
-                attackCol.SetActive(true);
+
+                attackCol.GetComponent<BoxCollider2D>().enabled = true;
+                //attackCol.SetActive(true);
 
 
             }
@@ -121,7 +124,10 @@ namespace Knight
                 //Mathf.Sign to ensure value is -1 in x
                 attackCol.transform.localScale = new Vector2(Mathf.Sign(transform.localScale.x * -1), transform.localScale.y);
                 //set col true
-                attackCol.SetActive(true);
+
+
+                attackCol.GetComponent<BoxCollider2D>().enabled = true;
+                //attackCol.SetActive(true);
             }
 
         }
@@ -152,15 +158,15 @@ namespace Knight
 
         void RangedEvent()
         {
-            SpriteRenderer clone =  Instantiate(rangeSprite, rangeWaypoint.transform.position, Quaternion.identity);
+            SpriteRenderer clone = Instantiate(rangeSprite, rangeWaypoint.transform.position, Quaternion.identity);
             clone.flipX = GetComponent<SpriteRenderer>().flipX;
 
             if (clone.flipX)
             {
                 clone.GetComponent<RanAttackMove>().rSpeed *= -1f;
             }
-       
-            
+
+
         }
 
         void RangedPosition()
@@ -174,13 +180,14 @@ namespace Knight
                 rangeWaypoint.transform.localPosition = new Vector2(-1.2f, 0);
             }
         }
-        
+
 
         //Disable attack collider in animation event
         void DisableCollder()
         {
             //set collider false
-            attackCol.SetActive(false);
+            attackCol.GetComponent<BoxCollider2D>().enabled = false;
+            //attackCol.SetActive(false);
         }
 
 
