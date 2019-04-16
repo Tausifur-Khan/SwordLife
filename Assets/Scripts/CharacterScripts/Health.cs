@@ -4,61 +4,67 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Animations;
 
-public class Health : MonoBehaviour
+namespace Knight
 {
-    #region Hp Variables
-    [Header("Hp Stuff")]
-    //current player hp
-    public float curHp;
-    //maximum player hp
-    public float maxHp;
 
-    //slider array for hp
-    public Slider hpSlider;
 
-    public Text liveTxtUI;
-    private string liveTxt;
 
-    public GameObject fill;
-
-    //take damage
-    public float dmg;
-    #endregion
-
-    private void Start()
+    public class Health : MonoBehaviour
     {
-        //set current player hp to the maximum
-        curHp = Mathf.Abs(maxHp);
-        liveTxt = "1";
-    }
+        #region Hp Variables
+        [Header("Hp Stuff")]
+        //current player hp
+        public float curHp;
+        //maximum player hp
+        public float maxHp;
 
-    private void LateUpdate()
-    {
-        PlayerDmg();
-        hpSlider.value = curHp;
-        liveTxtUI.text = liveTxt;
-    }
+        //slider array for hp
+        public Slider hpSlider;
 
-    void PlayerDmg()
-    {
-        if (curHp <= 0)
+        public Text liveTxtUI;
+        private string liveTxt;
+
+        public GameObject fill;
+
+        //take damage
+        public float dmg;
+        #endregion
+
+        private void Start()
         {
-            curHp = 0;
-            fill.SetActive(false);
-            liveTxt = "0";
+            //set current player hp to the maximum
+            curHp = Mathf.Abs(maxHp);
+            liveTxt = "1";
         }
-    }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
+        private void LateUpdate()
         {
-            curHp -= dmg;
+            PlayerDmg();
+            hpSlider.value = curHp;
+            liveTxtUI.text = liveTxt;
         }
-    }
 
-    void AnimationSetup()
-    {
-        
+        void PlayerDmg()
+        {
+            if (curHp <= 0)
+            {
+                curHp = 0;
+                fill.SetActive(false);
+                liveTxt = "0";
+            }
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.CompareTag("Enemy"))
+            {
+                curHp -= dmg;
+            }
+        }
+
+        void AnimationSetup()
+        {
+
+        }
     }
 }

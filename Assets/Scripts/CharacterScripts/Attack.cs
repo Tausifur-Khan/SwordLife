@@ -21,6 +21,8 @@ namespace Knight
 
         [Header("Box Collider Array")]
         public GameObject attackCol;
+        public float playerGroundDmg;
+        public float playerRangeDmg;
 
         //public Keycode
         public KeyCode attack = KeyCode.I;
@@ -33,17 +35,16 @@ namespace Knight
         private CharacterController charC;
         //private variable for sprite
         public SpriteRenderer rangeSprite;
-        //private variable rigidbody
-        private Rigidbody2D rigid;
+        
 
         // Start is called before the first frame update
         void Start()
         {
-            rigid = GetComponent<Rigidbody2D>();
+      
 
             //box colliders enabled false
-            attackCol.GetComponent<BoxCollider2D>().enabled = false;
-            //attackCol.SetActive(false);
+            //attackCol.GetComponent<BoxCollider2D>().enabled = false;
+            attackCol.SetActive(false);
 
             canRange = true;
 
@@ -113,8 +114,8 @@ namespace Knight
                 attackCol.transform.localScale = new Vector2(Mathf.Sign(transform.localScale.x * 1), transform.localScale.y);
                 //set col true
 
-                attackCol.GetComponent<BoxCollider2D>().enabled = true;
-                //attackCol.SetActive(true);
+                //attackCol.GetComponent<BoxCollider2D>().enabled = true;
+                attackCol.SetActive(true);
 
 
             }
@@ -126,8 +127,8 @@ namespace Knight
                 //set col true
 
 
-                attackCol.GetComponent<BoxCollider2D>().enabled = true;
-                //attackCol.SetActive(true);
+                //attackCol.GetComponent<BoxCollider2D>().enabled = true;
+                attackCol.SetActive(true);
             }
 
         }
@@ -186,8 +187,8 @@ namespace Knight
         void DisableCollder()
         {
             //set collider false
-            attackCol.GetComponent<BoxCollider2D>().enabled = false;
-            //attackCol.SetActive(false);
+            //attackCol.GetComponent<BoxCollider2D>().enabled = false;
+            attackCol.SetActive(false);
         }
 
 

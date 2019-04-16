@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Knight
 {
 
-    public class AttackTimer : MonoBehaviour
+    public class RangeTimer : MonoBehaviour
     {
 
         #region Time
