@@ -6,9 +6,6 @@ using UnityEngine.Animations;
 
 namespace Knight
 {
-
-
-
     public class Health : MonoBehaviour
     {
         #region Hp Variables
@@ -18,39 +15,57 @@ namespace Knight
         //maximum player hp
         public float maxHp;
 
+       
+
         //slider array for hp
         public Slider hpSlider;
 
         public Text liveTxtUI;
-        private string liveTxt;
+        public int lives;
 
-        public GameObject fill;
+       
 
+        private Death playerDeath;
         //take damage
         public float dmg;
         #endregion
 
         private void Start()
         {
+            playerDeath = GetComponent<Death>();
+
             //set current player hp to the maximum
             curHp = Mathf.Abs(maxHp);
-            liveTxt = "1";
+            
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                curHp = 0;
+            }
         }
 
         private void LateUpdate()
         {
             PlayerDmg();
             hpSlider.value = curHp;
-            liveTxtUI.text = liveTxt;
+            liveTxtUI.text = lives.ToString();
         }
+
+
+        
 
         void PlayerDmg()
         {
             if (curHp <= 0)
             {
                 curHp = 0;
-                fill.SetActive(false);
-                liveTxt = "0";
+                //fill.SetActive(false);
+                lives--;
+                curHp = maxHp;
+               // playerDeath.death = true;
             }
         }
 
@@ -61,10 +76,6 @@ namespace Knight
                 curHp -= dmg;
             }
         }
-
-        void AnimationSetup()
-        {
-
-        }
+        
     }
 }

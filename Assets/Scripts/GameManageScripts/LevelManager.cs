@@ -7,12 +7,14 @@ public class LevelManager : MonoBehaviour
 {
    
     public int sceneNo;
+    public GameObject player;
 
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Player"))
         {
             SceneManager.LoadScene(sceneNo);
+            DontDestroyOnLoad(player);
         } 
         
     }

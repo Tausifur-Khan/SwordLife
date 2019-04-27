@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
-using UnityEngine.Events;
+
 
 namespace Knight
 {
@@ -42,12 +42,13 @@ namespace Knight
         public bool canDash = true;
 
         //Dash timers min & max
+ 
         [SerializeField]
         private float dashtimer;
         public float dashMaxTime;
 
         [SerializeField]
-        private float dashDelay;
+        public float dashDelay;
         public float dashMaxDelay;
 
         [Space(2)]
@@ -68,9 +69,10 @@ namespace Knight
         //sprite renderer
         public SpriteRenderer sprite;
         //Access Death Script
-        private Death_1 playerDeath;
+        private Death playerDeath;
         //Access to Attack Script
         private Attack attack;
+       
 
         #endregion
 
@@ -113,7 +115,7 @@ namespace Knight
             //refer to sprite renderer component
             sprite = GetComponent<SpriteRenderer>();
             //refer to Death() script componenet
-            playerDeath = GetComponent<Death_1>();
+            playerDeath = GetComponent<Death>();
             //refer to Attack() script component
             attack = GetComponent<Attack>();
             #endregion
@@ -191,6 +193,15 @@ namespace Knight
             else
                 //otherwise set jump animation false
                 anim.SetBool("isJumping", false);
+
+            #endregion
+
+            #region PlayerDeath
+
+            if(playerDeath.death)
+                anim.SetBool("isDead", true);
+
+            
 
             #endregion
 
@@ -322,13 +333,18 @@ namespace Knight
 
         void PlayerKnockBack()
         {
+            SpriteRenderer knockBackSprite;
             //if player is knocked then...
             if (knocked)
             {
                 //if sprite direction is right then...
                 if (sprite.flipX)
+                {
                     //add knockback effect
                     rb2d.velocity = new Vector2(knockbackX, knockbackY);
+
+                }
+
                 //else if opposite direction
                 else if (!sprite.flipX)
                     //add knockback effect 

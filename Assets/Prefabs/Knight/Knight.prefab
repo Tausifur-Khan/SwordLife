@@ -319,7 +319,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!61 &903550203
 BoxCollider2D:
@@ -433,7 +433,7 @@ MonoBehaviour:
   rangeWaypoint: {fileID: 1186415033}
   rangeSpeed: 2
   attackCol: {fileID: 1941364730}
-  playerGroundDmg: 0
+  playerGroundDmg: 20
   playerRangeDmg: 0
   attack: 105
   jumpAttack: 105
@@ -460,7 +460,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1744176065511315195}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2a8ffa6a02466e46933a4449e0e2a19, type: 3}
   m_Name: 
@@ -469,5 +469,6 @@ MonoBehaviour:
   maxHp: 100
   hpSlider: {fileID: 0}
   liveTxtUI: {fileID: 0}
+  lives: 3
   fill: {fileID: 0}
-  dmg: 0
+  dmg: 20

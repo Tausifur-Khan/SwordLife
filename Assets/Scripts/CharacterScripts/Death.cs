@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Animations;
 
 namespace Knight
 {
-    public class Death_1 : MonoBehaviour
+    public class Death : MonoBehaviour
     {
         public bool death;
         private Vector2 origin;
+
+        private Animation anim;
 
         // Start is called before the first frame update
         void Start()
@@ -20,7 +23,7 @@ namespace Knight
         {
             if (col.gameObject.CompareTag("Killzone"))
             {
-                death = true;
+               
                 gameObject.transform.position = origin;
             }
         }
