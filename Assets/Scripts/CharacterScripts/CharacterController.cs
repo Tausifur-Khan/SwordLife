@@ -42,7 +42,7 @@ namespace Knight
         public bool canDash = true;
 
         //Dash timers min & max
- 
+
         [SerializeField]
         private float dashtimer;
         public float dashMaxTime;
@@ -59,6 +59,7 @@ namespace Knight
         public KeyCode left = KeyCode.A;
         public KeyCode right = KeyCode.D;
         public KeyCode jump = KeyCode.W;
+        public bool keyActive;
         #endregion
 
         #region Private/Public Variable Components
@@ -68,14 +69,17 @@ namespace Knight
         private Animator anim;
         //sprite renderer
         public SpriteRenderer sprite;
-        //Access Death Script
-        private Death playerDeath;
+
+        //Access Health Script
+        private Health stopMove;
+
         //Access to Attack Script
         private Attack attack;
-       
+
 
         #endregion
 
+        #region KnockBack Variables
         //player knockback
         [Header("KnockBack")]
         //knock back force
@@ -86,7 +90,7 @@ namespace Knight
         public float knockTime;
         //has the player been knocked
         public bool knocked;
-
+        #endregion
 
         #endregion
 
@@ -115,7 +119,7 @@ namespace Knight
             //refer to sprite renderer component
             sprite = GetComponent<SpriteRenderer>();
             //refer to Death() script componenet
-            playerDeath = GetComponent<Death>();
+            stopMove = GetComponent<Health>();
             //refer to Attack() script component
             attack = GetComponent<Attack>();
             #endregion
@@ -126,47 +130,46 @@ namespace Knight
             dashDelay = dashMaxDelay;
 
             knockTime = knockMaxTime;
+
+            //movement condition true
+            keyActive = true;
         }
 
+        #region Update Functions
+        //Update every frame
         void Update()
         {
             //Jump Method
             Jump();
             //Ground Method
             Grounded();
-
-            AnimationSetup();
         }
 
+        //Update Physics based movement
         void FixedUpdate()
         {
             //Movement Method
             Move();
+           
             //Dash Move Method
             Dash();
-
+            //physical movement of knock
             PlayerKnockBack();
         }
 
+        //Update anything end of frame
         void LateUpdate()
         {
-            //if bool condition true of death then...
-            if (playerDeath.death)
-            {
-                //set velocity y to 0
-                rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
-
-                //set death bool conditon to false
-                playerDeath.death = false;
-
-                //Reset Sprite change
-                sprite.flipX = false;
-            }
+            AnimationSetup();
+            //Movement in death
+            RestrictMove();
             //Dash time Method
             DashTimer();
 
         }
+        #endregion
 
+        //Player Animation Method
         void AnimationSetup()
         {
             #region Ground Movement
@@ -193,28 +196,24 @@ namespace Knight
             else
                 //otherwise set jump animation false
                 anim.SetBool("isJumping", false);
-
             #endregion
 
-            #region PlayerDeath
-
-            if(playerDeath.death)
-                anim.SetBool("isDead", true);
-
-            
-
+            #region Death
+            if (stopMove.playerDeath == true)
+            {
+               anim.SetBool("isDead", true);
+            }
             #endregion
 
         }
 
-
-
+        #region Character Movements
         //Method: Movement in X direction with velocity
         void Move()
         {
             //Get Key input
             #region Movement
-            if (!knocked)
+            if (!knocked && keyActive)
             {
                 //if input left
                 if (Input.GetKey(left))
@@ -245,7 +244,7 @@ namespace Knight
         {
             #region Dash Movement
             //if dash bool condition true & timer is not 0 then...
-            if (isDash && canDash && (groundCheck[0] && groundCheck[1]))
+            if (isDash && canDash && (groundCheck[0] && groundCheck[1]) && keyActive)
             {
                 //if input key 'space' then...
                 if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(left) ||
@@ -266,29 +265,33 @@ namespace Knight
         //Jump Movement
         void Jump()
         {
-            //if this key is pressed & player is grounded then...K
-            if (Input.GetKeyDown(jump) && (groundCheck[0] || groundCheck[1]))
+            if (keyActive)
             {
-                // add a velocity force going up
-                /* rigidbody velocity is equal to the 
-                new set vectors in pre-set x direction, and add jumpForce Variable
-                */
-                rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
+                //if this key is pressed & player is grounded then...K
+                if (Input.GetKeyDown(jump) && (groundCheck[0] || groundCheck[1]))
+                {
+                    // add a velocity force going up
+                    /* rigidbody velocity is equal to the 
+                    new set vectors in pre-set x direction, and add jumpForce Variable
+                    */
+                    rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
 
-                doubleJump = true;
+                    doubleJump = true;
 
-            }
+                }
 
-            //else if not grounded and bool condition true & input pressed then...
-            else if (Input.GetKeyDown(jump) && (groundCheck[0] == false && groundCheck[1] == false) && doubleJump)
-            {
-                //Apply velocity up
-                rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
-                //set double jump bool condition false
-                doubleJump = false;
+                //else if not grounded and bool condition true & input pressed then...
+                else if (Input.GetKeyDown(jump) && (groundCheck[0] == false && groundCheck[1] == false) && doubleJump)
+                {
+                    //Apply velocity up
+                    rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
+                    //set double jump bool condition false
+                    doubleJump = false;
 
+                }
             }
         }
+        #endregion
 
         void Grounded()
         {
@@ -333,7 +336,7 @@ namespace Knight
 
         void PlayerKnockBack()
         {
-            SpriteRenderer knockBackSprite;
+            // SpriteRenderer knockBackSprite;
             //if player is knocked then...
             if (knocked)
             {
@@ -432,6 +435,18 @@ namespace Knight
             }
         }
         #endregion
+
+        void RestrictMove()
+        {
+            //if bool condition true of death then...
+            if (stopMove.playerDeath)
+            {
+                //Restrict any movement x & y without effecting y
+                rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+               
+            }
+        }
+
     }
 
 }

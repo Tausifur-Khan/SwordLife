@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Animations;
 
+
 namespace Knight
 {
     public class Health : MonoBehaviour
@@ -15,28 +16,30 @@ namespace Knight
         //maximum player hp
         public float maxHp;
 
-       
+
 
         //slider array for hp
         public Slider hpSlider;
 
         public Text liveTxtUI;
-        public int lives;
-
        
+        public int lives = 3;
+        
 
-        private Death playerDeath;
+        public bool playerDeath;
         //take damage
         public float dmg;
         #endregion
 
+       // private Animator deathAnim;
+
         private void Start()
         {
-            playerDeath = GetComponent<Death>();
+           // deathAnim = GetComponent<Animator>();
 
             //set current player hp to the maximum
             curHp = Mathf.Abs(maxHp);
-            
+
         }
 
         private void Update()
@@ -49,26 +52,30 @@ namespace Knight
 
         private void LateUpdate()
         {
+          
             PlayerDmg();
+
+            //GUI stuff
             hpSlider.value = curHp;
             liveTxtUI.text = lives.ToString();
         }
 
-
-        
-
         void PlayerDmg()
         {
-            if (curHp <= 0)
+            if (curHp <= 0 && !playerDeath)
             {
-                curHp = 0;
+               
                 //fill.SetActive(false);
                 lives--;
-                curHp = maxHp;
-               // playerDeath.death = true;
+                //curHp = maxHp;
+                playerDeath = true;
+
+                CharacterController player = GetComponent<CharacterController>();
+                player.keyActive = false;
             }
         }
 
+        
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.CompareTag("Enemy"))
@@ -76,6 +83,14 @@ namespace Knight
                 curHp -= dmg;
             }
         }
-        
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.name == "KillZone")
+            {
+                curHp = 0;
+            }
+        }
+
     }
 }

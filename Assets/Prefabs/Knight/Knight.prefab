@@ -319,7 +319,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &903550203
 BoxCollider2D:
@@ -398,6 +398,7 @@ MonoBehaviour:
   left: 97
   right: 100
   jump: 119
+  keyActive: 0
   sprite: {fileID: 0}
   knockbackX: 6
   knockbackY: 3
@@ -470,5 +471,5 @@ MonoBehaviour:
   hpSlider: {fileID: 0}
   liveTxtUI: {fileID: 0}
   lives: 3
-  fill: {fileID: 0}
+  playerDeath: 0
   dmg: 20
