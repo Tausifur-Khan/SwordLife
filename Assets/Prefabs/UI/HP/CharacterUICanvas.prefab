@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -314.20004, y: 187.73999}
-  m_SizeDelta: {x: 35.4, y: 30}
+  m_AnchoredPosition: {x: -312, y: 187.74002}
+  m_SizeDelta: {x: 91.91, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &563582273
 CanvasRenderer:
@@ -67,10 +67,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 0
+    m_FontSize: 12
+    m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 6
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -91,12 +91,12 @@ GameObject:
   - component: {fileID: 1853335086}
   - component: {fileID: 1853335085}
   m_Layer: 5
-  m_Name: DashTimeTxt
+  m_Name: ScoreTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1853335084
 RectTransform:
   m_ObjectHideFlags: 0
@@ -113,7 +113,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -349.60004, y: 183.54001}
+  m_AnchoredPosition: {x: -340.26, y: 157.74}
   m_SizeDelta: {x: 35.4, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1853335086
