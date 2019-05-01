@@ -10,6 +10,7 @@ TagManager:
   - Raycast
   - Enemy
   - RangeZone
+  - Platform
   layers:
   - Default
   - TransparentFX

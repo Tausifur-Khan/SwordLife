@@ -143,6 +143,9 @@ namespace Knight
             Jump();
             //Ground Method
             Grounded();
+
+
+            Debug.Log(rb2d.velocity.y);
         }
 
         //Update Physics based movement
@@ -150,7 +153,7 @@ namespace Knight
         {
             //Movement Method
             Move();
-           
+
             //Dash Move Method
             Dash();
             //physical movement of knock
@@ -201,7 +204,7 @@ namespace Knight
             #region Death
             if (stopMove.playerDeath == true)
             {
-               anim.SetBool("isDead", true);
+                anim.SetBool("isDead", true);
             }
             #endregion
 
@@ -311,7 +314,7 @@ namespace Knight
                 //check if it hits something
                 if (hit.collider != null)
                 {
-                    if (hit.collider.CompareTag("Ground"))
+                    if (hit.collider.CompareTag("Ground") || hit.collider.CompareTag("Platform"))
                     {
 
                         //set groundCheck bool true 
@@ -443,7 +446,7 @@ namespace Knight
             {
                 //Restrict any movement x & y without effecting y
                 rb2d.velocity = new Vector2(0, rb2d.velocity.y);
-               
+
             }
         }
 
