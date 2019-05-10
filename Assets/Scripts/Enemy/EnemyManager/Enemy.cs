@@ -21,12 +21,8 @@ public class Enemy : MonoBehaviour
     }
     public void Death()
     {
-        if (GetComponent<CircleCollider2D>())
-            Destroy(GetComponent<CircleCollider2D>());
-
-        if (GetComponent<BoxCollider2D>())
-            Destroy(GetComponent<BoxCollider2D>());
-
+        if (GetComponent<CircleCollider2D>()) Destroy(GetComponent<CircleCollider2D>());
+        if (GetComponent<BoxCollider2D>()) Destroy(GetComponent<BoxCollider2D>());
         GetComponent<Animator>().SetTrigger("Death");
         Destroy(gameObject, 1);
     }

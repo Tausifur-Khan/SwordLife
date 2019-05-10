@@ -39,6 +39,7 @@ namespace Knight
 
             //set current player hp to the maximum
             curHp = Mathf.Abs(maxHp);
+            
 
         }
 
@@ -76,21 +77,34 @@ namespace Knight
         }
 
         
-        private void OnCollisionEnter2D(Collision2D collision)
+        //private void OnCollisionEnter2D(Collision2D collision)
+        //{
+        //    if (collision.gameObject.CompareTag("Enemy"))
+        //    {
+        //        curHp -= dmg;
+        //    }
+        //}
+
+        private void OnTriggerEnter2D(Collider2D col)
         {
-            if (collision.gameObject.CompareTag("Enemy"))
+            if(col.name == "melee")
+            {
+                curHp -= dmg;
+            }
+
+            if (col.name == "Diamond")
             {
                 curHp -= dmg;
             }
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            if (collision.gameObject.name == "KillZone")
-            {
-                curHp = 0;
-            }
-        }
+        //private void OnTriggerEnter2D(Collider2D collision)
+        //{
+        //    if (collision.gameObject.name == "KillZone")
+        //    {
+        //        curHp = 0;
+        //    }
+        //}
 
     }
 }

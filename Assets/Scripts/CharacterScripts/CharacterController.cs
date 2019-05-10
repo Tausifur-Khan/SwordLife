@@ -143,9 +143,7 @@ namespace Knight
             Jump();
             //Ground Method
             Grounded();
-
-
-            Debug.Log(rb2d.velocity.y);
+            
         }
 
         //Update Physics based movement
@@ -429,13 +427,26 @@ namespace Knight
 
         #region Player KnockBack
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        //private void OnCollisionEnter2D(Collision2D collision)
+        //{
+        //    //if tag is enemy then...
+        //    if (collision.collider.CompareTag("Enemy"))
+        //    {
+        //        knocked = true;
+        //    }
+
+            
+        //}
+
+        private void OnTriggerEnter2D(Collider2D col)
         {
             //if tag is enemy then...
-            if (collision.collider.CompareTag("Enemy"))
+            if (col.name == "melee")
             {
                 knocked = true;
             }
+
+            
         }
         #endregion
 
