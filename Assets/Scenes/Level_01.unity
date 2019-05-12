@@ -8192,6 +8192,56 @@ PrefabInstance:
       propertyPath: shootDelay
       value: 1.2
       objectReference: {fileID: 0}
+    - target: {fileID: 114429788351532972, guid: deda86133cdde304da76050cc80c20c4,
+        type: 3}
+      propertyPath: shotDelay
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114429788351532972, guid: deda86133cdde304da76050cc80c20c4,
+        type: 3}
+      propertyPath: difficulty
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114429788351532972, guid: deda86133cdde304da76050cc80c20c4,
+        type: 3}
+      propertyPath: dontLook
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114429788351532972, guid: deda86133cdde304da76050cc80c20c4,
+        type: 3}
+      propertyPath: patrol
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114429788351532972, guid: deda86133cdde304da76050cc80c20c4,
+        type: 3}
+      propertyPath: tempDifficulty
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 61524645435267654, guid: deda86133cdde304da76050cc80c20c4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 61524645435267654, guid: deda86133cdde304da76050cc80c20c4,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 61524645435267654, guid: deda86133cdde304da76050cc80c20c4,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61524645435267654, guid: deda86133cdde304da76050cc80c20c4,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61524645435267654, guid: deda86133cdde304da76050cc80c20c4,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.24
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: deda86133cdde304da76050cc80c20c4, type: 3}
 --- !u!1 &1376203479

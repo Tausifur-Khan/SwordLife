@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
 {
     public float HP;
     public float maxHP;
-    //public float Att;
+    public float Att;
     public float Acceleration;
     public float Speed;
     public float jumpSpeed;
@@ -18,12 +18,5 @@ public class Enemy : MonoBehaviour
     public void Damage()
     {
         transform.GetComponentInChildren<Slider>().value = (maxHP / HP);
-    }
-    public void Death()
-    {
-        if (GetComponent<CircleCollider2D>()) Destroy(GetComponent<CircleCollider2D>());
-        if (GetComponent<BoxCollider2D>()) Destroy(GetComponent<BoxCollider2D>());
-        GetComponent<Animator>().SetTrigger("Death");
-        Destroy(gameObject, 1);
     }
 }

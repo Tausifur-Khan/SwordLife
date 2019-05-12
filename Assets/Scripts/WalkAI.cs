@@ -6,29 +6,34 @@ public class WalkAI : Enemy
 {
     #region variables
     #region difficulty
+    [Header("AI Movement Modes")]
     public Difficulty difficulty; //Which AI to use
     private Difficulty tempDifficulty; //Which AI to go back to after pausing to attack
     #endregion
     #region turning
+    [Header("Turning")]
     public int dir = 1; //Mostly unused
     public bool dontLook = false; //look & looksign are always 1
     public float look = 1; //x distance from player (can be negative)
     public int looksign = 1; //x direction to look at the player
     public LayerMask notme;
-
+    [Space]
     public float wanderDelay; //Ranged enemy idle delay
     private float wanderCounter; //Increment above
     public bool wander; //Ranged enemy idle or idly wandering
     public bool angery; //Stopping to attack
     #endregion
     #region attack and jump
-    public bool shoot;           //can you switch from moving to idle attack 
-    public bool shootMelee;     //Activate attack when player is nearby
+    [Header("AI Attack Modes")]
+    public bool shoot;            //can you switch from moving to idle attack 
+    public bool shootMelee;      //Activate attack when player is nearby
+    public bool patrol = false;
+    public bool rush, rush2;           //Alternate melee
     public float shootDelay;   //switch to idle attack delay & counter
     private float counterv2;  //Increment above
     public float shotDelay;  // Idle attack delay & counter
     private float counter;  //Increment above
-
+    [Header("Jump Options")]
     public bool autoJump; //Jump whenever near a ledge
     public float foreSight; //Distance to ledge
     public float jumpPoint; //something to do with autojump
@@ -36,10 +41,12 @@ public class WalkAI : Enemy
     public bool alwaysJump; //self explanatory
     #endregion
     #region Local Components
+    [Header("Local Components")]
     private Rigidbody2D rigid2D;
     public Animator anim;
     #endregion
     #region World Components
+    [Header("World Components")]
     private Transform player; //using the default "Player" tag
     public GameObject bulletPrefab; //Optional ranged attack
     //public GameObject corpsePrefab; //No longer used; ignore this
@@ -106,21 +113,6 @@ public class WalkAI : Enemy
             isGrounded = false;
             anim.SetBool("isJumping", true);
         }
-        if (shootMelee)
-        {
-            if (counterv2 > 1) counterv2 -= Time.deltaTime;
-            else
-            {
-                if (Vector2.Distance(player.transform.position, transform.position) < 2) //If player is 2 units nearby
-                {
-                    counterv2 = -1; //attack
-                }
-            }
-        }
-        else
-        {
-            counterv2 -= Time.deltaTime; //wait until attack
-        }
         if (difficulty != Difficulty.None) //If you are not stationary
         {
             GetComponent<SpriteRenderer>().flipX = (looksign == 1);
@@ -133,6 +125,36 @@ public class WalkAI : Enemy
                 difficulty = Difficulty.None;
                 counter = shotDelay;
             }
+        }
+        if (Mathf.Abs(transform.position.x - player.transform.position.x) < 6)
+        {
+            if (shootMelee)
+            {
+                if (counterv2 > 1) counterv2 -= Time.deltaTime;
+                else
+                {
+                    dontLook = false;
+                    if (Vector2.Distance(player.transform.position, transform.position) < 2) //If player is 2 units nearby
+                    {
+                        counterv2 = -1; //attack
+                    }
+                }
+            }
+            else
+            {
+                dontLook = false;
+                counterv2 -= Time.deltaTime; //wait until attack
+            }
+            patrol = false;
+        }
+        else
+        {
+            patrol = true;
+        }
+        if(HP <= 0)
+        {
+            anim.Play("Death");
+            Destroy(gameObject, 1);
         }
         switch (difficulty)
         {
@@ -154,29 +176,42 @@ public class WalkAI : Enemy
                         }
                     }
                     //bullet.transform.localScale = new Vector3(bullet.transform.localScale.x * looksign, 1, 1);
-                    if (shoot)
+                    if (rush)
+                    {
+                        counter = shotDelay;
+                        rush2 = true;
+                    }
+                    else if (shoot)
                     {
                         counterv2 = shootDelay;
                         difficulty = tempDifficulty;
-                        dontLook = false;
                     }
                     else //if the animation hasnt already played and you want to stay in this form
                     {
                         anim.Play("Attack");
                     }
                 }
+                if (rush2)
+                {
+                    if (Mathf.Abs(transform.position.x - player.transform.position.x) > 6)
+                        rigid2D.velocity += (new Vector2(looksign * Acceleration, 0));
+                    anim.SetBool("isMoving", true);
+                }
                 break;
             case Difficulty.Easy: //Patrol
+                dontLook = true;
                 if (isGrounded) rigid2D.velocity += (new Vector2(looksign * Acceleration, 0));
-                if (Physics2D.Raycast((Vector2)transform.position + (transform.localScale.x / 2 * Vector2.left), Vector2.left, .1f, notme))
+                //Debug.DrawRay((Vector2)transform.position + (transform.localScale.x / 2 * Vector2.left + (Vector2.down * 0.3f)), Vector2.left);
+                if (Physics2D.Raycast((Vector2)transform.position + (transform.localScale.x / 2 * Vector2.left) + (Vector2.down * 0.3f), Vector2.left, .1f, notme))
                 {
                     //Debug.Log(Physics2D.Raycast((Vector2)transform.position + (transform.localScale.x / 2 * Vector2.left), Vector2.left, .1f, notme).collider);
                     looksign = 1;
                 }
-                if (Physics2D.Raycast((Vector2)transform.position + (transform.localScale.x / 2 * Vector2.right), Vector2.right, .1f, notme))
+                if (Physics2D.Raycast((Vector2)transform.position + (transform.localScale.x / 2 * Vector2.right + (Vector2.down * 0.3f)), Vector2.right, .1f, notme))
                 {
                     looksign = -1;
                 }
+                if (!patrol) difficulty = Difficulty.Medium;
                 break;
             case Difficulty.Medium: //Follow
                 if (isGrounded && Mathf.Abs(look) > .3f)
@@ -185,6 +220,7 @@ public class WalkAI : Enemy
                     anim.SetBool("isMoving", true);
                 }
                 else anim.SetBool("isMoving", false);
+                if (patrol) difficulty = Difficulty.Easy;
                 break;
             case Difficulty.Hard: //Follow and jump
                 if (isGrounded)
@@ -210,13 +246,13 @@ public class WalkAI : Enemy
                         }
                     }
                     wanderCounter -= Time.deltaTime;
-                    if(wanderCounter <= 0)
+                    if (wanderCounter <= 0)
                     {
                         wanderCounter = wanderDelay + Random.Range(-wanderDelay * 0.2f, wanderDelay * 0.2f);
                         wander = !wander;
-                        if(wander)looksign = -looksign;
+                        if (wander) looksign = -looksign;
                     }
-                    if(wander) rigid2D.velocity += (new Vector2(looksign * Acceleration, 0));
+                    if (wander) rigid2D.velocity += (new Vector2(looksign * Acceleration, 0));
                 }
                 break;
             default:
