@@ -70,6 +70,7 @@ namespace Knight
         //sprite renderer
         public SpriteRenderer sprite;
 
+
         //Access Health Script
         private Health stopMove;
 
@@ -143,7 +144,7 @@ namespace Knight
             Jump();
             //Ground Method
             Grounded();
-            
+
         }
 
         //Update Physics based movement
@@ -339,20 +340,21 @@ namespace Knight
         {
             // SpriteRenderer knockBackSprite;
             //if player is knocked then...
+
             if (knocked)
             {
-                //if sprite direction is right then...
-                if (sprite.flipX)
-                {
-                    //add knockback effect
-                    rb2d.velocity = new Vector2(knockbackX, knockbackY);
 
-                }
+                ////if sprite direction is right then...
+                //if (sprite.flipX)
+                //    //add knockback effect
+                //    rb2d.velocity = new Vector2(knockbackX, knockbackY);
 
-                //else if opposite direction
-                else if (!sprite.flipX)
-                    //add knockback effect 
-                    rb2d.velocity = new Vector2(-knockbackX, knockbackY);
+
+
+                ////else if opposite direction
+                //else if (!sprite.flipX)
+                //    //add knockback effect 
+                //    rb2d.velocity = new Vector2(-knockbackX, knockbackY);
                 //start knockback timer
                 knockTime -= Time.deltaTime;
             }
@@ -367,6 +369,29 @@ namespace Knight
             }
 
         }
+
+        #region Player KnockBack
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            //if tag is enemy then...
+            if (col.name == "melee")
+            {
+                knocked = true;
+
+                if (col.transform.position.x < transform.position.x)
+                    //add knockback effect
+                    rb2d.velocity = new Vector2(-knockbackX, knockbackY);
+
+                else
+                    //add knockback effect
+                    rb2d.velocity = new Vector2(knockbackX, knockbackY);
+
+            }
+
+
+        }
+        #endregion
+
 
         private void OnDrawGizmos()
         {
@@ -425,30 +450,6 @@ namespace Knight
             #endregion
         }
 
-        #region Player KnockBack
-
-        //private void OnCollisionEnter2D(Collision2D collision)
-        //{
-        //    //if tag is enemy then...
-        //    if (collision.collider.CompareTag("Enemy"))
-        //    {
-        //        knocked = true;
-        //    }
-
-            
-        //}
-
-        private void OnTriggerEnter2D(Collider2D col)
-        {
-            //if tag is enemy then...
-            if (col.name == "melee")
-            {
-                knocked = true;
-            }
-
-            
-        }
-        #endregion
 
         void RestrictMove()
         {
