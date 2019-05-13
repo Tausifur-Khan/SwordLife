@@ -134,7 +134,7 @@ public class WalkAI : Enemy
                 else
                 {
                     dontLook = false;
-                    if (Vector2.Distance(player.transform.position, transform.position) < 2) //If player is 2 units nearby
+                    if (Vector2.Distance(player.transform.position, transform.position) < 1.4f) //If player is 2 units nearby
                     {
                         counterv2 = -1; //attack
                     }

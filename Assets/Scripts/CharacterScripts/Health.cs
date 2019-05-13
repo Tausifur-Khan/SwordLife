@@ -92,14 +92,6 @@ namespace Knight
                 curHp -= dmg;
             }
         }
-
-        //private void OnTriggerEnter2D(Collider2D collision)
-        //{
-        //    if (collision.gameObject.name == "KillZone")
-        //    {
-        //        curHp = 0;
-        //    }
-        //}
-
+        
     }
 }

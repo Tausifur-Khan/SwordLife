@@ -374,17 +374,17 @@ namespace Knight
         private void OnTriggerEnter2D(Collider2D col)
         {
             //if tag is enemy then...
-            if (col.name == "melee")
+            if (col.tag == "Damage")
             {
                 knocked = true;
 
                 if (col.transform.position.x < transform.position.x)
                     //add knockback effect
-                    rb2d.velocity = new Vector2(-knockbackX, knockbackY);
+                    rb2d.velocity = new Vector2(knockbackX, knockbackY);
 
                 else
                     //add knockback effect
-                    rb2d.velocity = new Vector2(knockbackX, knockbackY);
+                    rb2d.velocity = new Vector2(-knockbackX, knockbackY);
 
             }
 
