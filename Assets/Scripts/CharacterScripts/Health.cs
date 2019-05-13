@@ -87,12 +87,7 @@ namespace Knight
 
         private void OnTriggerEnter2D(Collider2D col)
         {
-            if(col.name == "melee")
-            {
-                curHp -= dmg;
-            }
-
-            if (col.name == "Diamond")
+            if(col.CompareTag("Damage"))
             {
                 curHp -= dmg;
             }

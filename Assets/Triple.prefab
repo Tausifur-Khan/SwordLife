@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 50573743919090836}
   m_Layer: 12
   m_Name: Diamond
-  m_TagString: Untagged
+  m_TagString: Damage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 50247047131449048}
   m_Layer: 12
   m_Name: Diamond
-  m_TagString: Untagged
+  m_TagString: Damage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -334,7 +334,7 @@ GameObject:
   - component: {fileID: 50114447312440570}
   m_Layer: 12
   m_Name: Diamond
-  m_TagString: Untagged
+  m_TagString: Damage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

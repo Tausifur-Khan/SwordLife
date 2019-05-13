@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - RangeZone
   - Platform
+  - Damage
   layers:
   - Default
   - TransparentFX
