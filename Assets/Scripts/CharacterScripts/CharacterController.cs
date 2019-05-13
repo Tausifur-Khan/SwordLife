@@ -18,6 +18,7 @@ namespace Knight
         public float maxSpeed = 3;
         //float jumpForce
         public float jumpForce = 50;
+        public float dJumpForce = 50;
         //double jump bool condition
         public bool doubleJump;
         [Space(2)]
@@ -286,7 +287,7 @@ namespace Knight
                 else if (Input.GetKeyDown(jump) && (groundCheck[0] == false && groundCheck[1] == false) && doubleJump)
                 {
                     //Apply velocity up
-                    rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
+                    rb2d.velocity = new Vector2(rb2d.velocity.x, dJumpForce);
                     //set double jump bool condition false
                     doubleJump = false;
 
