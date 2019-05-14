@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
-[RequireComponent(typeof(Rigidbody2D))]
 public class Enemy : MonoBehaviour
 {
     public float HP;

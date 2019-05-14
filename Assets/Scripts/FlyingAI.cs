@@ -22,6 +22,7 @@ public class FlyingAI : Enemy
     // Use this for initialization
     void Start()
     {
+        HP = maxHP;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rigid2D = GetComponent<Rigidbody2D>();
         psOptional = GetComponent<ParticleSystem>();
@@ -84,30 +85,35 @@ public class FlyingAI : Enemy
                 transform.position += transform.right * Time.deltaTime;
                 break;
             case FlyingType.above:
-                Vector3 target = Physics2D.Raycast(player.position, Vector2.up, 100, notplayer).point + GetComponent<CircleCollider2D>().radius * Vector2.down * 0.2f;
-                if (target == Vector3.zero) target = player.position + 90 * Vector3.up;
-                target.y = Mathf.Clamp(player.position.y + 5.5f, player.position.y + 5.5f, target.y - 1);
-                target.y = Mathf.Clamp(target.y, player.position.y + 2, player.position.y + 5.5f);
-                Vector3 dir = (target - transform.position).normalized * Time.deltaTime * moveSpeed.x;
-                if (Mathf.Abs(player.position.x - transform.position.x) < .6f)
+                if (Mathf.Abs(transform.position.x - player.position.x) < 12)
                 {
-                    if (Mathf.Abs(player.position.x - transform.position.x) < .2f) dir.x = 0;
-                    attackCounter += Time.deltaTime;
+                    Vector3 target = Physics2D.Raycast(player.position, Vector2.up, 100, notplayer).point + GetComponent<CircleCollider2D>().radius * Vector2.down * 0.2f;
+                    Debug.Log(target);
+                    if (target == new Vector3(0.0f, -0.4f, 0.0f)) target = player.position + 90 * Vector3.up;
+                    target.y = Mathf.Clamp(player.position.y + 5.5f, player.position.y + 5.5f, target.y - 1);
+                    target.y = Mathf.Clamp(target.y, player.position.y + 2, player.position.y + 5.5f);
+                    Vector3 dir = (target - transform.position).normalized * Time.deltaTime * moveSpeed.x;
+                    if (Mathf.Abs(player.position.x - transform.position.x) < .6f && transform.position.y > player.position.y)
+                    {
+                        if (Mathf.Abs(player.position.x - transform.position.x) < .2f) dir.x = 0;
+                        attackCounter += Time.deltaTime;
+                    }
+                    else if (attackCounter > 0)
+                    {
+                        attackCounter -= Time.deltaTime * 0.75f;
+                    }
+                    if (attackCounter >= attackSpeed)
+                    {
+                        Debug.Log("ATTACK!!!");
+                        gameObject.tag = "Damage";
+                        attackCounter = 0;
+                        origin = transform.position;
+                        type = FlyingType.fall;
+                        anim.SetInteger("attackState", 1);
+                    }
+                    transform.position += dir;
+                    GetComponent<SpriteRenderer>().flipX = Mathf.Sign(player.position.x - transform.position.x) == 1;
                 }
-                else if (attackCounter > 0)
-                {
-                    attackCounter -= Time.deltaTime * 0.75f;
-                }
-                if (attackCounter >= attackSpeed)
-                {
-                    Debug.Log("ATTACK!!!");
-                    attackCounter = 0;
-                    origin = transform.position;
-                    type = FlyingType.fall;
-                    anim.SetInteger("attackState", 1);
-                }
-                transform.position += dir;
-                GetComponent<SpriteRenderer>().flipX = Mathf.Sign(player.position.x - transform.position.x) == 1;
                 break;
             case FlyingType.fall:
                 if (moveSpeed.y == Mathf.Abs(moveSpeed.y)) transform.position += moveSpeed.y * Vector3.up * Time.deltaTime * 0.5f;
@@ -119,6 +125,7 @@ public class FlyingAI : Enemy
                 }
                 if (transform.position.y > origin.y)
                 {
+                    gameObject.tag = "Enemy";
                     type = FlyingType.above;
                     anim.SetInteger("attackState", 0);
                     moveSpeed.y = -Mathf.Abs(moveSpeed.y);
@@ -126,6 +133,11 @@ public class FlyingAI : Enemy
                 break;
             default:
                 break;
+        }
+        if (HP <= 0)
+        {
+            anim.Play("Death");
+            Destroy(gameObject, 0.5f);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -141,20 +153,42 @@ public class FlyingAI : Enemy
             //dir = -dir;
         }
     }
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(other.tag);
-        if (other.CompareTag("Player"))
+        if (collision.CompareTag("AttackZone")) //knockback
         {
-            float knock = -Mathf.Sign(other.transform.position.x - transform.position.x) * knockback;
-            rigid2D.AddForce(new Vector3(knock, knockback), ForceMode2D.Impulse);
-        }
-        else
-        {
-            //Mathf.Abs(x)/x = Mathf.Sign(x)
-            //dir = -dir;
+            damaged();
         }
     }
+    public void damaged()
+    {
+        HP--;
+        gameObject.tag = "Enemy";
+        anim.SetInteger("attackState", 0);
+        anim.Play("Flying");
+        moveSpeed.y = Mathf.Abs(moveSpeed.y);
+        type = FlyingType.swooper;
+        Invoke("notanymore", 1.5f);
+    }
+    private void notanymore()
+    {
+        moveSpeed.y = -Mathf.Abs(moveSpeed.y);
+        type = FlyingType.above;
+    }
+    //private void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    Debug.Log(other.tag);
+    //    if (other.CompareTag("Player"))
+    //    {
+    //        float knock = -Mathf.Sign(other.transform.position.x - transform.position.x) * knockback;
+    //        rigid2D.AddForce(new Vector3(knock, knockback), ForceMode2D.Impulse);
+    //    }
+    //    else
+    //    {
+    //        //Mathf.Abs(x)/x = Mathf.Sign(x)
+    //        //dir = -dir;
+    //    }
+    //}
     public enum FlyingType
     {
         wait,
