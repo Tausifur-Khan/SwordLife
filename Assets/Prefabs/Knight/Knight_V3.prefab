@@ -392,6 +392,7 @@ MonoBehaviour:
   mvSpeed: 2.5
   maxSpeed: 3.5
   jumpForce: 8
+  dJumpForce: 50
   doubleJump: 0
   groundCheck: 0000
   rayDist: 0.2

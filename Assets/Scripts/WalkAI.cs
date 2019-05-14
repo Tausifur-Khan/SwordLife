@@ -154,7 +154,7 @@ public class WalkAI : Enemy
         if(HP <= 0)
         {
             anim.Play("Death");
-            Destroy(gameObject, 1);
+            Destroy(gameObject, 0.5f);
         }
         switch (difficulty)
         {
@@ -276,8 +276,10 @@ public class WalkAI : Enemy
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player")) //knockback
+        if (collision.CompareTag("AttackZone")) //knockback
         {
+            HP--;
+
             float knock = -Mathf.Sign(collision.transform.position.x - transform.position.x) * knockback;
             rigid2D.AddForce(new Vector3(knock, knockback), ForceMode2D.Impulse);
         }
