@@ -88,7 +88,7 @@ public class FlyingAI : Enemy
                 if (Mathf.Abs(transform.position.x - player.position.x) < 12)
                 {
                     Vector3 target = Physics2D.Raycast(player.position, Vector2.up, 100, notplayer).point + GetComponent<CircleCollider2D>().radius * Vector2.down * 0.2f;
-                    Debug.Log(target);
+
                     if (target == new Vector3(0.0f, -0.4f, 0.0f)) target = player.position + 90 * Vector3.up;
                     target.y = Mathf.Clamp(player.position.y + 5.5f, player.position.y + 5.5f, target.y - 1);
                     target.y = Mathf.Clamp(target.y, player.position.y + 2, player.position.y + 5.5f);

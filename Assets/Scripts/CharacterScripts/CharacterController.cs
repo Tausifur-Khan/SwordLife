@@ -146,6 +146,8 @@ namespace Knight
             //Ground Method
             Grounded();
 
+            Debug.Log(groundCheck[0]);
+            Debug.Log(groundCheck[1]);
         }
 
         //Update Physics based movement
