@@ -87,7 +87,7 @@ namespace Knight
 
         private void OnTriggerEnter2D(Collider2D col)
         {
-            if(col.CompareTag("Damage"))
+            if(col.CompareTag("Damage") && GetComponentsInChildren<BoxCollider2D>(false).Length == 1)
             {
                 curHp -= dmg;
             }

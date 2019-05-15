@@ -236,7 +236,9 @@ public class WalkAI : Enemy
             case Difficulty.Wander: //Ranged
                 if (isGrounded)
                 {
-                    foreach (RaycastHit2D item in Physics2D.RaycastAll(transform.position, Vector2.right * looksign, 8))
+                    RaycastHit2D item = Physics2D.Raycast(transform.position, Vector2.right * looksign, foreSight, notme);
+                    Debug.Log(item.collider);
+                    if (item)
                     {
                         if (item.transform == player)
                         {

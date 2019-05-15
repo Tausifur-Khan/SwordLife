@@ -111,7 +111,7 @@ namespace Knight
             {
                 //change gameobject localscale to new localscale in x by +1
                 //Mathf.Sign to ensure value is set to 1 in x
-                attackCol.transform.localPosition = new Vector2(0.8f, 0);
+                attackCol.transform.localPosition = new Vector2(1f, 0);
                 //set col true
 
                 //attackCol.GetComponent<BoxCollider2D>().enabled = true;
@@ -123,7 +123,7 @@ namespace Knight
             {
                 //set gameobjects localscale to new localscale in x by -1
                 //Mathf.Sign to ensure value is -1 in x
-                attackCol.transform.localPosition = new Vector2( -0.8f,0);
+                attackCol.transform.localPosition = new Vector2( -1f,0);
                 //set col true
 
 

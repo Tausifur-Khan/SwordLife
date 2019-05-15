@@ -70,7 +70,8 @@ namespace Knight
         private Animator anim;
         //sprite renderer
         public SpriteRenderer sprite;
-
+        //particle system
+        public ParticleSystem ps;
 
         //Access Health Script
         private Health stopMove;
@@ -146,8 +147,8 @@ namespace Knight
             //Ground Method
             Grounded();
 
-            Debug.Log(groundCheck[0]);
-            Debug.Log(groundCheck[1]);
+            //Debug.Log(groundCheck[0]);
+            //Debug.Log(groundCheck[1]);
         }
 
         //Update Physics based movement
@@ -289,10 +290,13 @@ namespace Knight
                 else if (Input.GetKeyDown(jump) && (groundCheck[0] == false && groundCheck[1] == false) && doubleJump)
                 {
                     //Apply velocity up
-                    rb2d.velocity = new Vector2(rb2d.velocity.x, dJumpForce);
+                    rb2d.velocity = new Vector2(rb2d.velocity.x, dJumpForce + Mathf.Clamp(rb2d.velocity.y, -1, 1));
+                    //rb2d.velocity = Mathf.Clamp(rb2d.velocity.x, -1, 999) * Vector3.up;
+                    //rb2d.AddForce(new Vector2(rb2d.velocity.x, dJumpForce), ForceMode2D.Impulse);
                     //set double jump bool condition false
                     doubleJump = false;
-
+                    //play the particle effect
+                    ps.Play();
                 }
             }
         }
@@ -377,7 +381,7 @@ namespace Knight
         private void OnTriggerEnter2D(Collider2D col)
         {
             //if tag is enemy then...
-            if (col.tag == "Damage")
+            if ((col.tag == "Damage" && GetComponentsInChildren<BoxCollider2D>(false).Length == 1) && col.gameObject.layer != 12)
             {
                 knocked = true;
 
