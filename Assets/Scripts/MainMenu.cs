@@ -171,7 +171,7 @@ public class MainMenu : MonoBehaviour
         Vector2 moveToWorld = new Vector2(moveTo.x * Screen.width, moveTo.y * Screen.height);
         if (lerp)
         {
-            screen.localPosition = Vector2.Lerp(screen.localPosition, moveToWorld, .1f);
+            screen.localPosition = Vector2.Lerp(screen.localPosition, moveToWorld, .06f);
         }
         else screen.localPosition = moveToWorld;
     }
