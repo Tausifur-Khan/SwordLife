@@ -48327,5 +48327,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000,
         type: 0}
+    - target: {fileID: 7437230392583432792, guid: ff0827e7df8e34c4db0e0091115d641b,
+        type: 3}
+      propertyPath: dJumpForce
+      value: 6.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff0827e7df8e34c4db0e0091115d641b, type: 3}
