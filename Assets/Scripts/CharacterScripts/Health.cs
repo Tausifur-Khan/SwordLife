@@ -91,6 +91,10 @@ namespace Knight
             {
                 curHp -= dmg;
             }
+            if (col.CompareTag("Killzone"))
+            {
+                curHp = 0;
+            }
         }
         
     }
