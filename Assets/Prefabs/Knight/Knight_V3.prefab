@@ -44,7 +44,7 @@ GameObject:
   m_Layer: 11
   m_Name: 'PlayerOffset '
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -56,7 +56,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7437230391819617017}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.75, y: 0.15000004, z: 0}
+  m_LocalPosition: {x: 2.39, y: 0.51, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7437230392583432773}
@@ -72,7 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7437230392005414980}
   - component: {fileID: 7437230392005414981}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: AttackZone
   m_TagString: AttackZone
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9106989, y: 1.1040432}
+  m_Size: {x: 1.15, y: 1.1040432}
   m_EdgeRadius: 0
 --- !u!1 &7437230392025540045
 GameObject:
@@ -188,7 +188,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7437230392366805632}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: 'SwordAttack '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -319,7 +319,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 12
   m_Sprite: {fileID: 21300000, guid: ae688c687b3e03c4084aa03c39b298cf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -393,7 +393,7 @@ MonoBehaviour:
   mvSpeed: 2.5
   maxSpeed: 3.5
   jumpForce: 9
-  dJumpForce: 6
+  dJumpForce: 6.5
   doubleJump: 0
   groundCheck: 0000
   rayDist: 0.2
@@ -552,11 +552,6 @@ PrefabInstance:
         type: 3}
       propertyPath: ShapeModule.m_Position.y
       value: -0.55
-      objectReference: {fileID: 0}
-    - target: {fileID: 198918071010746622, guid: b7080d368c4951e4392c0da4a7ae871b,
-        type: 3}
-      propertyPath: VelocityModule.x.scalar
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7080d368c4951e4392c0da4a7ae871b, type: 3}
