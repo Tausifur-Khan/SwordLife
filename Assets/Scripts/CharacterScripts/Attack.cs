@@ -32,7 +32,7 @@ namespace Knight
         private Animator anim;
 
         //private variable for CharControl script
-        private CharacterController charC;
+        private PlayerController charC;
         //private variable for sprite
         public SpriteRenderer rangeSprite;
         
@@ -51,7 +51,7 @@ namespace Knight
             //refer to Animator component
             anim = GetComponent<Animator>();
             //refer to CharControl component
-            charC = GetComponent<CharacterController>();
+            charC = GetComponent<PlayerController>();
 
 
         }

@@ -19,7 +19,7 @@ public class Parent : MonoBehaviour
         {
             if(child != transform)
             {
-                child.gameObject.SetActive(Vector2.Distance(player.position, child.position) > deactivateDistance);
+                child.gameObject.SetActive(Vector2.Distance(player.position, child.position) < deactivateDistance);
             }
         }
     }

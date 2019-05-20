@@ -18,6 +18,7 @@ public class MainMenu : MonoBehaviour
     public GameObject commonOptions;
     public Vector2[] screenLayout;
     public Toggle fullScreen;
+    public Toggle vsync;
     public Dropdown newYears;
 
     public int focus;
@@ -41,7 +42,7 @@ public class MainMenu : MonoBehaviour
     // Use this for initialization
     public void Play()
     {
-
+        SceneManager.LoadScene(2);
     }
 
     // Update is called once per frame
@@ -72,12 +73,16 @@ public class MainMenu : MonoBehaviour
     IEnumerator AreYouSure()
     {
         Screen.SetResolution(Screen.resolutions[newYears.value].width, Screen.resolutions[newYears.value].height, fullScreen.isOn);
+        if (vsync.isOn) QualitySettings.vSyncCount = 1;
+        else QualitySettings.vSyncCount = 0;
         while (true) // Oh no
         {
             if (graphicsCountdown > 900)
             {
                 if (fullScreen.isOn) PlayerPrefs.SetInt("FullScreen", 1);
                 else PlayerPrefs.SetInt("FullScreen", 0);
+                if (vsync.isOn) PlayerPrefs.SetInt("VSync", 1);
+                else PlayerPrefs.SetInt("VSync", 0);
                 PlayerPrefs.SetInt("Resolution", newYears.value);
                 areyousure.SetActive(false);
                 ChangeScreen(1);
@@ -122,6 +127,7 @@ public class MainMenu : MonoBehaviour
         {
             case 0:
                 fullScreen.isOn = true;
+                vsync.isOn = false;
                 newYears.value = newYears.options.Count - 1;
                 break;
             case 1:
@@ -147,6 +153,7 @@ public class MainMenu : MonoBehaviour
         fullScreen.isOn = (PlayerPrefs.GetInt("FullScreen") == 1);
         newYears.value = PlayerPrefs.GetInt("Resolution", Screen.resolutions.Length);
         layout = PlayerPrefs.GetInt("KeyBinding", 0);
+        QualitySettings.vSyncCount = PlayerPrefs.GetInt("VSync", 0);
         foreach (GameObject item in layouts)
         {
             item.SetActive(true);
