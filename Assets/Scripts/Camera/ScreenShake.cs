@@ -27,7 +27,10 @@ public class ScreenShake : MonoBehaviour
             transform.localPosition = origin + (Random.insideUnitCircle * transform.localScale * magnitude);
         }
     }
-
+    public void Shake()
+    {
+        anim.SetTrigger("Screen");
+    }
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(transform.position, magnitude);

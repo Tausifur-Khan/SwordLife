@@ -71,7 +71,7 @@ namespace Knight
                 //curHp = maxHp;
                 playerDeath = true;
 
-                CharacterController player = GetComponent<CharacterController>();
+                PlayerController player = GetComponent<PlayerController>();
                 player.keyActive = false;
             }
         }

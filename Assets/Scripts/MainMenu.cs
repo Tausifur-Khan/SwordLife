@@ -42,7 +42,7 @@ public class MainMenu : MonoBehaviour
     // Use this for initialization
     public void Play()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
 
     // Update is called once per frame

@@ -6,7 +6,7 @@ using UnityEngine.Animations;
 
 namespace Knight
 {
-    public class CharacterController : MonoBehaviour
+    public class PlayerController : MonoBehaviour
     {
         #region Variables
 
@@ -60,6 +60,7 @@ namespace Knight
         public KeyCode left = KeyCode.A;
         public KeyCode right = KeyCode.D;
         public KeyCode jump = KeyCode.W;
+        public KeyCode dash = KeyCode.Space;
         public bool keyActive;
         #endregion
 
@@ -253,8 +254,8 @@ namespace Knight
             if (isDash && canDash && (groundCheck[0] && groundCheck[1]) && keyActive)
             {
                 //if input key 'space' then...
-                if (Input.GetKeyDown(KeyCode.Space) && Input.GetKey(left) ||
-                    Input.GetKeyDown(KeyCode.Space) && Input.GetKey(right))
+                if (Input.GetKeyDown(dash) && Input.GetKey(left) ||
+                    Input.GetKeyDown(dash) && Input.GetKey(right))
                 {
                     //allow force for dash in right dir
                     //Change player speed temp
@@ -383,6 +384,8 @@ namespace Knight
             //if tag is enemy then...
             if ((col.tag == "Damage" && GetComponentsInChildren<BoxCollider2D>(false).Length == 1) && col.gameObject.layer != 12)
             {
+                Camera.main.GetComponent<ScreenShake>().Shake();
+
                 knocked = true;
 
                 if (col.transform.position.x < transform.position.x)
