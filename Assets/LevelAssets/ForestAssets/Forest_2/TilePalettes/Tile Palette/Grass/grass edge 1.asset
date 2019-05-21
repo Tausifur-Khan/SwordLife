@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: grass edge
+  m_Name: grass edge 1
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: b2e949f31fd1f6d408021ac7fd5dfe5a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 27bb3e54bd136bd43a4148d41dd6c5cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

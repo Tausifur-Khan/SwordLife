@@ -71,7 +71,7 @@ namespace Knight
                 //curHp = maxHp;
                 playerDeath = true;
 
-                CharacterController player = GetComponent<CharacterController>();
+                PlayerController player = GetComponent<PlayerController>();
                 player.keyActive = false;
             }
         }
@@ -90,6 +90,10 @@ namespace Knight
             if(col.CompareTag("Damage") && GetComponentsInChildren<BoxCollider2D>(false).Length == 1)
             {
                 curHp -= dmg;
+            }
+            if (col.CompareTag("Killzone"))
+            {
+                curHp = 0;
             }
         }
         
