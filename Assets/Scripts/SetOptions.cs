@@ -35,5 +35,6 @@ public class SetOptions : MonoBehaviour
                 player.GetComponent<Knight.Attack>().attack = KeyCode.X;
                 break;
         }
+        Debug.Log(PlayerPrefs.GetInt("KeyBinding"));
     }
 }

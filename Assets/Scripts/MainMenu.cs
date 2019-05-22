@@ -112,6 +112,7 @@ public class MainMenu : MonoBehaviour
                 break;
             case 3:
                 PlayerPrefs.SetInt("KeyBinding", layout);
+                Debug.Log(layout);
                 ChangeScreen(1);
                 break;
             case 4:
@@ -171,7 +172,7 @@ public class MainMenu : MonoBehaviour
         Vector2 moveToWorld = new Vector2(moveTo.x * Screen.width, moveTo.y * Screen.height);
         if (lerp)
         {
-            screen.localPosition = Vector2.Lerp(screen.localPosition, moveToWorld, .06f);
+            screen.localPosition = Vector2.Lerp(screen.localPosition, moveToWorld, .01f);
         }
         else screen.localPosition = moveToWorld;
     }
@@ -179,7 +180,7 @@ public class MainMenu : MonoBehaviour
     {
         if (lerp)
         {
-            screen.localPosition = Vector2.Lerp(screen.localPosition, moveToWorld, .1f);
+            screen.localPosition = Vector2.Lerp(screen.localPosition, moveToWorld, Time.deltaTime * 8);
         }
         else screen.localPosition = moveToWorld;
     }
