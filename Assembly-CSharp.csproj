@@ -72,7 +72,8 @@
     <Compile Include="Assets\Scripts\CharacterScripts\RangeTimer.cs" />
     <Compile Include="Assets\Scripts\ColourChange\Change.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyManager\Enemy.cs" />
-    <Compile Include="Assets\Scripts\FlyingAI.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyManager\FlyingAI.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyManager\WalkAI.cs" />
     <Compile Include="Assets\Scripts\GameManageScripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\GameManageScripts\LevelManager.cs" />
     <Compile Include="Assets\Scripts\GameManageScripts\SaveData.cs" />
@@ -84,7 +85,6 @@
     <Compile Include="Assets\Scripts\simpleMove.cs" />
     <Compile Include="Assets\Scripts\TestScript\RayCastTest.cs" />
     <Compile Include="Assets\Scripts\Tools\Vector2Rect.cs" />
-    <Compile Include="Assets\Scripts\WalkAI.cs" />
     <Compile Include="Assets\suprise.cs" />
     <None Include="Assets\LevelAssets\ForestAssets\Forest_1\readme.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">

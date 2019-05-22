@@ -75,10 +75,11 @@ namespace Knight
         public ParticleSystem ps;
 
         //Access Health Script
-        private Health stopMove;
+        private Health playerLife;
 
         //Access to Attack Script
         private Attack attack;
+
 
 
         #endregion
@@ -123,7 +124,7 @@ namespace Knight
             //refer to sprite renderer component
             sprite = GetComponent<SpriteRenderer>();
             //refer to Death() script componenet
-            stopMove = GetComponent<Health>();
+            playerLife = GetComponent<Health>();
             //refer to Attack() script component
             attack = GetComponent<Attack>();
             #endregion
@@ -161,7 +162,7 @@ namespace Knight
             //Dash Move Method
             Dash();
             //physical movement of knock
-            PlayerKnockBack();
+            PlayerKnockBackTime();
         }
 
         //Update anything end of frame
@@ -206,10 +207,14 @@ namespace Knight
             #endregion
 
             #region Death
-            if (stopMove.playerDeath == true)
-            {
-                anim.SetBool("isDead", true);
-            }
+            if (playerLife.playerDeath == true)
+                anim.Play("Death");
+
+
+            #region KnockBack
+            if (knocked)
+                anim.Play("KnockBack");
+            #endregion
             #endregion
 
         }
@@ -344,26 +349,13 @@ namespace Knight
         }
 
 
-        void PlayerKnockBack()
+        void PlayerKnockBackTime()
         {
             // SpriteRenderer knockBackSprite;
             //if player is knocked then...
 
             if (knocked)
             {
-
-                ////if sprite direction is right then...
-                //if (sprite.flipX)
-                //    //add knockback effect
-                //    rb2d.velocity = new Vector2(knockbackX, knockbackY);
-
-
-
-                ////else if opposite direction
-                //else if (!sprite.flipX)
-                //    //add knockback effect 
-                //    rb2d.velocity = new Vector2(-knockbackX, knockbackY);
-                //start knockback timer
                 knockTime -= Time.deltaTime;
             }
 
@@ -464,7 +456,7 @@ namespace Knight
         void RestrictMove()
         {
             //if bool condition true of death then...
-            if (stopMove.playerDeath)
+            if (playerLife.playerDeath)
             {
                 //Restrict any movement x & y without effecting y
                 rb2d.velocity = new Vector2(0, rb2d.velocity.y);

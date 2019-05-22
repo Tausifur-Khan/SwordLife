@@ -470,11 +470,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curHp: 0
   maxHp: 100
-  hpSlider: {fileID: 0}
-  liveTxtUI: {fileID: 0}
   lives: 3
   playerDeath: 0
   dmg: 20
+  hpSlider: {fileID: 0}
+  liveTxtUI: {fileID: 0}
+  sliderFill: {fileID: 0}
 --- !u!95 &7437230392583432796
 Animator:
   serializedVersion: 3
@@ -501,10 +502,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7437230392583432773}
     m_Modifications:
-    - target: {fileID: 198918071010746622, guid: b7080d368c4951e4392c0da4a7ae871b,
-        type: 3}
-      propertyPath: ShapeModule.m_Position.y
-      value: -0.55
+    - target: {fileID: 1783718092264788, guid: b7080d368c4951e4392c0da4a7ae871b, type: 3}
+      propertyPath: m_Name
+      value: Particles
       objectReference: {fileID: 0}
     - target: {fileID: 4563225174153870, guid: b7080d368c4951e4392c0da4a7ae871b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -550,9 +550,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1783718092264788, guid: b7080d368c4951e4392c0da4a7ae871b, type: 3}
-      propertyPath: m_Name
-      value: Particles
+    - target: {fileID: 198918071010746622, guid: b7080d368c4951e4392c0da4a7ae871b,
+        type: 3}
+      propertyPath: ShapeModule.m_Position.y
+      value: -0.55
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7080d368c4951e4392c0da4a7ae871b, type: 3}
