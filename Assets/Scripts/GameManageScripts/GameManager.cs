@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     GameObject player;
 
 
-    public float SceneLoadTime = 3;
+   
     #endregion
     //private float rounded;
 
@@ -37,8 +37,7 @@ public class GameManager : MonoBehaviour
     private void LateUpdate()
     {
         UITimers();
-        // invoke reset scene upon player death condition
-        if (playerSurv.playerDeath) Invoke("ResetOnDeath", SceneLoadTime);
+       
 
     }
 
@@ -48,11 +47,11 @@ public class GameManager : MonoBehaviour
         RangeTimeTxt.text = rangeTime.timer.ToString("Range Time: 0");
     }
 
-    void ResetOnDeath()
-    {
-        Scene curScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(curScene.name);
-    }
+    //void ResetOnDeath()
+    //{
+    //    Scene curScene = SceneManager.GetActiveScene();
+    //    SceneManager.LoadScene(curScene.name);
+    //}
 
 
 

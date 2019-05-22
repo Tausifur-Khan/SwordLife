@@ -77,6 +77,7 @@
     <Compile Include="Assets\Scripts\GameManageScripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\GameManageScripts\LevelManager.cs" />
     <Compile Include="Assets\Scripts\GameManageScripts\SaveData.cs" />
+    <Compile Include="Assets\Scripts\InGameMenus.cs" />
     <Compile Include="Assets\Scripts\Kill with nothing.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\RangedAttack\KillOnExit.cs" />
@@ -86,7 +87,6 @@
     <Compile Include="Assets\Scripts\TestScript\RayCastTest.cs" />
     <Compile Include="Assets\Scripts\Tools\Vector2Rect.cs" />
     <Compile Include="Assets\suprise.cs" />
-    <None Include="Assets\LevelAssets\ForestAssets\Forest_1\readme.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Tausifur Khan/Desktop/UnityProjects/GitHub/SwordLife/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
