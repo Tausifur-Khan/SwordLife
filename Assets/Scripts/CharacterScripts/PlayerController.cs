@@ -149,8 +149,9 @@ namespace Knight
             //Ground Method
             Grounded();
 
-            //Debug.Log(groundCheck[0]);
-            //Debug.Log(groundCheck[1]);
+            //Dash Move Method
+            Dash();
+           
         }
 
         //Update Physics based movement
@@ -159,8 +160,7 @@ namespace Knight
             //Movement Method
             Move();
 
-            //Dash Move Method
-            Dash();
+            
             //physical movement of knock
             PlayerKnockBackTime();
         }
