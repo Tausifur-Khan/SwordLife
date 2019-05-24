@@ -42468,11 +42468,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Menu
       objectReference: {fileID: 0}
-    - target: {fileID: 5928590757296279995, guid: 24015484362b22040b69c904e35f8b7c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5928590757296279991, guid: 24015484362b22040b69c904e35f8b7c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -42577,11 +42572,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5928590756696836418, guid: 24015484362b22040b69c904e35f8b7c,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24015484362b22040b69c904e35f8b7c, type: 3}
@@ -44437,11 +44427,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9058802612261196872, guid: 5d29c672fdbcb9f44a363369858ca34a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d29c672fdbcb9f44a363369858ca34a, type: 3}
@@ -47998,36 +47983,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7437230392583432798, guid: ff0827e7df8e34c4db0e0091115d641b,
         type: 3}
-      propertyPath: hpSlider
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7437230392583432798, guid: ff0827e7df8e34c4db0e0091115d641b,
-        type: 3}
-      propertyPath: liveTxtUI
-      value: 
-      objectReference: {fileID: 630672834}
-    - target: {fileID: 7437230392583432798, guid: ff0827e7df8e34c4db0e0091115d641b,
-        type: 3}
-      propertyPath: sliderFill
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7437230392583432798, guid: ff0827e7df8e34c4db0e0091115d641b,
-        type: 3}
-      propertyPath: hp
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7437230392583432798, guid: ff0827e7df8e34c4db0e0091115d641b,
-        type: 3}
-      propertyPath: hpAmount
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7437230392583432798, guid: ff0827e7df8e34c4db0e0091115d641b,
-        type: 3}
-      propertyPath: noHp
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7437230392583432798, guid: ff0827e7df8e34c4db0e0091115d641b,
-        type: 3}
       propertyPath: hearts.Array.data[0]
       value: 
       objectReference: {fileID: 341010136}
@@ -48053,25 +48008,8 @@ PrefabInstance:
       objectReference: {fileID: 462439056}
     - target: {fileID: 7437230392583432798, guid: ff0827e7df8e34c4db0e0091115d641b,
         type: 3}
-      propertyPath: fullHp
+      propertyPath: liveTxtUI
       value: 
-      objectReference: {fileID: 21300000, guid: c958645662979ce46bd0925278fa8fc5,
-        type: 3}
-    - target: {fileID: 7437230392583432798, guid: ff0827e7df8e34c4db0e0091115d641b,
-        type: 3}
-      propertyPath: emptyHp
-      value: 
-      objectReference: {fileID: 21300000, guid: acdbba4ac98e116439e8bc8ae025424b,
-        type: 3}
-    - target: {fileID: 7437230392583432798, guid: ff0827e7df8e34c4db0e0091115d641b,
-        type: 3}
-      propertyPath: maxHP
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7437230392583432798, guid: ff0827e7df8e34c4db0e0091115d641b,
-        type: 3}
-      propertyPath: maxHp
-      value: 5
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 630672834}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff0827e7df8e34c4db0e0091115d641b, type: 3}

@@ -13,28 +13,25 @@ namespace Knight
         #region New Health System
         public int curHp;
         public int maxHp;
-        
-        //player lives
-        public int lives = 3;
 
+        //player lives
+        public int lives;
+        public bool useLifestone;
         public bool playerDeath;
         #endregion
         [Space(3)]
 
         [Header("Components")]
-        public Image[] hearts = new Image[5];
+        public Image[] hearts;
         public Sprite fullHp;
         public Sprite emptyHp;
 
         public Text liveTxtUI;
-
-        public GameObject sliderFill;
-
-
+        
         public GameObject deathBody;
         public BoxCollider2D body;
 
-      
+
 
         // private Animator deathAnim;
 
@@ -42,7 +39,7 @@ namespace Knight
         {
             deathBody = GameObject.Find("DeathBox");
             deathBody.SetActive(false);
-           
+
             body = GetComponent<BoxCollider2D>();
 
             curHp = maxHp;
@@ -55,33 +52,31 @@ namespace Knight
 
         void HpSystem()
         {
+            //for loop of all heart sprites
             for (int i = 0; i < hearts.Length; i++)
             {
-                if(i < curHp)
-                {
-                    hearts[i].sprite = fullHp;
+                #region health loss
+                //if curent hp is less then heart length then..
+                //heart sprite will be full
+                if (i < curHp) hearts[i].sprite = fullHp;
+                //otherwise empty full heart
+                else hearts[i].sprite = emptyHp;
+                #endregion
 
-                }
-                else
-                {
-                    hearts[i].sprite = emptyHp;
-                }
-
-                if (i < maxHp)
-                {
-                    hearts[i].enabled = true;
-                }
-                else
-                {
-                    hearts[i].enabled = false;
-                }
+                #region Amount of hearts
+                //if heart length is less than max amount then...
+                //allow hearts to be shown
+                if (i < maxHp) hearts[i].enabled = true;
+                //othwerwise disable any hearts above maximum
+                else hearts[i].enabled = false;
+                #endregion
             }
         }
 
         private void LateUpdate()
         {
             PlayerDmg();
-            
+
             liveTxtUI.text = lives.ToString();
         }
 
@@ -89,18 +84,20 @@ namespace Knight
         {
             if (curHp <= 0 && !playerDeath)
             {
-
-                //fill.SetActive(false);
-                lives--;
                 //curHp = maxHp;
                 playerDeath = true;
 
                 PlayerController player = GetComponent<PlayerController>();
                 player.keyActive = false;
-                
+
                 body.isTrigger = true;
 
                 deathBody.SetActive(true);
+                if (useLifestone)
+                {
+                    //fill.SetActive(false);
+                    lives--;
+                }
             }
         }
 
@@ -108,7 +105,7 @@ namespace Knight
         {
             if (col.CompareTag("Damage") && GetComponentsInChildren<BoxCollider2D>(false).Length == 1)
             {
-               curHp --;
+                curHp--;
             }
             if (col.CompareTag("Killzone"))
             {
