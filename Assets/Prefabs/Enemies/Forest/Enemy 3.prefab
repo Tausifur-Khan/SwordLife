@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 0
-  maxHP: 6
+  maxHP: 3
   Att: 0
   Acceleration: 0.25
   Speed: 0.5
