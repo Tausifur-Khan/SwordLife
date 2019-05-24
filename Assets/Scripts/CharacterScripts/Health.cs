@@ -9,23 +9,22 @@ namespace Knight
 {
     public class Health : MonoBehaviour
     {
-        #region Hp Variables
-        [Header("Hp Stuff")]
-        //current player hp
-        public float curHp;
-        //maximum player hp
-        public float maxHp;
+        [Header("New Health")]
+        #region New Health System
+        public int curHp;
+        public int maxHp;
+        
         //player lives
         public int lives = 3;
 
         public bool playerDeath;
-        //take damage
-        public float dmg;
+        #endregion
         [Space(3)]
 
         [Header("Components")]
-        //slider array for hp
-        public Slider hpSlider;
+        public Image[] hearts = new Image[5];
+        public Sprite fullHp;
+        public Sprite emptyHp;
 
         public Text liveTxtUI;
 
@@ -35,29 +34,54 @@ namespace Knight
         public GameObject deathBody;
         public BoxCollider2D body;
 
-        #endregion
+      
 
         // private Animator deathAnim;
 
         private void Start()
         {
-            // deathAnim = GetComponent<Animator>();
-
-            //set current player hp to the maximum
-            curHp = Mathf.Abs(maxHp);
-
             deathBody = GameObject.Find("DeathBox");
             deathBody.SetActive(false);
            
             body = GetComponent<BoxCollider2D>();
+
+            curHp = maxHp;
+        }
+
+        private void Update()
+        {
+            HpSystem();
+        }
+
+        void HpSystem()
+        {
+            for (int i = 0; i < hearts.Length; i++)
+            {
+                if(i < curHp)
+                {
+                    hearts[i].sprite = fullHp;
+
+                }
+                else
+                {
+                    hearts[i].sprite = emptyHp;
+                }
+
+                if (i < maxHp)
+                {
+                    hearts[i].enabled = true;
+                }
+                else
+                {
+                    hearts[i].enabled = false;
+                }
+            }
         }
 
         private void LateUpdate()
         {
             PlayerDmg();
-
-            //GUI stuff
-            hpSlider.value = curHp;
+            
             liveTxtUI.text = lives.ToString();
         }
 
@@ -73,9 +97,7 @@ namespace Knight
 
                 PlayerController player = GetComponent<PlayerController>();
                 player.keyActive = false;
-
-                sliderFill.SetActive(false);
-
+                
                 body.isTrigger = true;
 
                 deathBody.SetActive(true);
@@ -86,7 +108,7 @@ namespace Knight
         {
             if (col.CompareTag("Damage") && GetComponentsInChildren<BoxCollider2D>(false).Length == 1)
             {
-                curHp -= dmg;
+               curHp --;
             }
             if (col.CompareTag("Killzone"))
             {
