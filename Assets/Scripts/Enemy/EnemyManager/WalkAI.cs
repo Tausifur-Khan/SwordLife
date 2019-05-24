@@ -11,8 +11,7 @@ public class WalkAI : Enemy
     private Difficulty tempDifficulty; //Which AI to go back to after pausing to attack
     #endregion
     #region turning
-    [Header("Turning")]
-    public int dir = 1; //Mostly unused
+    [Header("Turning")]    
     public bool dontLook = false; //look & looksign are always 1
     public float look = 1; //x distance from player (can be negative)
     public int looksign = 1; //x direction to look at the player
@@ -22,6 +21,7 @@ public class WalkAI : Enemy
     private float wanderCounter; //Increment above
     public bool wander; //Ranged enemy idle or idly wandering
     public bool angery; //Stopping to attack
+    public bool redkoopa; //Turning on ledge
     #endregion
     #region attack and jump
     [Header("AI Attack Modes")]
@@ -44,6 +44,8 @@ public class WalkAI : Enemy
     [Header("Local Components")]
     private Rigidbody2D rigid2D;
     public Animator anim;
+    private SpriteRenderer rend;
+    public ParticleSystem poof;
     #endregion
     #region World Components
     [Header("World Components")]
@@ -62,6 +64,7 @@ public class WalkAI : Enemy
         counter = shotDelay; //Reset counters
         counterv2 = shootDelay;
         rigid2D = GetComponent<Rigidbody2D>(); //Reference
+        rend = GetComponent<SpriteRenderer>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
@@ -72,6 +75,13 @@ public class WalkAI : Enemy
         {
             look = player.transform.position.x - transform.position.x;
             looksign = Mathf.RoundToInt(Mathf.Sign(look));
+        }
+        if (redkoopa && isGrounded && (patrol || wander))
+        {
+            if (!Physics2D.Raycast((Vector2)transform.position + Vector2.right * 0.5f * looksign + (transform.localScale.y / 2 * Vector2.down), Vector2.down, .42f, notme))
+            {
+                looksign = -looksign;
+            }
         }
         if (Physics2D.Raycast((Vector2)transform.position + (transform.localScale.y / 2 * Vector2.down), Vector2.down, .42f, notme)) //if you are grounded
         {
@@ -115,7 +125,7 @@ public class WalkAI : Enemy
         }
         if (difficulty != Difficulty.None) //If you are not stationary
         {
-            GetComponent<SpriteRenderer>().flipX = (looksign == 1);
+            rend.flipX = (looksign == 1);
             transform.GetChild(0).localScale = new Vector2(-looksign, transform.GetChild(0).localScale.y);
             if (shoot && counterv2 <= 0) //timer shoot
             {
@@ -153,8 +163,9 @@ public class WalkAI : Enemy
         }
         if(HP <= 0)
         {
-            anim.Play("Death");
-            Destroy(gameObject, 0.5f);
+            anim.Play("Death");            
+            Invoke("Death", 0.5f);
+            HP = 999;
         }
         switch (difficulty)
         {
@@ -165,10 +176,13 @@ public class WalkAI : Enemy
                     counter = shotDelay;
                     if (bulletPrefab) //If there is a bullet etc to instantiate
                     {
-                        if (wander) //This will be expanded upon in robot area
+
+                        if (tempDifficulty == Difficulty.Wander) //This will be expanded upon in robot area
                         {
-                            StartCoroutine(AnimationDelay(1.2f)); //delay for animation
-                            counter += 1;
+                            StartCoroutine(AnimationDelay(0.5f)); //delay for animation
+                            counter += 0.5f;
+                            difficulty = tempDifficulty;
+                            dontLook = true;
                         }
                         else
                         {
@@ -243,6 +257,7 @@ public class WalkAI : Enemy
                         if (item.transform == player)
                         {
                             difficulty = Difficulty.None;
+                            tempDifficulty = Difficulty.Wander;
                             dontLook = false;
                             //shoot = true;
                         }
@@ -260,6 +275,11 @@ public class WalkAI : Enemy
             default:
                 break;
         }
+    }
+    public void Death()
+    {
+        Instantiate(poof, transform.position, Quaternion.identity, null);
+        Destroy(gameObject);
     }
     IEnumerator AnimationDelay(float t)
     {
@@ -282,7 +302,7 @@ public class WalkAI : Enemy
         {
             HP--;
 
-            float knock = -Mathf.Sign(collision.transform.position.x - transform.position.x) * knockback;
+            float knock = -Mathf.Sign(player.position.x - transform.position.x) * knockback;
             rigid2D.AddForce(new Vector3(knock, knockback), ForceMode2D.Impulse);
         }
         else

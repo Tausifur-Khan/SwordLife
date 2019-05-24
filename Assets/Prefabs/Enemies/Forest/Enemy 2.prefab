@@ -186,7 +186,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 11
   m_Sprite: {fileID: 21300000, guid: 4bc3e159b4ef2c8429dd8995f59a9e5e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 0
-  maxHP: 5
+  maxHP: 4
   Att: 0
   Acceleration: 0.75
   Speed: 2.2
@@ -266,7 +266,6 @@ MonoBehaviour:
   knockback: 2
   isGrounded: 0
   difficulty: 2
-  dir: 1
   dontLook: 1
   look: 1
   looksign: 1
@@ -276,6 +275,7 @@ MonoBehaviour:
   wanderDelay: 0
   wander: 0
   angery: 0
+  redkoopa: 1
   shoot: 1
   shootMelee: 1
   patrol: 1
@@ -289,6 +289,7 @@ MonoBehaviour:
   jumpHeight: 4
   alwaysJump: 0
   anim: {fileID: 95471556728020710}
+  poof: {fileID: 198918071010746622, guid: 9d4fe1ef9a6ef2c48aa97259495615cc, type: 3}
   bulletPrefab: {fileID: 0}
   shootPoint: {fileID: 4484430249707654}
   meleePoint: {fileID: 0}
