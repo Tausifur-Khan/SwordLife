@@ -266,7 +266,6 @@ MonoBehaviour:
   knockback: 2
   isGrounded: 0
   difficulty: 2
-  dir: 1
   dontLook: 1
   look: 1
   looksign: 1
@@ -276,6 +275,7 @@ MonoBehaviour:
   wanderDelay: 0
   wander: 0
   angery: 0
+  redkoopa: 1
   shoot: 1
   shootMelee: 1
   patrol: 1

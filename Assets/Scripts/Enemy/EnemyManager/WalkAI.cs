@@ -11,8 +11,7 @@ public class WalkAI : Enemy
     private Difficulty tempDifficulty; //Which AI to go back to after pausing to attack
     #endregion
     #region turning
-    [Header("Turning")]
-    public int dir = 1; //Mostly unused
+    [Header("Turning")]    
     public bool dontLook = false; //look & looksign are always 1
     public float look = 1; //x distance from player (can be negative)
     public int looksign = 1; //x direction to look at the player
@@ -22,6 +21,7 @@ public class WalkAI : Enemy
     private float wanderCounter; //Increment above
     public bool wander; //Ranged enemy idle or idly wandering
     public bool angery; //Stopping to attack
+    public bool redkoopa; //Turning on ledge
     #endregion
     #region attack and jump
     [Header("AI Attack Modes")]
@@ -44,6 +44,7 @@ public class WalkAI : Enemy
     [Header("Local Components")]
     private Rigidbody2D rigid2D;
     public Animator anim;
+    private SpriteRenderer rend;
     #endregion
     #region World Components
     [Header("World Components")]
@@ -62,6 +63,7 @@ public class WalkAI : Enemy
         counter = shotDelay; //Reset counters
         counterv2 = shootDelay;
         rigid2D = GetComponent<Rigidbody2D>(); //Reference
+        rend = GetComponent<SpriteRenderer>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
@@ -72,6 +74,13 @@ public class WalkAI : Enemy
         {
             look = player.transform.position.x - transform.position.x;
             looksign = Mathf.RoundToInt(Mathf.Sign(look));
+        }
+        if (redkoopa && isGrounded && (patrol || wander))
+        {
+            if (!Physics2D.Raycast((Vector2)transform.position + Vector2.right * 0.5f * looksign + (transform.localScale.y / 2 * Vector2.down), Vector2.down, .42f, notme))
+            {
+                looksign = -looksign;
+            }
         }
         if (Physics2D.Raycast((Vector2)transform.position + (transform.localScale.y / 2 * Vector2.down), Vector2.down, .42f, notme)) //if you are grounded
         {
@@ -115,7 +124,7 @@ public class WalkAI : Enemy
         }
         if (difficulty != Difficulty.None) //If you are not stationary
         {
-            GetComponent<SpriteRenderer>().flipX = (looksign == 1);
+            rend.flipX = (looksign == 1);
             transform.GetChild(0).localScale = new Vector2(-looksign, transform.GetChild(0).localScale.y);
             if (shoot && counterv2 <= 0) //timer shoot
             {
