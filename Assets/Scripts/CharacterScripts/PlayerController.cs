@@ -269,7 +269,7 @@ namespace Knight
 
                     isDash = false;
                     //play the particle effect
-                    dash_ps.Play();
+                    //dash_ps.Play();
                 }
             }
 
