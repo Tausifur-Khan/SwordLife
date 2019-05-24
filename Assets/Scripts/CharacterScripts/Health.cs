@@ -16,7 +16,7 @@ namespace Knight
         //maximum player hp
         public float maxHp;
         //player lives
-         public int lives = 3;
+        public int lives = 3;
 
         public bool playerDeath;
         //take damage
@@ -30,25 +30,28 @@ namespace Knight
         public Text liveTxtUI;
 
         public GameObject sliderFill;
-       
-       
-        
 
-      
+
+        public GameObject deathBody;
+        public BoxCollider2D body;
+
         #endregion
 
-       // private Animator deathAnim;
+        // private Animator deathAnim;
 
         private void Start()
         {
-           // deathAnim = GetComponent<Animator>();
+            // deathAnim = GetComponent<Animator>();
 
             //set current player hp to the maximum
             curHp = Mathf.Abs(maxHp);
-            
 
+            deathBody = GameObject.Find("DeathBox");
+            deathBody.SetActive(false);
+           
+            body = GetComponent<BoxCollider2D>();
         }
-        
+
         private void LateUpdate()
         {
             PlayerDmg();
@@ -62,7 +65,7 @@ namespace Knight
         {
             if (curHp <= 0 && !playerDeath)
             {
-               
+
                 //fill.SetActive(false);
                 lives--;
                 //curHp = maxHp;
@@ -72,12 +75,16 @@ namespace Knight
                 player.keyActive = false;
 
                 sliderFill.SetActive(false);
+
+                body.isTrigger = true;
+
+                deathBody.SetActive(true);
             }
         }
-        
+
         private void OnTriggerEnter2D(Collider2D col)
         {
-            if(col.CompareTag("Damage") && GetComponentsInChildren<BoxCollider2D>(false).Length == 1)
+            if (col.CompareTag("Damage") && GetComponentsInChildren<BoxCollider2D>(false).Length == 1)
             {
                 curHp -= dmg;
             }
@@ -86,6 +93,6 @@ namespace Knight
                 curHp = 0;
             }
         }
-        
+
     }
 }

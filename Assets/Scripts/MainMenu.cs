@@ -22,6 +22,7 @@ public class MainMenu : MonoBehaviour
     public Dropdown newYears;
 
     public int focus;
+    
     private void Start()
     {
         //PlayerPrefs.DeleteAll();
@@ -43,6 +44,7 @@ public class MainMenu : MonoBehaviour
     public void Play()
     {
         SceneManager.LoadScene(1);
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
@@ -184,4 +186,7 @@ public class MainMenu : MonoBehaviour
         }
         else screen.localPosition = moveToWorld;
     }
+
+
+   
 }

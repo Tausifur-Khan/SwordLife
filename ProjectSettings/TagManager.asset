@@ -12,6 +12,7 @@ TagManager:
   - RangeZone
   - Platform
   - Damage
+  - DeathBox
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - Player
   - Bullet
   - PlayerAttack
-  - 
+  - DeathBox
   - 
   - 
   - 

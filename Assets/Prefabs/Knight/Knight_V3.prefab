@@ -1,5 +1,62 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &995821424
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 995821425}
+  - component: {fileID: 995821426}
+  m_Layer: 0
+  m_Name: DeathBox
+  m_TagString: DeathBox
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &995821425
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995821424}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7437230392583432773}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &995821426
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995821424}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.037222505, y: -0.78787625}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.925555, y: 0.21832728}
+  m_EdgeRadius: 0
 --- !u!1 &7437230391385408389
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,6 +337,7 @@ Transform:
   - {fileID: 7437230392164123285}
   - {fileID: 7437230391819617022}
   - {fileID: 7432750941962020586}
+  - {fileID: 995821425}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -476,6 +534,8 @@ MonoBehaviour:
   hpSlider: {fileID: 0}
   liveTxtUI: {fileID: 0}
   sliderFill: {fileID: 0}
+  deathBody: {fileID: 0}
+  body: {fileID: 0}
 --- !u!95 &7437230392583432796
 Animator:
   serializedVersion: 3
@@ -505,6 +565,11 @@ PrefabInstance:
     - target: {fileID: 1783718092264788, guid: b7080d368c4951e4392c0da4a7ae871b, type: 3}
       propertyPath: m_Name
       value: Particles
+      objectReference: {fileID: 0}
+    - target: {fileID: 198918071010746622, guid: b7080d368c4951e4392c0da4a7ae871b,
+        type: 3}
+      propertyPath: ShapeModule.m_Position.y
+      value: -0.55
       objectReference: {fileID: 0}
     - target: {fileID: 4563225174153870, guid: b7080d368c4951e4392c0da4a7ae871b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -549,11 +614,6 @@ PrefabInstance:
     - target: {fileID: 4563225174153870, guid: b7080d368c4951e4392c0da4a7ae871b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198918071010746622, guid: b7080d368c4951e4392c0da4a7ae871b,
-        type: 3}
-      propertyPath: ShapeModule.m_Position.y
-      value: -0.55
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7080d368c4951e4392c0da4a7ae871b, type: 3}

@@ -48,7 +48,6 @@ MonoBehaviour:
   rangeTime: {fileID: 0}
   playerSurv: {fileID: 0}
   player: {fileID: 0}
-  SceneLoadTime: 2
 --- !u!114 &1613377699
 MonoBehaviour:
   m_ObjectHideFlags: 0
