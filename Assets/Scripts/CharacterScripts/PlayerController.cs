@@ -72,7 +72,8 @@ namespace Knight
         //sprite renderer
         public SpriteRenderer sprite;
         //particle system
-        public ParticleSystem ps;
+        public ParticleSystem jump_ps;
+        public ParticleSystem dash_ps;
 
         //Access Health Script
         private Health playerLife;
@@ -267,6 +268,8 @@ namespace Knight
                     mvSpeed = dashForce;
 
                     isDash = false;
+                    //play the particle effect
+                    dash_ps.Play();
                 }
             }
 
@@ -302,7 +305,7 @@ namespace Knight
                     //set double jump bool condition false
                     doubleJump = false;
                     //play the particle effect
-                    ps.Play();
+                    jump_ps.Play();
                 }
             }
         }
