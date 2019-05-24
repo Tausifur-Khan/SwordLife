@@ -167,6 +167,7 @@ public class FlyingAI : Enemy
         anim.SetInteger("attackState", 0);
         anim.Play("Flying");
         moveSpeed.y = Mathf.Abs(moveSpeed.y);
+        moveSpeed.x *= -Mathf.Sign(player.position.x - transform.position.x);
         type = FlyingType.swooper;
         Invoke("notanymore", 1.5f);
     }

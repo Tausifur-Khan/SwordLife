@@ -152,7 +152,6 @@ MonoBehaviour:
   knockback: 2
   isGrounded: 0
   difficulty: 4
-  dir: 1
   dontLook: 1
   look: 1
   looksign: 1
@@ -162,6 +161,7 @@ MonoBehaviour:
   wanderDelay: 1
   wander: 0
   angery: 0
+  redkoopa: 0
   shoot: 0
   shootMelee: 0
   patrol: 0
@@ -175,6 +175,7 @@ MonoBehaviour:
   jumpHeight: 4
   alwaysJump: 0
   anim: {fileID: 95001093554415154}
+  poof: {fileID: 198918071010746622, guid: 9d4fe1ef9a6ef2c48aa97259495615cc, type: 3}
   bulletPrefab: {fileID: 1871941662953038, guid: 00551665cd8da3840ae623243b3ea9be,
     type: 3}
   shootPoint: {fileID: 4953429218327998}

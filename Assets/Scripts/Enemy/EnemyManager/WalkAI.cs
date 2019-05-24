@@ -45,6 +45,7 @@ public class WalkAI : Enemy
     private Rigidbody2D rigid2D;
     public Animator anim;
     private SpriteRenderer rend;
+    public ParticleSystem poof;
     #endregion
     #region World Components
     [Header("World Components")]
@@ -162,8 +163,9 @@ public class WalkAI : Enemy
         }
         if(HP <= 0)
         {
-            anim.Play("Death");
-            Destroy(gameObject, 0.5f);
+            anim.Play("Death");            
+            Invoke("Death", 0.5f);
+            HP = 999;
         }
         switch (difficulty)
         {
@@ -174,10 +176,13 @@ public class WalkAI : Enemy
                     counter = shotDelay;
                     if (bulletPrefab) //If there is a bullet etc to instantiate
                     {
-                        if (wander) //This will be expanded upon in robot area
+
+                        if (tempDifficulty == Difficulty.Wander) //This will be expanded upon in robot area
                         {
-                            StartCoroutine(AnimationDelay(1.2f)); //delay for animation
-                            counter += 1;
+                            StartCoroutine(AnimationDelay(0.5f)); //delay for animation
+                            counter += 0.5f;
+                            difficulty = tempDifficulty;
+                            dontLook = true;
                         }
                         else
                         {
@@ -252,6 +257,7 @@ public class WalkAI : Enemy
                         if (item.transform == player)
                         {
                             difficulty = Difficulty.None;
+                            tempDifficulty = Difficulty.Wander;
                             dontLook = false;
                             //shoot = true;
                         }
@@ -269,6 +275,11 @@ public class WalkAI : Enemy
             default:
                 break;
         }
+    }
+    public void Death()
+    {
+        Instantiate(poof, transform.position, Quaternion.identity, null);
+        Destroy(gameObject);
     }
     IEnumerator AnimationDelay(float t)
     {
@@ -291,7 +302,7 @@ public class WalkAI : Enemy
         {
             HP--;
 
-            float knock = -Mathf.Sign(collision.transform.position.x - transform.position.x) * knockback;
+            float knock = -Mathf.Sign(player.position.x - transform.position.x) * knockback;
             rigid2D.AddForce(new Vector3(knock, knockback), ForceMode2D.Impulse);
         }
         else
