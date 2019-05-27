@@ -73,7 +73,7 @@ namespace Knight
         public SpriteRenderer sprite;
         //particle system
         public ParticleSystem jump_ps;
-       // public ParticleSystem dash_ps;
+        public ParticleSystem dash_ps;
 
         //Access Health Script
         private Health playerLife;
@@ -331,7 +331,6 @@ namespace Knight
                 {
                     if (hit.collider.CompareTag("Ground") || hit.collider.CompareTag("Platform"))
                     {
-
                         //set groundCheck bool true 
                         groundCheck[i] = true;
 

@@ -441,6 +441,7 @@ MonoBehaviour:
   keyActive: 0
   sprite: {fileID: 0}
   jump_ps: {fileID: 7346755611483298970}
+  dash_ps: {fileID: 0}
   knockbackX: 6
   knockbackY: 3
   knockMaxTime: 0.2
@@ -520,6 +521,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jump
       objectReference: {fileID: 0}
+    - target: {fileID: 198918071010746622, guid: b7080d368c4951e4392c0da4a7ae871b,
+        type: 3}
+      propertyPath: ShapeModule.m_Position.y
+      value: -0.55
+      objectReference: {fileID: 0}
     - target: {fileID: 4563225174153870, guid: b7080d368c4951e4392c0da4a7ae871b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -563,11 +569,6 @@ PrefabInstance:
     - target: {fileID: 4563225174153870, guid: b7080d368c4951e4392c0da4a7ae871b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198918071010746622, guid: b7080d368c4951e4392c0da4a7ae871b,
-        type: 3}
-      propertyPath: ShapeModule.m_Position.y
-      value: -0.55
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7080d368c4951e4392c0da4a7ae871b, type: 3}

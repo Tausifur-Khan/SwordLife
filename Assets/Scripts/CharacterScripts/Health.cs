@@ -14,20 +14,19 @@ namespace Knight
         public int curHp;
         public int maxHp;
 
-        //player lives
-        public int lives;
-        public bool useLifestone;
         public bool playerDeath;
         #endregion
         [Space(3)]
 
         [Header("Components")]
-        public Image[] hearts;
-        public Sprite fullHp;
-        public Sprite emptyHp;
+        [SerializeField]
+        private Image[] hearts;
+        [SerializeField]
+        private Sprite fullHp;
+        [SerializeField]
+        private Sprite emptyHp;
 
-        public Text liveTxtUI;
-        
+
         public GameObject deathBody;
         public BoxCollider2D body;
 
@@ -43,41 +42,59 @@ namespace Knight
             body = GetComponent<BoxCollider2D>();
 
             curHp = maxHp;
+
+            fullHp = Resources.Load<Sprite>("PlayerHp/Hp");
+            emptyHp = Resources.Load<Sprite>("PlayerHp/EmptyHp");
+
+
+
+
         }
 
         private void Update()
         {
             HpSystem();
+
         }
 
         void HpSystem()
         {
+
             //for loop of all heart sprites
             for (int i = 0; i < hearts.Length; i++)
             {
                 #region health loss
                 //if curent hp is less then heart length then..
                 //heart sprite will be full
-                if (i < curHp) hearts[i].sprite = fullHp;
+                if (i < curHp)
+                    hearts[i].sprite = fullHp;
                 //otherwise empty full heart
-                else hearts[i].sprite = emptyHp;
+                else
+                    hearts[i].sprite = emptyHp;
                 #endregion
 
                 #region Amount of hearts
                 //if heart length is less than max amount then...
                 //allow hearts to be shown
-                if (i < maxHp) hearts[i].enabled = true;
+                if (i < maxHp)
+                    hearts[i].enabled = true;
                 //othwerwise disable any hearts above maximum
-                else hearts[i].enabled = false;
+                else
+                    hearts[i].enabled = false;
+
+
                 #endregion
             }
+
+
+
         }
 
         private void LateUpdate()
         {
             PlayerDmg();
 
-            liveTxtUI.text = lives.ToString();
+
         }
 
         void PlayerDmg()
@@ -93,11 +110,6 @@ namespace Knight
                 body.isTrigger = true;
 
                 deathBody.SetActive(true);
-                if (useLifestone)
-                {
-                    //fill.SetActive(false);
-                    lives--;
-                }
             }
         }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraFocus : MonoBehaviour
 {
     private Camera camLocal;
-    public Transform target;
+    public GameObject target;
     public Vector2 boxSize;
     private Vector2 halfSize = new Vector2();
     public Vector2Rect levelSize;
@@ -15,10 +15,12 @@ public class CameraFocus : MonoBehaviour
     //private Vector2 focusSwitch;
     public bool moveX = true, moveY = true;
     private Vector2 offset;
+    
     void Start()
     {
         camLocal = transform.GetComponentInChildren<Camera>();
         halfSize = camLocal.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height));
+        target = GameObject.FindGameObjectWithTag("PlayerOffSet");
     }
 
     public void cameraFocus(Vector2 focus, float lerpMagnitude = 1)
@@ -49,7 +51,7 @@ public class CameraFocus : MonoBehaviour
         }
         else
         {
-            cameraFocus(target.position, lerp);
+            cameraFocus(target.transform.position, lerp);
         }
     }
 
