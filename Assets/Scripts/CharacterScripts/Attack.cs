@@ -10,19 +10,11 @@ namespace Knight
     {
         //public bool condition for attack
         //set bool conditon false for default
-
-        [Header("Ranged Attack")]
-        public bool canRange;
-        //transform of ranged
-        public GameObject rangeWaypoint;
-        //ranged attack speed
-        public float rangeSpeed;
-        [Space(3)]
-
+        
         [Header("Box Collider Array")]
         public GameObject attackCol;
         public float playerGroundDmg;
-        public float playerRangeDmg;
+ 
 
         //public Keycode
         public KeyCode attack = KeyCode.I;
@@ -33,10 +25,8 @@ namespace Knight
 
         //private variable for CharControl script
         private PlayerController charC;
-        //private variable for sprite
-        public SpriteRenderer rangeSprite;
+       
         
-
         // Start is called before the first frame update
         void Start()
         {
@@ -45,8 +35,6 @@ namespace Knight
             //box colliders enabled false
             //attackCol.GetComponent<BoxCollider2D>().enabled = false;
             attackCol.SetActive(false);
-
-            canRange = true;
 
             //refer to Animator component
             anim = GetComponent<Animator>();
@@ -60,7 +48,7 @@ namespace Knight
         void Update()
         {
             AttackInput();
-            RangedPosition();
+           
         }
 
         //Attack Input Method
@@ -91,15 +79,6 @@ namespace Knight
 
             #endregion
 
-            //Ranged Attack
-            #region Ranged Attack
-            if (canRange && Input.GetKeyDown(KeyCode.O))
-            {
-                canRange = false;
-                anim.SetTrigger("isRangedAttack");
-
-            }
-            #endregion
         }
 
         //Attack Animation Event
@@ -156,33 +135,6 @@ namespace Knight
             }
 
         }
-
-        void RangedEvent()
-        {
-            SpriteRenderer clone = Instantiate(rangeSprite, rangeWaypoint.transform.position, Quaternion.identity);
-            clone.flipX = GetComponent<SpriteRenderer>().flipX;
-
-            if (clone.flipX)
-            {
-                clone.GetComponent<RanAttackMove>().rSpeed *= -1f;
-            }
-
-
-        }
-
-        void RangedPosition()
-        {
-            if (charC.sprite.flipX == false)
-            {
-                rangeWaypoint.transform.localPosition = new Vector2(1.2f, 0);
-            }
-            else if (charC.sprite.flipX == true)
-            {
-                rangeWaypoint.transform.localPosition = new Vector2(-1.2f, 0);
-            }
-        }
-
-
         //Disable attack collider in animation event
         void DisableCollder()
         {
