@@ -43,6 +43,15 @@ namespace Knight
               
                 curHp -= playerAttack.playerGroundDmg;
             }
+
+            else if (col.gameObject.CompareTag("RangeZone"))
+            {
+                enemySlider.SetActive(true);
+                ChangeColor();
+                
+                curHp -= playerAttack.playerRangeDmg;
+             
+            }
         }
 
         void ChangeColor()
