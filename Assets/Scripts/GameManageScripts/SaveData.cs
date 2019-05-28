@@ -47,7 +47,7 @@ public class SaveData : MonoBehaviour
 
     void SaveDataType()
     {
-        data.lives = playerLives.lives;
+       // data.lives = playerLives.lives;
     }
 
 
