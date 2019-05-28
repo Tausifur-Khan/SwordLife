@@ -15,20 +15,10 @@ public class CameraFocus : MonoBehaviour
     //private Vector2 focusSwitch;
     public bool moveX = true, moveY = true;
     private Vector2 offset;
-<<<<<<< HEAD
-    private Slide slide;
-    
-=======
->>>>>>> parent of 26a3cf7... UI
     void Start()
     {
         camLocal = transform.GetComponentInChildren<Camera>();
         halfSize = camLocal.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height));
-<<<<<<< HEAD
-        target = GameObject.FindGameObjectWithTag("PlayerOffSet");
-        slide = target.GetComponent<Slide>();
-=======
->>>>>>> parent of 26a3cf7... UI
     }
 
     public void cameraFocus(Vector2 focus, float lerpMagnitude = 1)
@@ -38,7 +28,6 @@ public class CameraFocus : MonoBehaviour
         offset = focus - camPos;
         if (offset.x != Mathf.Clamp(offset.x, -boxSize.x, boxSize.x) && moveX)
         {
-            slide.UpdateTurn();
             camPos.x = focus.x - (boxSize.x * Sign(offset.x));
         }
         if (offset.y != Mathf.Clamp(offset.y, -boxSize.y, boxSize.y) && moveY)

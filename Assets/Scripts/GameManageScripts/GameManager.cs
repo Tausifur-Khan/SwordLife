@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour
     public Text RangeTimeTxt;
 
     // public Knight.CharacterController charC;
- 
+    [SerializeField]
+    Knight.RangeTimer rangeTime;
     [SerializeField]
     Knight.Health playerSurv;
     [SerializeField]
@@ -31,4 +32,28 @@ public class GameManager : MonoBehaviour
         //Refernce health script
         playerSurv = (Knight.Health)player.GetComponent(typeof(Knight.Health));
     }
+
+
+    private void LateUpdate()
+    {
+        UITimers();
+       
+
+    }
+
+    void UITimers()
+    {
+        //dashTimeTxt.text = charC.dashDelay.ToString("0");
+        RangeTimeTxt.text = rangeTime.timer.ToString("Range Time: 0");
+    }
+
+    //void ResetOnDeath()
+    //{
+    //    Scene curScene = SceneManager.GetActiveScene();
+    //    SceneManager.LoadScene(curScene.name);
+    //}
+
+
+
+
 }
