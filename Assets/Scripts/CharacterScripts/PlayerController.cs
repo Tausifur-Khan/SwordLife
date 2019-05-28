@@ -332,6 +332,7 @@ namespace Knight
                 {
                     if (hit.collider.CompareTag("Ground") || hit.collider.CompareTag("Platform"))
                     {
+
                         //set groundCheck bool true 
                         groundCheck[i] = true;
 

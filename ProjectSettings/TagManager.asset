@@ -13,7 +13,6 @@ TagManager:
   - Platform
   - Damage
   - DeathBox
-  - PlayerOffSet
   layers:
   - Default
   - TransparentFX

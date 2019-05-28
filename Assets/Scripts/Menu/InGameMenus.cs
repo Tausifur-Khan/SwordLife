@@ -12,27 +12,23 @@ public class InGameMenus : MonoBehaviour
     public bool tooglePause;
     public GameObject pause;
     public GameObject death;
-
     public Knight.Health playerLife;
     #endregion
     // Start is called before the first frame update
     void Start()
     {
         playerLife = Object.FindObjectOfType<Knight.Health>();
-        
     }
 
     // Update is called once per frame
     void Update()
     {
         Pause();
-
     }
 
     private void LateUpdate()
     {
         MenuOnDeath();
-
     }
 
     #region Pause & Death
@@ -54,7 +50,7 @@ public class InGameMenus : MonoBehaviour
 
     public void UseLife(int curScene)
     {
-        // playerLife.useLifestone = true;
+        playerLife.useLifestone = true;
         SceneManager.LoadScene(curScene);
 
     }
@@ -67,7 +63,7 @@ public class InGameMenus : MonoBehaviour
     public void MenuOnDeath()
     {
         Knight.Health player = FindObjectOfType<Knight.Health>();
-        if (player.playerDeath == true)
+        if(player.playerDeath == true)
         {
             death.SetActive(true);
         }
