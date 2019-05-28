@@ -25,11 +25,13 @@ namespace Knight
         private Sprite fullHp;
         [SerializeField]
         private Sprite emptyHp;
-        
+
+
         public GameObject deathBody;
         public BoxCollider2D body;
 
-       
+
+
         // private Animator deathAnim;
 
         private void Start()
@@ -43,8 +45,9 @@ namespace Knight
 
             fullHp = Resources.Load<Sprite>("PlayerHp/Hp");
             emptyHp = Resources.Load<Sprite>("PlayerHp/EmptyHp");
-            
-            
+
+
+
 
         }
 
@@ -56,8 +59,6 @@ namespace Knight
 
         void HpSystem()
         {
-
-
 
             //for loop of all heart sprites
             for (int i = 0; i < hearts.Length; i++)
@@ -76,10 +77,7 @@ namespace Knight
                 //if heart length is less than max amount then...
                 //allow hearts to be shown
                 if (i < maxHp)
-                {
                     hearts[i].enabled = true;
-                    
-                }
                 //othwerwise disable any hearts above maximum
                 else
                     hearts[i].enabled = false;
@@ -87,6 +85,9 @@ namespace Knight
 
                 #endregion
             }
+
+
+
         }
 
         private void LateUpdate()
