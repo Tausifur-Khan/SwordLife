@@ -3595,35 +3595,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7437230392583432798, guid: ff0827e7df8e34c4db0e0091115d641b,
         type: 3}
-      propertyPath: hearts.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7437230392583432798, guid: ff0827e7df8e34c4db0e0091115d641b,
-        type: 3}
-      propertyPath: liveTxtUI
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7437230392583432798, guid: ff0827e7df8e34c4db0e0091115d641b,
-        type: 3}
       propertyPath: hearts.Array.data[0]
       value: 
       objectReference: {fileID: 24168195}
-    - target: {fileID: 7437230392583432798, guid: ff0827e7df8e34c4db0e0091115d641b,
-        type: 3}
-      propertyPath: maxHp
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7437230392583432798, guid: ff0827e7df8e34c4db0e0091115d641b,
-        type: 3}
-      propertyPath: emptyHp
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7437230392583432798, guid: ff0827e7df8e34c4db0e0091115d641b,
-        type: 3}
-      propertyPath: hpParent
-      value: 
-      objectReference: {fileID: 8137432614780648556, guid: 0b7d340a33725024daa612a4baa50e77,
-        type: 3}
     - target: {fileID: 7437230392583432798, guid: ff0827e7df8e34c4db0e0091115d641b,
         type: 3}
       propertyPath: hearts.Array.data[1]
@@ -3644,11 +3618,6 @@ PrefabInstance:
       propertyPath: hearts.Array.data[4]
       value: 
       objectReference: {fileID: 1195090628}
-    - target: {fileID: 7437230391819617017, guid: ff0827e7df8e34c4db0e0091115d641b,
-        type: 3}
-      propertyPath: m_TagString
-      value: PlayerOffSet
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff0827e7df8e34c4db0e0091115d641b, type: 3}
 --- !u!1 &1325303221
@@ -9626,11 +9595,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
-    - target: {fileID: 3710521346845482217, guid: 69aa752f41418924386b3d4cb78f2827,
-        type: 3}
-      propertyPath: near clip plane
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3710521346385201595, guid: 69aa752f41418924386b3d4cb78f2827,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9685,16 +9649,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3710521346385201592, guid: 69aa752f41418924386b3d4cb78f2827,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3710521346845482260, guid: 69aa752f41418924386b3d4cb78f2827,
-        type: 3}
-      propertyPath: m_Name
-      value: Camera
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69aa752f41418924386b3d4cb78f2827, type: 3}

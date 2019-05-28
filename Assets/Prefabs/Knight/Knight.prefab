@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 7437230391819617022}
   m_Layer: 11
   m_Name: 'PlayerOffset '
-  m_TagString: Untagged
+  m_TagString: PlayerOffSet
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -477,8 +477,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curHp: 0
   maxHp: 5
-  lives: 3
-  useLifestone: 0
   playerDeath: 0
   hearts:
   - {fileID: 0}
@@ -487,8 +485,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   fullHp: {fileID: 21300000, guid: c958645662979ce46bd0925278fa8fc5, type: 3}
-  emptyHp: {fileID: 21300000, guid: acdbba4ac98e116439e8bc8ae025424b, type: 3}
-  liveTxtUI: {fileID: 0}
+  emptyHp: {fileID: 0}
   deathBody: {fileID: 0}
   body: {fileID: 0}
 --- !u!95 &7437230392583432796
