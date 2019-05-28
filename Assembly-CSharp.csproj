@@ -61,32 +61,32 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Parallax.cs" />
-    <Compile Include="Assets\Parent.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraFocus.cs" />
+    <Compile Include="Assets\Scripts\Camera\Parallax.cs" />
     <Compile Include="Assets\Scripts\Camera\ScreenShake.cs" />
+    <Compile Include="Assets\Scripts\Camera\simpleMove.cs" />
+    <Compile Include="Assets\Scripts\Camera\Slide.cs" />
     <Compile Include="Assets\Scripts\CharacterScripts\Attack.cs" />
     <Compile Include="Assets\Scripts\CharacterScripts\Health.cs" />
     <Compile Include="Assets\Scripts\CharacterScripts\PlatThrough.cs" />
     <Compile Include="Assets\Scripts\CharacterScripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\ColourChange\Change.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyManager\Enemy.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyManager\FlyingAI.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyManager\WalkAI.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Parent.cs" />
     <Compile Include="Assets\Scripts\GameManageScripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\GameManageScripts\LevelManager.cs" />
     <Compile Include="Assets\Scripts\GameManageScripts\SaveData.cs" />
-    <Compile Include="Assets\Scripts\InGameMenus.cs" />
-    <Compile Include="Assets\Scripts\Kill with nothing.cs" />
-    <Compile Include="Assets\Scripts\MainMenu.cs" />
-    <Compile Include="Assets\Scripts\RangedAttack\KillOnExit.cs" />
-    <Compile Include="Assets\Scripts\RangedAttack\RanAttackMove.cs" />
-    <Compile Include="Assets\Scripts\SetOptions.cs" />
-    <Compile Include="Assets\Scripts\simpleMove.cs" />
-    <Compile Include="Assets\Scripts\TestScript\RayCastTest.cs" />
+    <Compile Include="Assets\Scripts\Menu\InGameMenus.cs" />
+    <Compile Include="Assets\Scripts\Menu\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\Menu\SetOptions.cs" />
+    <Compile Include="Assets\Scripts\Misc\ColourChange\Change.cs" />
+    <Compile Include="Assets\Scripts\Misc\Kill with nothing.cs" />
+    <Compile Include="Assets\Scripts\Misc\RangedAttack\KillOnExit.cs" />
+    <Compile Include="Assets\Scripts\Misc\RangedAttack\RanAttackMove.cs" />
+    <Compile Include="Assets\Scripts\Misc\suprise.cs" />
+    <Compile Include="Assets\Scripts\Misc\TestScript\RayCastTest.cs" />
     <Compile Include="Assets\Scripts\Tools\Vector2Rect.cs" />
-    <Compile Include="Assets\Slide.cs" />
-    <Compile Include="Assets\suprise.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Incubator/Documents/GitHub/SwordLife/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
