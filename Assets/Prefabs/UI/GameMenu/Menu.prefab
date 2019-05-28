@@ -78,7 +78,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Retry
+  m_Text: Use Life
 --- !u!1 &5928590755329106157
 GameObject:
   m_ObjectHideFlags: 0
@@ -1101,4 +1101,3 @@ MonoBehaviour:
   tooglePause: 0
   pause: {fileID: 5928590756932450682}
   death: {fileID: 5928590756262590099}
-  playerLife: {fileID: 0}
