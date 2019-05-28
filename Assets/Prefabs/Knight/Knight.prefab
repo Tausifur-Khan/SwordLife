@@ -130,8 +130,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6007b1292622a646aa63c0ea84d76c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   offset: 2
   speed: 4
 --- !u!1 &7437230392005414983
@@ -429,8 +429,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0382f57a8f529764a89d9a76e9056106, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   mvSpeed: 2.5
   maxSpeed: 3.5
   jumpForce: 9
@@ -472,8 +472,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1a2d5323ab6c384fbef221de2a5253c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   attackCol: {fileID: 7437230392005414983}
   playerGroundDmg: 20
   attack: 105
@@ -488,8 +488,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2a8ffa6a02466e46933a4449e0e2a19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   curHp: 0
   maxHp: 5
   playerDeath: 0
@@ -500,7 +500,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   fullHp: {fileID: 21300000, guid: c958645662979ce46bd0925278fa8fc5, type: 3}
-  emptyHp: {fileID: 21300000, guid: acdbba4ac98e116439e8bc8ae025424b, type: 3}
+  emptyHp: {fileID: 0}
   deathBody: {fileID: 0}
   body: {fileID: 0}
 --- !u!95 &7437230392583432796
@@ -518,7 +518,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: 
+  m_WarningMessage:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
