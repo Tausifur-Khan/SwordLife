@@ -42903,11 +42903,14 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: Retry
+<<<<<<< HEAD
       objectReference: {fileID: 0}
     - target: {fileID: 5928590755276682311, guid: 24015484362b22040b69c904e35f8b7c,
         type: 3}
       propertyPath: m_Text
       value: Retry
+=======
+>>>>>>> parent of 803a931... Hp fix
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24015484362b22040b69c904e35f8b7c, type: 3}
@@ -45099,6 +45102,7 @@ Transform:
   m_PrefabInstance: {fileID: 1166467184}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1174028188
 GameObject:
   m_ObjectHideFlags: 0
@@ -45218,6 +45222,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1174028188}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+=======
+>>>>>>> parent of 803a931... Hp fix
 =======
 >>>>>>> parent of 803a931... Hp fix
 --- !u!1 &1218597699
@@ -47069,6 +47075,7 @@ Transform:
   m_PrefabInstance: {fileID: 1647359905}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1660687258
 GameObject:
   m_ObjectHideFlags: 0
@@ -47169,6 +47176,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> parent of 803a931... Hp fix
 =======
 >>>>>>> parent of 803a931... Hp fix
 --- !u!1001 &1702739370
