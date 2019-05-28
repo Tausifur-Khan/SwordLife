@@ -53,7 +53,7 @@ namespace Knight
 
         private void Update()
         {
-            HpSystem();
+            //HpSystem();
 
         }
 
