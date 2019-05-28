@@ -42208,7 +42208,10 @@ Transform:
   m_PrefabInstance: {fileID: 610726444}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of a65cf0e... Health UI
 --- !u!114 &630672834 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4054227372286423108, guid: 5d29c672fdbcb9f44a363369858ca34a,
@@ -42221,6 +42224,9 @@ MonoBehaviour:
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+>>>>>>> parent of a65cf0e... Health UI
+=======
 >>>>>>> parent of a65cf0e... Health UI
 --- !u!1001 &633416684
 PrefabInstance:
@@ -42230,8 +42236,11 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
 <<<<<<< HEAD
+<<<<<<< HEAD
     - target: {fileID: 7437230392583432775, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
 =======
+=======
+>>>>>>> parent of a65cf0e... Health UI
     - target: {fileID: 7437230392583432773, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
         type: 3}
       propertyPath: m_RootOrder
@@ -42268,11 +42277,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 462439056}
     - target: {fileID: 1744176065511315195, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
+<<<<<<< HEAD
+>>>>>>> parent of a65cf0e... Health UI
+=======
 >>>>>>> parent of a65cf0e... Health UI
         type: 3}
       propertyPath: m_Name
       value: Knight
       objectReference: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
     - target: {fileID: 7437230392583432773, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
         type: 3}
@@ -42291,6 +42304,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7437230392583432773, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
 =======
+=======
+>>>>>>> parent of a65cf0e... Health UI
     - target: {fileID: 1744176065511315195, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
         type: 3}
       propertyPath: m_IsActive
@@ -42312,13 +42327,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1744176065511315172, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
+<<<<<<< HEAD
+>>>>>>> parent of a65cf0e... Health UI
+=======
 >>>>>>> parent of a65cf0e... Health UI
         type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
     - target: {fileID: 7437230392583432773, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
+=======
+    - target: {fileID: 1744176065511315172, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
+>>>>>>> parent of a65cf0e... Health UI
 =======
     - target: {fileID: 1744176065511315172, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
 >>>>>>> parent of a65cf0e... Health UI
@@ -42327,7 +42349,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
     - target: {fileID: 7437230392583432773, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
+=======
+    - target: {fileID: 1744176065511315172, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
+>>>>>>> parent of a65cf0e... Health UI
 =======
     - target: {fileID: 1744176065511315172, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
 >>>>>>> parent of a65cf0e... Health UI
@@ -42336,7 +42362,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
     - target: {fileID: 7437230392583432773, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
+=======
+    - target: {fileID: 1744176065511315172, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
+>>>>>>> parent of a65cf0e... Health UI
 =======
     - target: {fileID: 1744176065511315172, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
 >>>>>>> parent of a65cf0e... Health UI
@@ -42345,6 +42375,7 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
     - target: {fileID: 7437230392583432773, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
         type: 3}
       propertyPath: m_RootOrder
@@ -42352,19 +42383,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7437230392583432773, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
 =======
+=======
+>>>>>>> parent of a65cf0e... Health UI
     - target: {fileID: 1744176065511315172, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
         type: 3}
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1744176065511315172, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
+<<<<<<< HEAD
+>>>>>>> parent of a65cf0e... Health UI
+=======
 >>>>>>> parent of a65cf0e... Health UI
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
     - target: {fileID: 7437230392583432773, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
+=======
+    - target: {fileID: 1744176065511315172, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
+>>>>>>> parent of a65cf0e... Health UI
 =======
     - target: {fileID: 1744176065511315172, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
 >>>>>>> parent of a65cf0e... Health UI
@@ -42373,7 +42413,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
     - target: {fileID: 7437230392583432773, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
+=======
+    - target: {fileID: 1744176065511315172, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
+>>>>>>> parent of a65cf0e... Health UI
 =======
     - target: {fileID: 1744176065511315172, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
 >>>>>>> parent of a65cf0e... Health UI
@@ -42381,6 +42425,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
     - target: {fileID: 7437230392583432795, guid: 85b6e62558fd9cc42b0dc26bf460b90f,
         type: 3}
@@ -42399,6 +42444,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
 =======
+=======
+>>>>>>> parent of a65cf0e... Health UI
     - target: {fileID: 964126348, guid: 85b6e62558fd9cc42b0dc26bf460b90f, type: 3}
       propertyPath: hpSlider
       value: 
@@ -42410,6 +42457,9 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1744176065511315171, guid: 85b6e62558fd9cc42b0dc26bf460b90f, type: 3}
     - {fileID: 7437230392583432799, guid: 85b6e62558fd9cc42b0dc26bf460b90f, type: 3}
+<<<<<<< HEAD
+>>>>>>> parent of a65cf0e... Health UI
+=======
 >>>>>>> parent of a65cf0e... Health UI
   m_SourcePrefab: {fileID: 100100000, guid: 85b6e62558fd9cc42b0dc26bf460b90f, type: 3}
 --- !u!1 &640192591
@@ -42609,6 +42659,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
     - target: {fileID: 5928590756262590099, guid: 24015484362b22040b69c904e35f8b7c,
         type: 3}
       propertyPath: m_IsActive
@@ -42630,6 +42681,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
 =======
 >>>>>>> parent of afb3c49... Merge branch 'master' of https://github.com/TausK/SwordLife
+=======
+>>>>>>> parent of a65cf0e... Health UI
 =======
 >>>>>>> parent of a65cf0e... Health UI
     m_RemovedComponents: []
