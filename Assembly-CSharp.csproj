@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\Parallax.cs" />
     <Compile Include="Assets\Parent.cs" />
+    <Compile Include="Assets\Scripts\BossAI.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraFocus.cs" />
     <Compile Include="Assets\Scripts\Camera\ScreenShake.cs" />
     <Compile Include="Assets\Scripts\CharacterScripts\Attack.cs" />
