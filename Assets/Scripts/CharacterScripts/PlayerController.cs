@@ -299,7 +299,7 @@ namespace Knight
                 else if (Input.GetKeyDown(jump) && (groundCheck[0] == false && groundCheck[1] == false) && doubleJump)
                 {
                     //Apply velocity up
-                    rb2d.velocity = new Vector2(rb2d.velocity.x, dJumpForce + Mathf.Clamp(rb2d.velocity.y, -1, 1));
+                    rb2d.velocity = new Vector2(rb2d.velocity.x, dJumpForce);
                     //rb2d.velocity = Mathf.Clamp(rb2d.velocity.x, -1, 999) * Vector3.up;
                     //rb2d.AddForce(new Vector2(rb2d.velocity.x, dJumpForce), ForceMode2D.Impulse);
                     //set double jump bool condition false
