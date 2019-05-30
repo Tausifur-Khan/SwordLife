@@ -61,6 +61,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\loadingBar\scripts\Load.cs" />
+    <Compile Include="Assets\loadingBar\scripts\loadingbar.cs" />
+    <Compile Include="Assets\loadingBar\scripts\loadingcolorful.cs" />
+    <Compile Include="Assets\loadingBar\scripts\loadingtext.cs" />
+    <Compile Include="Assets\loadingBar\scripts\rotatetotate.cs" />
+    <Compile Include="Assets\loadingBar\scripts\SimpleLoading.cs" />
+    <Compile Include="Assets\loadingBar\scripts\simplerotate.cs" />
     <Compile Include="Assets\Parallax.cs" />
     <Compile Include="Assets\Parent.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraFocus.cs" />
@@ -76,15 +83,16 @@
     <Compile Include="Assets\Scripts\GameManageScripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\GameManageScripts\LevelManager.cs" />
     <Compile Include="Assets\Scripts\GameManageScripts\SaveData.cs" />
-    <Compile Include="Assets\Scripts\InGameMenus.cs" />
     <Compile Include="Assets\Scripts\Kill with nothing.cs" />
-    <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\RangedAttack\KillOnExit.cs" />
     <Compile Include="Assets\Scripts\RangedAttack\RanAttackMove.cs" />
     <Compile Include="Assets\Scripts\SetOptions.cs" />
     <Compile Include="Assets\Scripts\simpleMove.cs" />
     <Compile Include="Assets\Scripts\TestScript\RayCastTest.cs" />
     <Compile Include="Assets\Scripts\Tools\Vector2Rect.cs" />
+    <Compile Include="Assets\Scripts\UI\InGameMenus.cs" />
+    <Compile Include="Assets\Scripts\UI\Loading.cs" />
+    <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
     <Compile Include="Assets\suprise.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Tausifur Khan/Desktop/UnityProjects/GitHub/SwordLife/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
