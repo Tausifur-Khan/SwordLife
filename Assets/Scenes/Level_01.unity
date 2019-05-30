@@ -47524,11 +47524,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LoadingScreen
       objectReference: {fileID: 0}
-    - target: {fileID: 6157481905153732431, guid: c6ae3122b3be80e4bab91f29b3596382,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6157481905153732419, guid: c6ae3122b3be80e4bab91f29b3596382,
         type: 3}
       propertyPath: m_LocalPosition.x
