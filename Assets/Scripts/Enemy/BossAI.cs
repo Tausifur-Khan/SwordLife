@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class BossAI : Enemy
 {
+    public Animator anim;
+    public Rocks rockSpawn;
     public bool isAttacking;
     public int attackMode;
     private float attackCounter;
     public float attackTimer = 1;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -22,13 +19,19 @@ public class BossAI : Enemy
             switch (attackMode)
             {
                 case 0:
-                    attackCounter = 1.2f;
+                    anim.Play("BossAttack");
+                    attackCounter = 2f;
                     break;
                 case 1:
+                    anim.Play("BossAttack2");
+                    rockSpawn.Invoke("Spawn", 0.9f);
+                    attackCounter = 1f;
                     break;
                 case 2:
                     break;
             }
+            attackMode++;
+            if (attackMode > 1) attackMode = 0;
             attackCounter += attackTimer;
         }
         attackCounter -= Time.deltaTime;
