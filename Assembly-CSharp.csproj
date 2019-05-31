@@ -61,13 +61,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\loadingBar\scripts\Load.cs" />
-    <Compile Include="Assets\loadingBar\scripts\loadingbar.cs" />
-    <Compile Include="Assets\loadingBar\scripts\loadingcolorful.cs" />
-    <Compile Include="Assets\loadingBar\scripts\loadingtext.cs" />
-    <Compile Include="Assets\loadingBar\scripts\rotatetotate.cs" />
-    <Compile Include="Assets\loadingBar\scripts\SimpleLoading.cs" />
-    <Compile Include="Assets\loadingBar\scripts\simplerotate.cs" />
     <Compile Include="Assets\Parallax.cs" />
     <Compile Include="Assets\Parent.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraFocus.cs" />
