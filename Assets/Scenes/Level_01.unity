@@ -124,6 +124,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 3710521346845482217, guid: 69aa752f41418924386b3d4cb78f2827,
+        type: 3}
+      propertyPath: m_HDR
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3710521346845482217, guid: 69aa752f41418924386b3d4cb78f2827,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3710521346845482217, guid: 69aa752f41418924386b3d4cb78f2827,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.height
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3710521346385201595, guid: 69aa752f41418924386b3d4cb78f2827,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -183,21 +198,6 @@ PrefabInstance:
         type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3710521346845482217, guid: 69aa752f41418924386b3d4cb78f2827,
-        type: 3}
-      propertyPath: m_HDR
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3710521346845482217, guid: 69aa752f41418924386b3d4cb78f2827,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.width
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3710521346845482217, guid: 69aa752f41418924386b3d4cb78f2827,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.height
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69aa752f41418924386b3d4cb78f2827, type: 3}
@@ -43603,7 +43603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingUI: {fileID: 1877223676}
-  loadingBar: {fileID: 1877223677}
+  loadingBar: {fileID: 0}
   loadSpeed: 0.3
   scene: 3
 --- !u!1001 &838484960
@@ -47524,6 +47524,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LoadingScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 6157481905153732431, guid: c6ae3122b3be80e4bab91f29b3596382,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6157481905153732419, guid: c6ae3122b3be80e4bab91f29b3596382,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -47637,18 +47642,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1877223675}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1877223677 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6157481904909362221, guid: c6ae3122b3be80e4bab91f29b3596382,
-    type: 3}
-  m_PrefabInstance: {fileID: 1877223675}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1879844010
 PrefabInstance:
   m_ObjectHideFlags: 0

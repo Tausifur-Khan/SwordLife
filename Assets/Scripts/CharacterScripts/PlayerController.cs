@@ -145,6 +145,7 @@ namespace Knight
         //Update every frame
         void Update()
         {
+            Debug.Log("Falling" + rb2d.velocity.y);
             //Jump Method
             Jump();
             //Ground Method
@@ -152,7 +153,7 @@ namespace Knight
 
             //Dash Move Method
             Dash();
-           
+
         }
 
         //Update Physics based movement
@@ -161,7 +162,7 @@ namespace Knight
             //Movement Method
             Move();
 
-            
+
             //physical movement of knock
             PlayerKnockBackTime();
         }
@@ -194,7 +195,7 @@ namespace Knight
 
             #region Jump
             // if jumping and ground check is false then.....
-            if (rb2d.velocity.y > 0 || rb2d.velocity.y < 0 &&
+            if (rb2d.velocity.y > 0 /*|| rb2d.velocity.y < 0*/ &&
                 ((groundCheck[0] == false && groundCheck[1] == false)))
             {
                 //jump animation true
@@ -202,9 +203,20 @@ namespace Knight
                 //move animation false while in air
                 anim.SetBool("isMoving", false);
             }
+            else if (rb2d.velocity.y < 0 &&
+                ((groundCheck[0] == false && groundCheck[1] == false)))
+            {
+                anim.SetInteger("Falling", 1);
+            }
+
             else
+            {
                 //otherwise set jump animation false
                 anim.SetBool("isJumping", false);
+               
+            }
+
+
             #endregion
 
             #region Death
@@ -263,13 +275,14 @@ namespace Knight
                 if (Input.GetKeyDown(dash) && Input.GetKey(left) ||
                     Input.GetKeyDown(dash) && Input.GetKey(right))
                 {
+                    dash_ps.Play();
                     //allow force for dash in right dir
                     //Change player speed temp
                     mvSpeed = dashForce;
 
                     isDash = false;
                     //play the particle effect
-                    //dash_ps.Play();
+                    
                 }
             }
 
