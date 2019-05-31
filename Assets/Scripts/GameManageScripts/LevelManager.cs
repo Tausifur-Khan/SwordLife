@@ -3,18 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class LevelManager : MonoBehaviour
 {
+    public UI.Loading load;
+
    
-    public int sceneNo;
-    public GameObject player;
+
+    private void Start()
+    {
+        load = GetComponent<UI.Loading>();
+    }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene(sceneNo);
-            DontDestroyOnLoad(player);
+            load.StartLoad();
+            
+            //DontDestroyOnLoad(player);
         } 
         
     }
