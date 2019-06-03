@@ -1145,11 +1145,7 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 159657665}
     m_ColliderPaths:
-    - - X: 173050016
-        Y: -13549999
-      - X: 784849984
-        Y: -13549999
-      - X: 784849984
+    - - X: 784849984
         Y: 50000
       - X: 186350016
         Y: 50000
@@ -1209,6 +1205,10 @@ CompositeCollider2D:
         Y: -27050000
       - X: 173050016
         Y: -27050000
+      - X: 173050016
+        Y: -13549999
+      - X: 784849984
+        Y: -13549999
   m_CompositePaths:
     m_Paths:
     - - {x: 11.985001, y: -1.3549999}
@@ -2712,6 +2712,16 @@ PrefabInstance:
     - target: {fileID: 4320241550019280909, guid: be10455932b438d489322e7339743ccf,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4320241550019280909, guid: be10455932b438d489322e7339743ccf,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.9278495
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129106811181696377, guid: be10455932b438d489322e7339743ccf,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
