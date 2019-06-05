@@ -10,9 +10,9 @@ namespace UI
     public class Loading : MonoBehaviour
     {
         public GameObject loadingUI;
-        public Image loadingBar;
-        public float loadSpeed = 0.0f;
+       
         AsyncOperation async;
+
         public int scene;
 
 
@@ -39,12 +39,12 @@ namespace UI
             //loop bool colndition if sync is still false
             while (async.isDone == false)
             {
-                loadingBar.fillAmount += Time.deltaTime * loadSpeed;
+               
                 //if async progress has reach 0.9 then....
-                if (async.progress == 0.9f && loadingBar.fillAmount == 1)
+                if (async.progress == 0.9f )
                 {
-                    //set loading image to 1
-                    //loadingBar.fillAmount = 1;
+                    yield return new WaitForSeconds(5f);
+                   
                     //activate scene
                     async.allowSceneActivation = true;
                 }

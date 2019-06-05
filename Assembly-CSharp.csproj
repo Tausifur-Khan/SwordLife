@@ -85,6 +85,7 @@
     <Compile Include="Assets\Scripts\simpleMove.cs" />
     <Compile Include="Assets\Scripts\TestScript\RayCastTest.cs" />
     <Compile Include="Assets\Scripts\Tools\Vector2Rect.cs" />
+    <Compile Include="Assets\Scripts\UI\FadeOut.cs" />
     <Compile Include="Assets\Scripts\UI\InGameMenus.cs" />
     <Compile Include="Assets\Scripts\UI\Loading.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
