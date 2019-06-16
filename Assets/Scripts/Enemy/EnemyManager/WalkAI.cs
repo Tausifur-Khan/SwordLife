@@ -71,6 +71,10 @@ public class WalkAI : Enemy
     // Update is called once per frame
     void Update()
     {
+        if (!player)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+        }
         if (!dontLook) //Always turn to the player
         {
             look = player.transform.position.x - transform.position.x;
@@ -179,14 +183,14 @@ public class WalkAI : Enemy
 
                         if (tempDifficulty == Difficulty.Wander) //This will be expanded upon in robot area
                         {
-                            StartCoroutine(AnimationDelay(0.5f)); //delay for animation
+                            Invoke("AnimationDelay", 0.5f); //delay for animation
                             counter += 0.5f;
                             difficulty = tempDifficulty;
                             dontLook = true;
                         }
                         else
                         {
-                            StartCoroutine(AnimationDelay(0.1f)); //delay for animation
+                            Invoke("AnimationDelay", 0.1f); //delay for animation
                         }
                     }
                     //bullet.transform.localScale = new Vector3(bullet.transform.localScale.x * looksign, 1, 1);
@@ -281,9 +285,8 @@ public class WalkAI : Enemy
         Instantiate(poof, transform.position, Quaternion.identity, null);
         Destroy(gameObject);
     }
-    IEnumerator AnimationDelay(float t)
+    void AnimationDelay()
     {
-        yield return new WaitForSeconds(t);
         GameObject bullet = Instantiate(bulletPrefab, null, false);
         bullet.transform.position = shootPoint.position;
         foreach (simpleMove simple in bullet.GetComponentsInChildren<simpleMove>())
