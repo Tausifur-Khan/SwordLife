@@ -21,6 +21,7 @@ namespace Knight
         public float dJumpForce = 50;
         //double jump bool condition
         public bool doubleJump;
+        public bool restrictMove;
         [Space(2)]
         #endregion
 
@@ -139,6 +140,8 @@ namespace Knight
 
             //movement condition true
             keyActive = true;
+
+            
         }
 
         #region Update Functions
@@ -477,6 +480,16 @@ namespace Knight
                 rb2d.velocity = new Vector2(0, rb2d.velocity.y);
 
             }
+
+            if (restrictMove == true)
+            {
+                //Restrict any movement x & y without effecting y
+                rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+                //Disabler key activate
+                keyActive = false;
+            }
+            else
+                keyActive = true;
         }
 
     }

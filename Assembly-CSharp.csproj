@@ -69,12 +69,12 @@
     <Compile Include="Assets\Scripts\CharacterScripts\Health.cs" />
     <Compile Include="Assets\Scripts\CharacterScripts\PlatThrough.cs" />
     <Compile Include="Assets\Scripts\CharacterScripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Cinematic\Tutorial\ActivateAnim.cs" />
+    <Compile Include="Assets\Scripts\Cinematic\Tutorial\SetAnim.cs" />
     <Compile Include="Assets\Scripts\ColourChange\Change.cs" />
-    <Compile Include="Assets\Scripts\Enemy\BossAI.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyManager\Enemy.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyManager\FlyingAI.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyManager\WalkAI.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Rocks.cs" />
     <Compile Include="Assets\Scripts\GameManageScripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\GameManageScripts\LevelManager.cs" />
     <Compile Include="Assets\Scripts\GameManageScripts\SaveData.cs" />
@@ -91,19 +91,19 @@
     <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
     <Compile Include="Assets\suprise.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/Incubator/Documents/GitHub/SwordLife/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/AdvDip/Desktop/GitHub/SwordLife/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/Incubator/Documents/GitHub/SwordLife/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/AdvDip/Desktop/GitHub/SwordLife/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/Incubator/Documents/GitHub/SwordLife/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/AdvDip/Desktop/GitHub/SwordLife/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/Incubator/Documents/GitHub/SwordLife/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/AdvDip/Desktop/GitHub/SwordLife/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>C:/Users/Incubator/Documents/GitHub/SwordLife/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>C:/Users/AdvDip/Desktop/GitHub/SwordLife/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.3.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -307,13 +307,13 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.3.9f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>C:/Users/Incubator/Documents/GitHub/SwordLife/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>C:/Users/AdvDip/Desktop/GitHub/SwordLife/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>C:/Users/Incubator/Documents/GitHub/SwordLife/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/AdvDip/Desktop/GitHub/SwordLife/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>C:/Users/Incubator/Documents/GitHub/SwordLife/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>C:/Users/AdvDip/Desktop/GitHub/SwordLife/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.3.9f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/mscorlib.dll</HintPath>
