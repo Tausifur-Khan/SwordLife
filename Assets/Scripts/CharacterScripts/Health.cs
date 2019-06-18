@@ -114,7 +114,7 @@ namespace Knight
 
         private void OnTriggerEnter2D(Collider2D col)
         {
-            if (col.CompareTag("Damage") && GetComponentsInChildren<BoxCollider2D>(false).Length == 1)
+            if (col.CompareTag("Damage") && GetComponentsInChildren<BoxCollider2D>(false).Length == 1 && col.gameObject.layer != 15)
             {
                 curHp--;
             }
