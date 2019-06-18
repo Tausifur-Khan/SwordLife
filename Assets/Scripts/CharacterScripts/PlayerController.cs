@@ -474,13 +474,13 @@ namespace Knight
         void RestrictMove()
         {
             //if bool condition true of death then...
-            if (playerLife.playerDeath)
+            if (playerLife.playerDeath == true)
             {
                 //Restrict any movement x & y without effecting y
                 rb2d.velocity = new Vector2(0, rb2d.velocity.y);
-
+                keyActive = false;
             }
-
+            
             if (restrictMove == true)
             {
                 //Restrict any movement x & y without effecting y
@@ -488,8 +488,7 @@ namespace Knight
                 //Disabler key activate
                 keyActive = false;
             }
-            else
-                keyActive = true;
+           
         }
 
     }

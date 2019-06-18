@@ -15,6 +15,7 @@ namespace AnimationSet
         public void DisableAnim()
         {
             player.restrictMove = false;
+            player.keyActive = true;
             wizAnim.SetActive(false);
         }
 

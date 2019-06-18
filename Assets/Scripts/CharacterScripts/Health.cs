@@ -25,11 +25,12 @@ namespace Knight
         private Sprite fullHp;
         [SerializeField]
         private Sprite emptyHp;
-        
+
         public GameObject deathBody;
         public BoxCollider2D body;
+        
 
-       
+
         // private Animator deathAnim;
 
         private void Start()
@@ -44,8 +45,6 @@ namespace Knight
             fullHp = Resources.Load<Sprite>("PlayerHp/Hp");
             emptyHp = Resources.Load<Sprite>("PlayerHp/EmptyHp");
             
-            
-
         }
 
         private void Update()
@@ -78,7 +77,7 @@ namespace Knight
                 if (i < maxHp)
                 {
                     hearts[i].enabled = true;
-                    
+
                 }
                 //othwerwise disable any hearts above maximum
                 else
@@ -102,10 +101,7 @@ namespace Knight
             {
                 //curHp = maxHp;
                 playerDeath = true;
-
-                PlayerController player = GetComponent<PlayerController>();
-                player.keyActive = false;
-
+                
                 body.isTrigger = true;
 
                 deathBody.SetActive(true);
