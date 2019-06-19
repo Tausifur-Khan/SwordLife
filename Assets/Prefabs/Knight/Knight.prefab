@@ -422,6 +422,7 @@ MonoBehaviour:
   jumpForce: 9
   dJumpForce: 7.5
   doubleJump: 0
+  restrictMove: 0
   groundCheck: 0000
   rayDist: 0.2
   raycasts: {fileID: 7437230391385408410}
@@ -519,16 +520,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DashPS
       objectReference: {fileID: 0}
-    - target: {fileID: 198918071010746622, guid: 9d4fe1ef9a6ef2c48aa97259495615cc,
-        type: 3}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198918071010746622, guid: 9d4fe1ef9a6ef2c48aa97259495615cc,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4563225174153870, guid: 9d4fe1ef9a6ef2c48aa97259495615cc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -571,6 +562,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4563225174153870, guid: 9d4fe1ef9a6ef2c48aa97259495615cc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198918071010746622, guid: 9d4fe1ef9a6ef2c48aa97259495615cc,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198918071010746622, guid: 9d4fe1ef9a6ef2c48aa97259495615cc,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
