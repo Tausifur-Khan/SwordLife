@@ -38,7 +38,7 @@ public class MainMenu : MonoBehaviour
         {
             ScreenMove(screens[i].transform, screenLayout[i]);
         }
-        ScreenMoveWorldSpace(transform, -screens[focus].transform.localPosition, true);
+        ScreenMoveWorldSpace(transform, -screens[focus].transform.localPosition);
     }
     // Use this for initialization
     public void Play()
