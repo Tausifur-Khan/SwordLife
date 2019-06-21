@@ -154,7 +154,7 @@ public class MainMenu : MonoBehaviour
     public void ResetToPrefs()
     {
         fullScreen.isOn = (PlayerPrefs.GetInt("FullScreen") == 1);
-        newYears.value = PlayerPrefs.GetInt("Resolution", Screen.resolutions.Length);
+        newYears.value = PlayerPrefs.GetInt("Resolution", Screen.resolutions.Length - 1);
         layout = PlayerPrefs.GetInt("KeyBinding", 0);
         QualitySettings.vSyncCount = PlayerPrefs.GetInt("VSync", 0);
         foreach (GameObject item in layouts)
